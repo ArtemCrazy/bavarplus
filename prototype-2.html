@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>02 · Wizard — Калькулятор Бавар+</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="container">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">Б+</div>
+      <div>
+        <div class="brand-name">Прототип 02 · Пошаговый wizard</div>
+        <div class="brand-sub">Калькулятор экономии · Бавар+</div>
+      </div>
+    </div>
+    <a class="nav-back" href="index.html">← ко всем вариантам</a>
+  </header>
+
+  <section style="margin-bottom:24px">
+    <h1>Сколько вы сэкономите — за 3 шага</h1>
+    <p class="lead">Ответьте на несколько вопросов о вашей ВЭД — увидите ожидаемую экономию.</p>
+  </section>
+
+  <div class="panel" style="max-width:720px; margin:0 auto">
+
+    <div class="wizard-progress">
+      <div class="dot done" id="dot-1"></div>
+      <div class="dot" id="dot-2"></div>
+      <div class="dot" id="dot-3"></div>
+      <div class="dot" id="dot-4"></div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="wizard-step" id="step-1">
+      <div class="step-title">Шаг 1 из 3</div>
+      <h2>Какие задачи закрываете через ВЭД?</h2>
+      <button class="choice" data-step="1" data-key="task" data-value="single">
+        <div class="choice-title">Точечные сделки</div>
+        <div class="choice-desc">Несколько закупок в год — оборудование, запчасти, разовые поставки</div>
+      </button>
+      <button class="choice" data-step="1" data-key="task" data-value="regular">
+        <div class="choice-title">Регулярные поставки</div>
+        <div class="choice-desc">Постоянный поток сделок — ингредиенты, комплектующие, сырьё</div>
+      </button>
+      <button class="choice" data-step="1" data-key="task" data-value="full">
+        <div class="choice-title">Полный аутсорсинг ВЭД</div>
+        <div class="choice-desc">Всё — от поиска поставщика до запуска линии на площадке</div>
+      </button>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="wizard-step hidden" id="step-2">
+      <div class="step-title">Шаг 2 из 3</div>
+      <h2>Какой объём сделок?</h2>
+      <button class="choice" data-step="2" data-key="volume" data-value="small">
+        <div class="choice-title">До 5 сделок в месяц</div>
+        <div class="choice-desc">Небольшое и среднее производство, разовые проекты</div>
+      </button>
+      <button class="choice" data-step="2" data-key="volume" data-value="medium">
+        <div class="choice-title">5–15 сделок в месяц</div>
+        <div class="choice-desc">Среднее производство с постоянными закупками</div>
+      </button>
+      <button class="choice" data-step="2" data-key="volume" data-value="large">
+        <div class="choice-title">Больше 15 сделок</div>
+        <div class="choice-desc">Крупное производство, регулярный поток контейнеров</div>
+      </button>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="wizard-step hidden" id="step-3">
+      <div class="step-title">Шаг 3 из 3</div>
+      <h2>Как сейчас закрываете ВЭД?</h2>
+      <button class="choice" data-step="3" data-key="current" data-value="inhouse">
+        <div class="choice-title">Свой отдел ВЭД</div>
+        <div class="choice-desc">В штате — менеджеры, логист, декларант, юрист</div>
+      </button>
+      <button class="choice" data-step="3" data-key="current" data-value="freelance">
+        <div class="choice-title">Фрилансеры и подрядчики</div>
+        <div class="choice-desc">Брокеры на стороне, разовые специалисты</div>
+      </button>
+      <button class="choice" data-step="3" data-key="current" data-value="none">
+        <div class="choice-title">Пока никак</div>
+        <div class="choice-desc">Хотим запустить ВЭД, ищем подрядчика</div>
+      </button>
+    </div>
+
+    <!-- RESULT -->
+    <div class="wizard-step hidden" id="step-4">
+      <div class="step-title">Готово</div>
+      <h2 id="result-title">Ваша ожидаемая экономия</h2>
+
+      <div class="summary" style="margin-bottom:24px">
+        <div>
+          <div class="label">В месяц</div>
+          <div class="value" id="res-monthly">—</div>
+          <div class="sub" id="res-monthly-sub">экономия по сравнению с текущей моделью</div>
+        </div>
+        <div>
+          <div class="label">В год</div>
+          <div class="value" id="res-yearly">—</div>
+          <div class="sub">при том же объёме сделок</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:24px">
+        <div class="stat cost">
+          <div class="label" id="res-current-label">Сейчас / мес</div>
+          <div class="value" id="res-current">—</div>
+        </div>
+        <div class="stat">
+          <div class="label">С Бавар+ / мес</div>
+          <div class="value" id="res-bavar">—</div>
+          <div class="sub" id="res-bavar-name">—</div>
+        </div>
+      </div>
+
+      <p id="res-note" style="color:var(--text-muted); font-size:14px; margin-bottom:20px"></p>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        <button class="btn">Получить точный расчёт</button>
+        <button class="btn ghost" id="btn-restart">Пересчитать</button>
+      </div>
+    </div>
+
+    <div id="back-row" style="margin-top:24px; padding-top:16px; border-top:1px solid var(--border); display:flex; justify-content:space-between">
+      <button class="btn ghost small" id="btn-prev">← Назад</button>
+      <span style="color:var(--text-muted); font-size:13px" id="hint-pick">Выберите вариант — перейдём к следующему шагу</span>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    Прототип 02 · Wizard. Цифры — демонстрационные.
+    <a href="index.html">← вернуться к выбору варианта</a>
+  </footer>
+</div>
+
+<script src="assets/format.js"></script>
+<script>
+const state = { task: null, volume: null, current: null, step: 1 };
+
+const VOLUME_DEALS = { small: 4, medium: 10, large: 20 };
+const TASK_TARIFF = { single: 'light', regular: 'standard', full: 'premium' };
+
+const CURRENT_MODELS = {
+  inhouse:   { multiplier: 1.0,  staff: 7, label: 'Свой отдел ВЭД / мес', note: 'Учли 7 штатных сотрудников, страховые взносы, накладные и командировки. Точная сумма зависит от региона и состава отдела.' },
+  freelance: { multiplier: 0.45, staff: 0, label: 'Брокеры и фрилансеры / мес', note: 'Учли усреднённую стоимость подрядчиков и брокеров на ваш объём сделок. Часть рисков (штрафы, простои) остаётся на вас.' },
+  none:      { multiplier: 0.0,  staff: 0, label: 'Сейчас тратите / мес', note: 'Если ВЭД ещё не запущена, экономия — относительно типового штатного отдела, который пришлось бы создать.' },
+};
+
+const TASK_TITLES = {
+  single: 'точечные сделки',
+  regular:'регулярные поставки',
+  full:   'полный аутсорсинг ВЭД',
+};
+
+function setStep(n) {
+  state.step = n;
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById('step-' + i).classList.toggle('hidden', i !== n);
+    document.getElementById('dot-' + i).classList.toggle('done', i <= n);
+  }
+  document.getElementById('btn-prev').disabled = (n === 1);
+  document.getElementById('hint-pick').textContent =
+    n === 4 ? 'Расчёт ориентировочный — для точного оставьте заявку' : 'Выберите вариант — перейдём к следующему шагу';
+}
+
+document.querySelectorAll('.choice').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const step = +btn.dataset.step;
+    const key = btn.dataset.key;
+    const value = btn.dataset.value;
+
+    document.querySelectorAll(`.choice[data-step="${step}"]`).forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    state[key] = value;
+
+    setTimeout(() => {
+      if (step < 3) setStep(step + 1);
+      else { compute(); setStep(4); }
+    }, 200);
+  });
+});
+
+document.getElementById('btn-prev').addEventListener('click', () => {
+  if (state.step > 1) setStep(state.step - 1);
+});
+
+document.getElementById('btn-restart').addEventListener('click', () => {
+  state.task = state.volume = state.current = null;
+  document.querySelectorAll('.choice.active').forEach(c => c.classList.remove('active'));
+  setStep(1);
+});
+
+function compute() {
+  const tariff = BAVAR_TARIFFS[TASK_TARIFF[state.task]];
+  const deals = VOLUME_DEALS[state.volume];
+  const model = CURRENT_MODELS[state.current];
+
+  // Estimate "current" cost based on model.
+  const baselineInhouse = 7 * 140000 * 1.30 + 7 * 8000 + 35000 + deals * 22000 + deals * 10000;
+  const current = baselineInhouse * model.multiplier;
+  const bavar = tariff.price;
+  const monthlySavings = Math.max(0, current - bavar);
+
+  document.getElementById('res-current-label').textContent = model.label;
+  document.getElementById('res-current').textContent = state.current === 'none' ? '—' : fmtRub(current);
+  document.getElementById('res-bavar').textContent = fmtRub(bavar);
+  document.getElementById('res-bavar-name').textContent = tariff.name + ' · ' + tariff.desc;
+  document.getElementById('res-monthly').textContent = state.current === 'none' ? '—' : fmtRub(monthlySavings);
+  document.getElementById('res-yearly').textContent = state.current === 'none' ? '—' : fmtRub(monthlySavings * 12);
+  document.getElementById('res-monthly-sub').textContent = state.current === 'none'
+    ? 'У вас пока нет затрат на ВЭД — посчитаем стоимость запуска'
+    : 'экономия по сравнению с текущей моделью';
+  document.getElementById('result-title').textContent =
+    `Подходит тариф «${tariff.name}» под ${TASK_TITLES[state.task]} и ${deals} ${plural(deals, ['сделку','сделки','сделок'])} в месяц`;
+  document.getElementById('res-note').textContent = model.note;
+}
+
+setStep(1);
+</script>
+</body>
+</html>

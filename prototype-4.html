@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>04 · Детальный расчёт — Калькулятор Бавар+</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="container">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">Б+</div>
+      <div>
+        <div class="brand-name">Прототип 04 · Детальный расчёт</div>
+        <div class="brand-sub">Калькулятор экономии · Бавар+</div>
+      </div>
+    </div>
+    <a class="nav-back" href="index.html">← ко всем вариантам</a>
+  </header>
+
+  <section style="margin-bottom:24px">
+    <h1>Детальный расчёт затрат на штатный отдел ВЭД</h1>
+    <p class="lead">Скорректируйте статьи расходов под вашу реальность — отключите ненужные, поменяйте суммы. Внизу — сравнение с тарифами Бавар+.</p>
+  </section>
+
+  <div class="panel" style="padding:24px">
+    <h2 style="margin-bottom:8px">Статьи расходов</h2>
+    <p style="margin-bottom:14px">Все значения — в рублях в месяц. Снимите галочку, если статья к вам не относится.</p>
+
+    <table class="table" id="cost-table">
+      <thead>
+        <tr>
+          <th style="width:40px"></th>
+          <th>Статья</th>
+          <th style="width:200px; text-align:right">Сумма / мес</th>
+        </tr>
+      </thead>
+      <tbody id="lines"></tbody>
+      <tfoot>
+        <tr class="total">
+          <td colspan="2">Итого — содержание отдела ВЭД</td>
+          <td class="num" id="total-inhouse">0 ₽</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <p class="muted-note">Числа подобраны по средним данным рынка. Под вашу компанию точные суммы зафиксируем на этапе персонального расчёта.</p>
+  </div>
+
+  <div class="section-title">
+    <span class="tag">Сравнение с тарифами Бавар+</span>
+  </div>
+
+  <div class="cards" id="tariff-cards"></div>
+
+  <div class="panel" style="margin-top:24px">
+    <div class="summary">
+      <div>
+        <div class="label">Лучшая экономия / мес</div>
+        <div class="value" id="best-monthly">—</div>
+        <div class="sub" id="best-tariff">—</div>
+      </div>
+      <div>
+        <div class="label">В год</div>
+        <div class="value" id="best-yearly">—</div>
+        <div class="sub">При сохранении объёма работ</div>
+      </div>
+    </div>
+    <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap">
+      <button class="btn">Заказать персональный расчёт</button>
+      <button class="btn ghost" id="btn-reset">Сбросить значения</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    Прототип 04 · Детальный расчёт. Цифры — демонстрационные.
+    <a href="index.html">← вернуться к выбору варианта</a>
+  </footer>
+</div>
+
+<script src="assets/format.js"></script>
+<script>
+const INITIAL = INHOUSE_LINES.map(l => ({...l, enabled: l.default, value: l.monthly}));
+const lines = INITIAL.map(l => ({...l}));
+
+const tbody = document.getElementById('lines');
+const totalEl = document.getElementById('total-inhouse');
+
+function renderLines() {
+  tbody.innerHTML = '';
+  lines.forEach((line, idx) => {
+    const tr = document.createElement('tr');
+    if (!line.enabled) tr.classList.add('disabled');
+    tr.innerHTML = `
+      <td><input type="checkbox" ${line.enabled ? 'checked' : ''} data-idx="${idx}" class="chk-line"></td>
+      <td>${line.name}</td>
+      <td class="num"><input type="number" min="0" step="1000" value="${line.value}" data-idx="${idx}" class="inp-line" ${line.enabled?'':'disabled'}></td>
+    `;
+    tbody.appendChild(tr);
+  });
+  bindRowEvents();
+  recalc();
+}
+
+function bindRowEvents() {
+  tbody.querySelectorAll('.chk-line').forEach(cb => {
+    cb.addEventListener('change', e => {
+      const i = +e.target.dataset.idx;
+      lines[i].enabled = e.target.checked;
+      renderLines();
+    });
+  });
+  tbody.querySelectorAll('.inp-line').forEach(inp => {
+    inp.addEventListener('input', e => {
+      const i = +e.target.dataset.idx;
+      lines[i].value = +e.target.value || 0;
+      recalc();
+    });
+  });
+}
+
+function totalInhouse() {
+  return lines.reduce((s, l) => s + (l.enabled ? l.value : 0), 0);
+}
+
+const tariffCards = document.getElementById('tariff-cards');
+function renderTariffs() {
+  tariffCards.innerHTML = '';
+  Object.entries(BAVAR_TARIFFS).forEach(([key, t]) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="num">${t.name}</div>
+      <div class="title" data-price="${key}">${fmtRub(t.price)} / мес</div>
+      <p class="desc">${t.desc}</p>
+      <div class="stat savings" style="margin-top:8px">
+        <div class="label">Экономия / мес</div>
+        <div class="value" data-savings="${key}">—</div>
+        <div class="sub" data-yearly="${key}">—</div>
+      </div>
+    `;
+    tariffCards.appendChild(card);
+  });
+}
+
+function recalc() {
+  const inhouse = totalInhouse();
+  totalEl.textContent = fmtRub(inhouse);
+
+  let best = null;
+  Object.entries(BAVAR_TARIFFS).forEach(([key, t]) => {
+    const savings = Math.max(0, inhouse - t.price);
+    const savEl = tariffCards.querySelector(`[data-savings="${key}"]`);
+    const yrEl = tariffCards.querySelector(`[data-yearly="${key}"]`);
+    if (savEl) savEl.textContent = fmtRub(savings);
+    if (yrEl) yrEl.textContent = 'в год — ' + fmtRub(savings * 12);
+    if (!best || savings > best.savings) best = { key, name: t.name, savings, price: t.price };
+  });
+
+  document.getElementById('best-monthly').textContent = best ? fmtRub(best.savings) : '—';
+  document.getElementById('best-yearly').textContent = best ? fmtRub(best.savings * 12) : '—';
+  document.getElementById('best-tariff').textContent = best
+    ? `при тарифе «${best.name}» — ${fmtRub(best.price)} / мес`
+    : '—';
+}
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+  lines.forEach((l, i) => {
+    l.enabled = INITIAL[i].enabled;
+    l.value = INITIAL[i].value;
+  });
+  renderLines();
+});
+
+renderTariffs();
+renderLines();
+</script>
+</body>
+</html>

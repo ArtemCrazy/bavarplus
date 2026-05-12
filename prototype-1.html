@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>01 · Слайдеры — Калькулятор Бавар+</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="container">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">Б+</div>
+      <div>
+        <div class="brand-name">Прототип 01 · Слайдеры</div>
+        <div class="brand-sub">Калькулятор экономии · Бавар+</div>
+      </div>
+    </div>
+    <a class="nav-back" href="index.html">← ко всем вариантам</a>
+  </header>
+
+  <section style="margin-bottom:24px">
+    <h1>Посчитайте, сколько сэкономите на аутсорсинге ВЭД</h1>
+    <p class="lead">Подвиньте ползунки под параметры вашей компании — увидите экономию по сравнению со штатным отделом.</p>
+  </section>
+
+  <div class="grid-2">
+    <div class="panel">
+      <h2>Ваш отдел ВЭД</h2>
+
+      <label class="field">
+        <div class="lbl"><span>Сотрудников в отделе ВЭД</span><span id="lbl-staff">7 чел.</span></div>
+        <input type="range" id="staff" min="2" max="12" value="7" step="1">
+        <div class="hint">Менеджеры, логист, декларант, юрист, переводчик, руководитель</div>
+      </label>
+
+      <label class="field">
+        <div class="lbl"><span>Средняя зарплата на руки</span><span id="lbl-salary">140 000 ₽</span></div>
+        <input type="range" id="salary" min="80000" max="250000" value="140000" step="5000">
+        <div class="hint">Средний оклад одного специалиста</div>
+      </label>
+
+      <label class="field">
+        <div class="lbl"><span>Сделок с Китаем в месяц</span><span id="lbl-deals">8 сделок</span></div>
+        <input type="range" id="deals" min="1" max="30" value="8" step="1">
+        <div class="hint">Влияет на командировки, ПО и риски ошибок растаможки</div>
+      </label>
+
+      <p class="muted-note">К ФОТ автоматически добавляются 30% страховых взносов, аренда рабочих мест, ПО, командировки в Китай и резерв на штрафы.</p>
+    </div>
+
+    <div class="panel">
+      <h2>Сравнение</h2>
+
+      <div class="bar-compare">
+        <div class="name">Свой отдел</div>
+        <div class="bar cost" id="bar-inhouse"><div class="fill"></div><div class="val" id="val-inhouse">0 ₽</div></div>
+      </div>
+      <div class="bar-compare">
+        <div class="name">Бавар+</div>
+        <div class="bar" id="bar-bavar"><div class="fill"></div><div class="val" id="val-bavar">0 ₽</div></div>
+      </div>
+      <div class="bar-compare">
+        <div class="name">Экономия</div>
+        <div class="bar savings" id="bar-savings"><div class="fill"></div><div class="val" id="val-savings">0 ₽</div></div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:24px">
+        <div class="stat cost">
+          <div class="label">Свой отдел / мес</div>
+          <div class="value" id="stat-inhouse">—</div>
+          <div class="sub" id="stat-inhouse-sub">ФОТ + накладные</div>
+        </div>
+        <div class="stat">
+          <div class="label">Бавар+ / мес</div>
+          <div class="value" id="stat-bavar">—</div>
+          <div class="sub">Фикс, без скрытых платежей</div>
+        </div>
+      </div>
+
+      <div class="summary" style="margin-top:16px">
+        <div>
+          <div class="label">Экономия в месяц</div>
+          <div class="value" id="sum-monthly">—</div>
+        </div>
+        <div>
+          <div class="label">Экономия в год</div>
+          <div class="value" id="sum-yearly">—</div>
+          <div class="sub">До запуска — бесплатная консультация</div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px; display:flex; gap:10px">
+        <button class="btn">Получить точный расчёт</button>
+        <button class="btn ghost" id="btn-reset">Сбросить</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    Прототип 01 · Слайдеры. Цифры — демонстрационные.
+    <a href="index.html">← вернуться к выбору варианта</a>
+  </footer>
+</div>
+
+<script src="assets/format.js"></script>
+<script>
+const DEFAULTS = { staff: 7, salary: 140000, deals: 8 };
+const BAVAR_PRICE = 300000;
+const TAX_RATE = 0.30;
+const OFFICE_PER_PERSON = 8000;
+const SOFTWARE_BASE = 35000;
+const TRAVEL_PER_DEAL = 22000;
+const RISK_PER_DEAL = 10000;
+
+const els = {
+  staff: document.getElementById('staff'),
+  salary: document.getElementById('salary'),
+  deals: document.getElementById('deals'),
+  lblStaff: document.getElementById('lbl-staff'),
+  lblSalary: document.getElementById('lbl-salary'),
+  lblDeals: document.getElementById('lbl-deals'),
+  statInhouse: document.getElementById('stat-inhouse'),
+  statInhouseSub: document.getElementById('stat-inhouse-sub'),
+  statBavar: document.getElementById('stat-bavar'),
+  sumMonthly: document.getElementById('sum-monthly'),
+  sumYearly: document.getElementById('sum-yearly'),
+  valInhouse: document.getElementById('val-inhouse'),
+  valBavar: document.getElementById('val-bavar'),
+  valSavings: document.getElementById('val-savings'),
+  fillInhouse: document.querySelector('#bar-inhouse .fill'),
+  fillBavar: document.querySelector('#bar-bavar .fill'),
+  fillSavings: document.querySelector('#bar-savings .fill'),
+};
+
+function compute() {
+  const staff = +els.staff.value;
+  const salary = +els.salary.value;
+  const deals = +els.deals.value;
+
+  const fot = staff * salary;
+  const taxes = fot * TAX_RATE;
+  const office = staff * OFFICE_PER_PERSON;
+  const software = SOFTWARE_BASE;
+  const travel = deals * TRAVEL_PER_DEAL;
+  const risk = deals * RISK_PER_DEAL;
+  const inhouse = fot + taxes + office + software + travel + risk;
+
+  const bavar = BAVAR_PRICE;
+  const savings = Math.max(0, inhouse - bavar);
+
+  els.lblStaff.textContent = `${staff} ${plural(staff, ['человек','человека','человек'])}`;
+  els.lblSalary.textContent = fmtRub(salary);
+  els.lblDeals.textContent = `${deals} ${plural(deals, ['сделка','сделки','сделок'])}`;
+
+  els.statInhouse.textContent = fmtRub(inhouse);
+  els.statInhouseSub.textContent = `ФОТ ${fmtRub(fot)} + взносы и накладные`;
+  els.statBavar.textContent = fmtRub(bavar);
+  els.sumMonthly.textContent = fmtRub(savings);
+  els.sumYearly.textContent = fmtRub(savings * 12);
+
+  const max = inhouse || 1;
+  els.fillInhouse.style.width = '100%';
+  els.fillBavar.style.width = (bavar / max * 100) + '%';
+  els.fillSavings.style.width = (savings / max * 100) + '%';
+
+  els.valInhouse.textContent = fmtRub(inhouse);
+  els.valBavar.textContent = fmtRub(bavar);
+  els.valSavings.textContent = fmtRub(savings);
+}
+
+['staff','salary','deals'].forEach(k => els[k].addEventListener('input', compute));
+document.getElementById('btn-reset').addEventListener('click', () => {
+  for (const k of Object.keys(DEFAULTS)) els[k].value = DEFAULTS[k];
+  compute();
+});
+compute();
+</script>
+</body>
+</html>

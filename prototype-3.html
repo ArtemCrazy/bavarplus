@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03 · Пресеты — Калькулятор Бавар+</title>
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="container">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">Б+</div>
+      <div>
+        <div class="brand-name">Прототип 03 · Пресеты</div>
+        <div class="brand-sub">Калькулятор экономии · Бавар+</div>
+      </div>
+    </div>
+    <a class="nav-back" href="index.html">← ко всем вариантам</a>
+  </header>
+
+  <section style="margin-bottom:24px">
+    <h1>Выберите тип производства — мы покажем экономию</h1>
+    <p class="lead">Это типовые сценарии. После выбора цифры можно скорректировать под вашу реальность.</p>
+  </section>
+
+  <div class="cards" style="margin-bottom:32px">
+    <div class="preset-card" data-preset="small">
+      <div class="title">Малое производство</div>
+      <div class="desc">3–4 сотрудника ВЭД, 2–4 сделки с Китаем в месяц</div>
+      <div class="meta">≈ 800 тыс ₽/мес на ВЭД</div>
+    </div>
+    <div class="preset-card active" data-preset="medium">
+      <div class="title">Среднее производство</div>
+      <div class="desc">6–8 сотрудников, 8–12 сделок в месяц, регулярные закупки</div>
+      <div class="meta">≈ 1,8 млн ₽/мес на ВЭД</div>
+    </div>
+    <div class="preset-card" data-preset="large">
+      <div class="title">Крупное производство</div>
+      <div class="desc">10+ сотрудников, 20+ сделок, постоянный поток контейнеров</div>
+      <div class="meta">≈ 3,2 млн ₽/мес на ВЭД</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+
+    <div class="panel">
+      <h2>Параметры — можно подкрутить</h2>
+
+      <label class="field">
+        <div class="lbl"><span>Сотрудников в отделе ВЭД</span><span id="lbl-staff">7 чел.</span></div>
+        <input type="range" id="staff" min="2" max="14" value="7" step="1">
+      </label>
+
+      <label class="field">
+        <div class="lbl"><span>Средняя зарплата на руки</span><span id="lbl-salary">140 000 ₽</span></div>
+        <input type="range" id="salary" min="80000" max="280000" value="140000" step="5000">
+      </label>
+
+      <label class="field">
+        <div class="lbl"><span>Сделок в месяц</span><span id="lbl-deals">10 сделок</span></div>
+        <input type="range" id="deals" min="1" max="40" value="10" step="1">
+      </label>
+
+      <label class="field">
+        <div class="lbl"><span>Тариф Бавар+</span><span id="lbl-tariff">Стандарт</span></div>
+        <div class="chip-row" id="tariff-row">
+          <button class="chip" data-tariff="light">Лайт · 300 тыс</button>
+          <button class="chip active" data-tariff="standard">Стандарт · 500 тыс</button>
+          <button class="chip" data-tariff="premium">Максимум · 800 тыс</button>
+        </div>
+      </label>
+    </div>
+
+    <div class="panel">
+      <h2>Ваша экономия</h2>
+
+      <div class="bar-compare">
+        <div class="name">Свой отдел</div>
+        <div class="bar cost" id="bar-inhouse"><div class="fill"></div><div class="val" id="val-inhouse">0 ₽</div></div>
+      </div>
+      <div class="bar-compare">
+        <div class="name">Бавар+</div>
+        <div class="bar" id="bar-bavar"><div class="fill"></div><div class="val" id="val-bavar">0 ₽</div></div>
+      </div>
+      <div class="bar-compare">
+        <div class="name">Экономия</div>
+        <div class="bar savings" id="bar-savings"><div class="fill"></div><div class="val" id="val-savings">0 ₽</div></div>
+      </div>
+
+      <div class="summary" style="margin-top:20px">
+        <div>
+          <div class="label">Экономия / мес</div>
+          <div class="value" id="sum-monthly">—</div>
+          <div class="sub" id="sum-share">—</div>
+        </div>
+        <div>
+          <div class="label">Экономия / год</div>
+          <div class="value" id="sum-yearly">—</div>
+          <div class="sub">При том же объёме</div>
+        </div>
+      </div>
+
+      <p class="muted-note">Расчёт включает ФОТ, страховые взносы (30%), офис, ПО, командировки в Китай и резерв на риски штрафов растаможки.</p>
+
+      <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap">
+        <button class="btn">Заказать персональный расчёт</button>
+        <button class="btn ghost" id="btn-reset">Сбросить к пресету</button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    Прототип 03 · Пресеты. Цифры — демонстрационные.
+    <a href="index.html">← вернуться к выбору варианта</a>
+  </footer>
+</div>
+
+<script src="assets/format.js"></script>
+<script>
+const PRESETS = {
+  small:  { staff: 4,  salary: 120000, deals: 3,  tariff: 'light' },
+  medium: { staff: 7,  salary: 140000, deals: 10, tariff: 'standard' },
+  large:  { staff: 11, salary: 170000, deals: 22, tariff: 'premium' },
+};
+const TARIFF_NAMES = { light: 'Лайт', standard: 'Стандарт', premium: 'Максимум' };
+
+let activePreset = 'medium';
+let activeTariff = 'standard';
+
+const els = {
+  staff: document.getElementById('staff'),
+  salary: document.getElementById('salary'),
+  deals: document.getElementById('deals'),
+  lblStaff: document.getElementById('lbl-staff'),
+  lblSalary: document.getElementById('lbl-salary'),
+  lblDeals: document.getElementById('lbl-deals'),
+  lblTariff: document.getElementById('lbl-tariff'),
+  valInhouse: document.getElementById('val-inhouse'),
+  valBavar: document.getElementById('val-bavar'),
+  valSavings: document.getElementById('val-savings'),
+  fillInhouse: document.querySelector('#bar-inhouse .fill'),
+  fillBavar: document.querySelector('#bar-bavar .fill'),
+  fillSavings: document.querySelector('#bar-savings .fill'),
+  sumMonthly: document.getElementById('sum-monthly'),
+  sumYearly: document.getElementById('sum-yearly'),
+  sumShare: document.getElementById('sum-share'),
+};
+
+function applyPreset(key) {
+  const p = PRESETS[key];
+  activePreset = key;
+  els.staff.value = p.staff;
+  els.salary.value = p.salary;
+  els.deals.value = p.deals;
+  activeTariff = p.tariff;
+  document.querySelectorAll('.preset-card').forEach(c => c.classList.toggle('active', c.dataset.preset === key));
+  document.querySelectorAll('#tariff-row .chip').forEach(c => c.classList.toggle('active', c.dataset.tariff === p.tariff));
+  compute();
+}
+
+function compute() {
+  const staff = +els.staff.value;
+  const salary = +els.salary.value;
+  const deals = +els.deals.value;
+
+  const fot = staff * salary;
+  const taxes = fot * 0.30;
+  const office = staff * 8000;
+  const software = 35000;
+  const travel = deals * 22000;
+  const risk = deals * 10000;
+  const inhouse = fot + taxes + office + software + travel + risk;
+
+  const bavar = BAVAR_TARIFFS[activeTariff].price;
+  const savings = Math.max(0, inhouse - bavar);
+  const share = inhouse > 0 ? Math.round(savings / inhouse * 100) : 0;
+
+  els.lblStaff.textContent = `${staff} ${plural(staff, ['человек','человека','человек'])}`;
+  els.lblSalary.textContent = fmtRub(salary);
+  els.lblDeals.textContent = `${deals} ${plural(deals, ['сделка','сделки','сделок'])}`;
+  els.lblTariff.textContent = TARIFF_NAMES[activeTariff];
+
+  const max = inhouse || 1;
+  els.fillInhouse.style.width = '100%';
+  els.fillBavar.style.width = (bavar / max * 100) + '%';
+  els.fillSavings.style.width = (savings / max * 100) + '%';
+
+  els.valInhouse.textContent = fmtRub(inhouse);
+  els.valBavar.textContent = fmtRub(bavar);
+  els.valSavings.textContent = fmtRub(savings);
+
+  els.sumMonthly.textContent = fmtRub(savings);
+  els.sumYearly.textContent = fmtRub(savings * 12);
+  els.sumShare.textContent = `≈ ${share}% от текущих затрат`;
+}
+
+['staff','salary','deals'].forEach(k => els[k].addEventListener('input', compute));
+
+document.querySelectorAll('.preset-card').forEach(card => {
+  card.addEventListener('click', () => applyPreset(card.dataset.preset));
+});
+
+document.querySelectorAll('#tariff-row .chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    activeTariff = chip.dataset.tariff;
+    document.querySelectorAll('#tariff-row .chip').forEach(c => c.classList.toggle('active', c === chip));
+    compute();
+  });
+});
+
+document.getElementById('btn-reset').addEventListener('click', () => applyPreset(activePreset));
+
+applyPreset('medium');
+</script>
+</body>
+</html>
