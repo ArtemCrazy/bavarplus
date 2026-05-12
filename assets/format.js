@@ -18,6 +18,22 @@ function fmtNum(n) {
   return NUM.format(Math.round(n));
 }
 
+// Compact rubles for hero numbers: 18 500 000 → "18,5 млн ₽", 750 000 → "750 тыс ₽".
+function fmtRubShort(n) {
+  if (!isFinite(n)) return '—';
+  if (Math.abs(n) >= 1_000_000) {
+    const v = (n / 1_000_000);
+    const s = (v >= 10 ? v.toFixed(1) : v.toFixed(2))
+      .replace(/\.?0+$/, '')
+      .replace('.', ',');
+    return s + ' млн ₽';
+  }
+  if (Math.abs(n) >= 1000) {
+    return Math.round(n / 1000) + ' тыс ₽';
+  }
+  return fmtRub(n);
+}
+
 // Pluralization for Russian numbers (e.g. 1 человек / 2 человека / 5 человек).
 function plural(n, forms) {
   const abs = Math.abs(n) % 100;

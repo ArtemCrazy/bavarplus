@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>03 · Башня расходов — Калькулятор Бавар+</title>
+<title>03 · Сценарий года — Калькулятор Бавар+</title>
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -12,184 +12,291 @@
     <div class="brand">
       <div class="brand-mark">Б+</div>
       <div>
-        <div class="brand-name">Прототип 03 · Башня расходов</div>
+        <div class="brand-name">Прототип 03 · Сценарий года</div>
         <div class="brand-sub">Калькулятор экономии · Бавар+</div>
       </div>
     </div>
     <a class="nav-back" href="index.html">← ко всем вариантам</a>
   </header>
 
-  <section style="margin-bottom:24px">
-    <h1>Так выглядит ваш отдел ВЭД. И так — Бавар+</h1>
-    <p class="lead">Один блок — одна статья расходов в месяц. Высота блока пропорциональна сумме. Наведите на любой, чтобы прочитать описание.</p>
+  <section class="hero-block">
+    <div class="kicker">Сколько вы сэкономите за год</div>
+    <div class="hero-num" id="hero-num">— ₽</div>
+    <p class="hero-sub">
+      на тарифе <strong>Бавар+ Лайт</strong> по сравнению со штатным отделом ВЭД из 7 человек.
+      Прокрутите таймлайн ниже — увидите, как экономия копится месяц за месяцем.
+    </p>
   </section>
 
-  <div class="toggle-row" role="tablist">
-    <button data-period="month" class="active">В месяц</button>
-    <button data-period="year">В год</button>
+  <div class="chart-card">
+    <div class="chart-head">
+      <h3>Накопленные расходы за <span id="head-period">12 месяцев</span></h3>
+      <div class="legend-inline">
+        <span><span class="dotmark inhouse2"></span>Свой отдел</span>
+        <span><span class="dotmark bavar2"></span>Бавар+</span>
+        <span><span class="dotmark savings2"></span>Экономия</span>
+      </div>
+    </div>
+
+    <svg class="chart-svg" viewBox="0 0 800 340" preserveAspectRatio="xMidYMid meet" aria-label="График накопленных расходов">
+      <defs>
+        <linearGradient id="savings-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#15803d" stop-opacity="0.22"/>
+          <stop offset="100%" stop-color="#15803d" stop-opacity="0.02"/>
+        </linearGradient>
+      </defs>
+      <g id="grid"></g>
+      <g id="y-labels"></g>
+      <g id="x-labels"></g>
+      <path id="area-savings" class="area-savings" d=""></path>
+      <path id="line-inhouse" class="line-inhouse" d=""></path>
+      <path id="line-bavar" class="line-bavar" d=""></path>
+      <circle id="dot-inhouse" class="active-dot" cx="0" cy="0" r="6" stroke="#b45309"></circle>
+      <circle id="dot-bavar" class="active-dot" cx="0" cy="0" r="6" stroke="#1e3a8a"></circle>
+      <g id="pill-inhouse" transform="translate(-100,-100)">
+        <rect class="pill" rx="6" ry="6" width="92" height="22" x="-46" y="-11"></rect>
+        <text class="pill-text" text-anchor="middle" dy=".35em" id="pill-inhouse-t">—</text>
+      </g>
+      <g id="pill-bavar" transform="translate(-100,-100)">
+        <rect class="pill" rx="6" ry="6" width="92" height="22" x="-46" y="-11" fill="#1e3a8a"></rect>
+        <text class="pill-text" text-anchor="middle" dy=".35em" id="pill-bavar-t">—</text>
+      </g>
+    </svg>
+
+    <div class="month-timeline">
+      <button class="play-btn" id="play-btn" aria-label="Запустить анимацию">▶</button>
+      <div class="months" id="months"></div>
+    </div>
   </div>
 
-  <div class="towers">
-    <div class="tower">
-      <div class="tower-head">
-        <div class="name">Свой отдел ВЭД</div>
-        <div class="sub">7 человек + накладные</div>
-      </div>
-      <div class="tower-stack" id="stack-inhouse"></div>
-      <div class="tower-foot">
-        <div class="label">Итого</div>
-        <div class="total cost" id="total-inhouse">—</div>
-      </div>
+  <div class="metrics-row">
+    <div class="metric">
+      <div class="label">Каждый месяц теряете</div>
+      <div class="value" id="m-monthly">—</div>
+      <div class="delta">на штатном отделе ВЭД vs. Бавар+</div>
     </div>
-
-    <div class="tower-vs">vs</div>
-
-    <div class="tower">
-      <div class="tower-head">
-        <div class="name">Бавар+ Лайт</div>
-        <div class="sub">Фиксированная абонентская плата</div>
-      </div>
-      <div class="tower-stack" id="stack-bavar"></div>
-      <div class="tower-foot">
-        <div class="label">Итого</div>
-        <div class="total bavar" id="total-bavar">—</div>
-      </div>
+    <div class="metric savings">
+      <div class="label">К месяцу <span id="m-period-num">12</span></div>
+      <div class="value" id="m-period">—</div>
+      <div class="delta">накопленная экономия</div>
+    </div>
+    <div class="metric">
+      <div class="label">К концу года</div>
+      <div class="value" id="m-year">—</div>
+      <div class="delta">если запустить с первого месяца</div>
     </div>
   </div>
 
-  <div class="grid-2" style="margin-top:24px">
-    <div class="detail-card" id="detail">
-      <div class="title" id="detail-title">Наведите на любой блок</div>
-      <div class="meta" id="detail-meta">Узнаете, что входит в эту статью расходов и сколько она стоит компании</div>
-      <div id="detail-text" style="color:var(--text-muted)"></div>
-    </div>
-
-    <div class="panel">
-      <div style="font-size:13px; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px">Экономия</div>
-      <div style="font-size:36px; font-weight:600; font-variant-numeric:tabular-nums; color:var(--savings); line-height:1.1" id="savings-main">—</div>
-      <div style="color:var(--text-muted); margin-top:4px" id="savings-sub">в месяц по сравнению со штатным отделом</div>
-      <div style="margin-top:16px; padding-top:14px; border-top:1px solid var(--border); display:flex; gap:10px; flex-wrap:wrap">
-        <button class="btn">Получить точный расчёт</button>
-        <a class="btn ghost" href="index.html">← к другим вариантам</a>
-      </div>
+  <div class="narrative">
+    <h2>Что это значит для вашей компании</h2>
+    <p>
+      Год работы со штатным отделом ВЭД из 7 человек — это <strong style="color:var(--cost)" id="n-inhouse">—</strong>
+      с учётом ФОТ, страховых взносов, рабочих мест, ПО, командировок в Китай и резерва на штрафы.
+    </p>
+    <p>
+      Тот же объём задач через Бавар+ Лайт — <strong style="color:var(--accent)" id="n-bavar">—</strong>
+      по фиксированной абонентке, без скрытых платежей и без управленческой нагрузки.
+    </p>
+    <p>
+      Разница — <strong style="color:var(--savings)" id="n-savings">—</strong> в год.
+      Эти деньги остаются в компании на закупку сырья, расширение производства или R&D.
+    </p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:18px">
+      <button class="btn">Запустить экономию с первого месяца</button>
+      <a class="btn ghost" href="index.html">← к другим вариантам</a>
     </div>
   </div>
 
   <footer class="footer">
-    Прототип 03 · Башня расходов. Цифры — демонстрационные, по типовому отделу ВЭД.
+    Прототип 03 · Сценарий года. Цифры — демонстрационные, считаются от типового штатного отдела ВЭД.
     <a href="index.html">← вернуться к выбору варианта</a>
   </footer>
 </div>
 
 <script src="assets/format.js"></script>
 <script>
-const INHOUSE_DESC = {
-  head:       'Руководитель направления ВЭД. Координирует команду, согласует контракты, отвечает за результат и риски.',
-  manager:    'Двое менеджеров ВЭД. Ведут поставщиков, оформляют контракты, контролируют отгрузки и претензии.',
-  logist:     'Логист. Согласовывает маршруты, выбирает экспедиторов, отвечает за сроки и сохранность груза.',
-  declarant:  'Декларант / таможенный брокер. Готовит декларации, ведёт оформление в ФТС, классификация ТНВЭД.',
-  lawyer:     'Юрист по ВЭД. Договоры, валютный контроль, споры, репатриация выручки, претензионная работа.',
-  translator: 'Переводчик-китаист. Переговоры с поставщиками, перевод документов, инспекции на фабриках.',
-  taxes:      'Страховые взносы — ≈30% от фонда оплаты труда. Закон считает их обязательной частью расходов на штат.',
-  office:     'Рабочие места и оборудование: ноутбуки, столы, лицензии Microsoft, мебель, расходники.',
-  software:   'ПО, телефония, CRM, ВЭД-сервисы (Альта-Софт, ТКС), интернет, связь с Китаем.',
-  travel:     'Командировки в Китай: визы, билеты, гостиницы, питание, переводчики на месте. По 2–4 поездки в год.',
-  risk:       'Резерв на риски: штрафы за ошибки в декларациях, простои на таможне, корректировки таможенной стоимости.',
-};
-const BAVAR_DESC = {
-  bavar: 'Фиксированная абонентская плата Бавар+ Лайт. Включает менеджера, контракты, логистику, растаможку, переводчика — всё в одном договоре, без скрытых платежей.',
-};
+const INHOUSE_MONTHLY = INHOUSE_LINES.filter(l => l.default).reduce((s, l) => s + l.monthly, 0);
+const BAVAR_MONTHLY = BAVAR_TARIFFS.light.price;
+const MONTHLY_SAVINGS = INHOUSE_MONTHLY - BAVAR_MONTHLY;
 
-const TARIFF = BAVAR_TARIFFS.light;
-const stackInhouse = document.getElementById('stack-inhouse');
-const stackBavar = document.getElementById('stack-bavar');
-const totalInhouseEl = document.getElementById('total-inhouse');
-const totalBavarEl = document.getElementById('total-bavar');
-const savingsMainEl = document.getElementById('savings-main');
-const savingsSubEl = document.getElementById('savings-sub');
-const detailTitle = document.getElementById('detail-title');
-const detailMeta = document.getElementById('detail-meta');
-const detailText = document.getElementById('detail-text');
+// SVG dimensions
+const W = 800, H = 340;
+const PAD = { left: 64, right: 24, top: 16, bottom: 36 };
+const PLOT_W = W - PAD.left - PAD.right;
+const PLOT_H = H - PAD.top - PAD.bottom;
+const MAX_Y = INHOUSE_MONTHLY * 12 * 1.08;
 
-const enabledLines = INHOUSE_LINES.filter(l => l.default);
-const totalInhouse = enabledLines.reduce((s, l) => s + l.monthly, 0);
-const totalBavar = TARIFF.price;
-let period = 'month';
+const xOf = m => PAD.left + (m / 12) * PLOT_W;
+const yOf = v => PAD.top + PLOT_H - (v / MAX_Y) * PLOT_H;
 
-function render() {
-  const mult = period === 'year' ? 12 : 1;
-  const totalInhouseScaled = totalInhouse * mult;
+// Build static parts of the chart
+function buildChart() {
+  const grid = document.getElementById('grid');
+  const yLabels = document.getElementById('y-labels');
+  const xLabels = document.getElementById('x-labels');
+  grid.innerHTML = ''; yLabels.innerHTML = ''; xLabels.innerHTML = '';
 
-  // each block height = proportional to its share of total inhouse
-  // total stack height: 380px for inhouse
-  const STACK_PX = 380;
-  stackInhouse.innerHTML = '';
-  enabledLines.forEach((l, idx) => {
-    const ratio = l.monthly / totalInhouse;
-    const h = Math.max(22, ratio * STACK_PX);
-    const tiny = h < 30;
-    const div = document.createElement('div');
-    div.className = 'block' + (tiny ? ' tiny' : '');
-    div.style.height = h + 'px';
-    div.style.animationDelay = (idx * 60) + 'ms';
-    div.dataset.key = l.id;
-    div.dataset.type = 'inhouse';
-    div.innerHTML = `<span class="b-name">${l.name}</span><span class="b-cost">${fmtRub(l.monthly * mult)}</span>`;
-    stackInhouse.appendChild(div);
-  });
+  for (let i = 0; i <= 4; i++) {
+    const v = (MAX_Y / 4) * i;
+    const y = yOf(v);
+    const l = document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('class','grid-line');
+    l.setAttribute('x1', PAD.left); l.setAttribute('x2', W - PAD.right);
+    l.setAttribute('y1', y); l.setAttribute('y2', y);
+    grid.appendChild(l);
+    const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('class','axis-label');
+    t.setAttribute('x', PAD.left - 10); t.setAttribute('y', y + 4);
+    t.setAttribute('text-anchor','end');
+    t.textContent = (v / 1_000_000).toFixed(0) + ' млн';
+    yLabels.appendChild(t);
+  }
+  // X-axis: every 3rd month labelled
+  for (let m = 3; m <= 12; m += 3) {
+    const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('class','axis-label');
+    t.setAttribute('x', xOf(m)); t.setAttribute('y', H - PAD.bottom + 18);
+    t.setAttribute('text-anchor','middle');
+    t.textContent = 'мес. ' + m;
+    xLabels.appendChild(t);
+  }
 
-  // bavar block: scaled the same way (300k / total_inhouse * STACK_PX)
-  stackBavar.innerHTML = '';
-  const bavarH = Math.max(28, (totalBavar / totalInhouse) * STACK_PX);
-  const bavar = document.createElement('div');
-  bavar.className = 'block bavar';
-  bavar.style.height = bavarH + 'px';
-  bavar.dataset.key = 'bavar';
-  bavar.dataset.type = 'bavar';
-  bavar.innerHTML = `<span class="b-name">Бавар+ Лайт</span><span class="b-cost">${fmtRub(totalBavar * mult)}</span>`;
-  stackBavar.appendChild(bavar);
-
-  totalInhouseEl.textContent = fmtRub(totalInhouseScaled);
-  totalBavarEl.textContent = fmtRub(totalBavar * mult);
-  const savings = totalInhouse - totalBavar;
-  savingsMainEl.textContent = fmtRub(savings * mult);
-  savingsSubEl.textContent = period === 'year'
-    ? `в год — это +${fmtRub(savings * 12 / 12)} каждый месяц`
-    : `в месяц — это ${fmtRub(savings * 12)} в год`;
-
-  bindBlocks();
+  // Lines (drawn over full 12-month range, don't change)
+  const points = [];
+  for (let m = 0; m <= 12; m++) {
+    points.push({ m, inhouse: m * INHOUSE_MONTHLY, bavar: m * BAVAR_MONTHLY });
+  }
+  const dInhouse = points.map((p,i) => (i?'L':'M') + xOf(p.m) + ' ' + yOf(p.inhouse)).join(' ');
+  const dBavar = points.map((p,i) => (i?'L':'M') + xOf(p.m) + ' ' + yOf(p.bavar)).join(' ');
+  document.getElementById('line-inhouse').setAttribute('d', dInhouse);
+  document.getElementById('line-bavar').setAttribute('d', dBavar);
 }
 
-function bindBlocks() {
-  document.querySelectorAll('.block').forEach(b => {
-    b.addEventListener('mouseenter', () => showDetail(b));
-    b.addEventListener('click', () => showDetail(b));
-  });
+function buildTimeline() {
+  const months = document.getElementById('months');
+  months.innerHTML = '';
+  for (let m = 1; m <= 12; m++) {
+    const b = document.createElement('button');
+    b.className = 'mdot';
+    b.dataset.month = m;
+    b.textContent = m;
+    b.addEventListener('click', () => setMonth(m));
+    months.appendChild(b);
+  }
 }
 
-function showDetail(b) {
-  document.querySelectorAll('.block').forEach(x => x.classList.remove('active'));
-  b.classList.add('active');
-  const key = b.dataset.key;
-  const type = b.dataset.type;
-  const desc = type === 'bavar' ? BAVAR_DESC[key] : INHOUSE_DESC[key];
-  const name = b.querySelector('.b-name').textContent;
-  const cost = b.querySelector('.b-cost').textContent;
-  detailTitle.textContent = name;
-  detailMeta.textContent = (type === 'bavar' ? 'Бавар+ · ' : 'Свой отдел · ') + cost + (period === 'year' ? ' в год' : ' в месяц');
-  detailText.textContent = desc;
+// Smooth number ticker
+const numState = new Map();
+function tickNumber(el, target, formatter, dur) {
+  const from = numState.get(el) ?? target;
+  const start = performance.now();
+  const D = dur ?? 380;
+  function step(t) {
+    const p = Math.min(1, (t - start) / D);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const cur = from + (target - from) * eased;
+    el.textContent = formatter(cur);
+    if (p < 1) requestAnimationFrame(step);
+  }
+  numState.set(el, target);
+  requestAnimationFrame(step);
 }
 
-document.querySelectorAll('.toggle-row button').forEach(b => {
-  b.addEventListener('click', () => {
-    document.querySelectorAll('.toggle-row button').forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    period = b.dataset.period;
-    render();
+function update(month) {
+  // Update timeline dots
+  document.querySelectorAll('.mdot').forEach(d => {
+    const m = +d.dataset.month;
+    d.classList.toggle('active', m === month);
+    d.classList.toggle('passed', m < month);
   });
+
+  // Area between curves up to month
+  const areaTop = [];
+  const areaBottom = [];
+  for (let m = 0; m <= month; m++) {
+    areaTop.push(xOf(m) + ' ' + yOf(m * INHOUSE_MONTHLY));
+    areaBottom.unshift(xOf(m) + ' ' + yOf(m * BAVAR_MONTHLY));
+  }
+  const areaPath = month > 0
+    ? 'M' + areaTop.join(' L') + ' L' + areaBottom.join(' L') + ' Z'
+    : '';
+  document.getElementById('area-savings').setAttribute('d', areaPath);
+
+  // Active dots and pills
+  const xm = xOf(month);
+  const yi = yOf(month * INHOUSE_MONTHLY);
+  const yb = yOf(month * BAVAR_MONTHLY);
+  const dotI = document.getElementById('dot-inhouse');
+  const dotB = document.getElementById('dot-bavar');
+  dotI.setAttribute('cx', xm); dotI.setAttribute('cy', yi);
+  dotB.setAttribute('cx', xm); dotB.setAttribute('cy', yb);
+
+  // Pills — clamp X so they don't overflow
+  const clampX = x => Math.max(PAD.left + 48, Math.min(W - PAD.right - 48, x));
+  const pillI = document.getElementById('pill-inhouse');
+  const pillB = document.getElementById('pill-bavar');
+  pillI.setAttribute('transform', `translate(${clampX(xm)},${yi - 22})`);
+  pillB.setAttribute('transform', `translate(${clampX(xm)},${yb + 22})`);
+  document.getElementById('pill-inhouse-t').textContent = fmtRubShort(month * INHOUSE_MONTHLY);
+  document.getElementById('pill-bavar-t').textContent = fmtRubShort(month * BAVAR_MONTHLY);
+
+  if (month === 0) {
+    pillI.setAttribute('transform', 'translate(-100,-100)');
+    pillB.setAttribute('transform', 'translate(-100,-100)');
+    dotI.setAttribute('cy', -100);
+    dotB.setAttribute('cy', -100);
+  }
+
+  // Numbers (tickered)
+  const heroEl = document.getElementById('hero-num');
+  const mPeriod = document.getElementById('m-period');
+  const mMonthly = document.getElementById('m-monthly');
+  const mYear = document.getElementById('m-year');
+
+  tickNumber(heroEl, MONTHLY_SAVINGS * 12, fmtRubShort);
+  tickNumber(mPeriod, MONTHLY_SAVINGS * month, fmtRubShort);
+  tickNumber(mMonthly, MONTHLY_SAVINGS, fmtRubShort);
+  tickNumber(mYear, MONTHLY_SAVINGS * 12, fmtRubShort);
+
+  document.getElementById('m-period-num').textContent = month;
+  document.getElementById('head-period').textContent = month + ' ' + plural(month, ['месяц','месяца','месяцев']);
+
+  document.getElementById('n-inhouse').textContent = fmtRub(INHOUSE_MONTHLY * 12);
+  document.getElementById('n-bavar').textContent = fmtRub(BAVAR_MONTHLY * 12);
+  document.getElementById('n-savings').textContent = fmtRub(MONTHLY_SAVINGS * 12);
+}
+
+let playTimer = null;
+let currentMonth = 12;
+function setMonth(m) {
+  currentMonth = m;
+  update(m);
+}
+
+document.getElementById('play-btn').addEventListener('click', () => {
+  if (playTimer) {
+    clearInterval(playTimer);
+    playTimer = null;
+    document.getElementById('play-btn').textContent = '▶';
+    return;
+  }
+  let m = 0;
+  setMonth(0);
+  document.getElementById('play-btn').textContent = '❚❚';
+  playTimer = setInterval(() => {
+    m += 1;
+    setMonth(m);
+    if (m >= 12) {
+      clearInterval(playTimer);
+      playTimer = null;
+      document.getElementById('play-btn').textContent = '▶';
+    }
+  }, 240);
 });
 
-render();
+buildChart();
+buildTimeline();
+setMonth(12);
 </script>
 </body>
 </html>
