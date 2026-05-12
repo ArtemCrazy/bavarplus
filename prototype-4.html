@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>04 · Детальный расчёт — Калькулятор Бавар+</title>
+<title>04 · Сценарий года — Калькулятор Бавар+</title>
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
     <div class="brand">
       <div class="brand-mark">Б+</div>
       <div>
-        <div class="brand-name">Прототип 04 · Детальный расчёт</div>
+        <div class="brand-name">Прототип 04 · Сценарий года</div>
         <div class="brand-sub">Калькулятор экономии · Бавар+</div>
       </div>
     </div>
@@ -20,161 +20,199 @@
   </header>
 
   <section style="margin-bottom:24px">
-    <h1>Детальный расчёт затрат на штатный отдел ВЭД</h1>
-    <p class="lead">Скорректируйте статьи расходов под вашу реальность — отключите ненужные, поменяйте суммы. Внизу — сравнение с тарифами Бавар+.</p>
+    <h1>Что произойдёт за год — посмотрите</h1>
+    <p class="lead">Прокрутите ползунок от месяца 1 к месяцу 12. Зелёная область — ваша накопленная экономия.</p>
   </section>
 
-  <div class="panel" style="padding:24px">
-    <h2 style="margin-bottom:8px">Статьи расходов</h2>
-    <p style="margin-bottom:14px">Все значения — в рублях в месяц. Снимите галочку, если статья к вам не относится.</p>
-
-    <table class="table" id="cost-table">
-      <thead>
-        <tr>
-          <th style="width:40px"></th>
-          <th>Статья</th>
-          <th style="width:200px; text-align:right">Сумма / мес</th>
-        </tr>
-      </thead>
-      <tbody id="lines"></tbody>
-      <tfoot>
-        <tr class="total">
-          <td colspan="2">Итого — содержание отдела ВЭД</td>
-          <td class="num" id="total-inhouse">0 ₽</td>
-        </tr>
-      </tfoot>
-    </table>
-
-    <p class="muted-note">Числа подобраны по средним данным рынка. Под вашу компанию точные суммы зафиксируем на этапе персонального расчёта.</p>
+  <div class="grid-2" style="margin-bottom:20px">
+    <div class="stat savings" style="padding:20px">
+      <div class="label">Накопленная экономия к месяцу <span id="month-label">12</span></div>
+      <div class="value" id="cum-savings" style="font-size:30px">—</div>
+      <div class="sub" id="cum-sub">за выбранный период</div>
+    </div>
+    <div class="stat" style="padding:20px">
+      <div class="label">К концу года</div>
+      <div class="value" id="year-savings" style="font-size:30px; color:var(--savings)">—</div>
+      <div class="sub">если запустите аутсорсинг сегодня</div>
+    </div>
   </div>
 
-  <div class="section-title">
-    <span class="tag">Сравнение с тарифами Бавар+</span>
-  </div>
+  <div class="chart-wrap">
+    <svg class="chart-svg" viewBox="0 0 800 360" preserveAspectRatio="xMidYMid meet" aria-label="График накопленных расходов">
+      <g id="grid"></g>
+      <g id="y-labels"></g>
+      <g id="x-labels"></g>
+      <path id="area-savings" class="area-savings" d=""></path>
+      <path id="line-inhouse" class="line-inhouse" d=""></path>
+      <path id="line-bavar" class="line-bavar" d=""></path>
+      <line id="marker" class="marker" x1="0" y1="20" x2="0" y2="320"></line>
+      <circle id="dot-inhouse" class="dot inhouse" cx="0" cy="0"></circle>
+      <circle id="dot-bavar" class="dot bavar" cx="0" cy="0"></circle>
+      <text id="label-inhouse" class="label-text" x="0" y="0" fill="#b45309">—</text>
+      <text id="label-bavar" class="label-text" x="0" y="0" fill="#1e3a8a">—</text>
+    </svg>
 
-  <div class="cards" id="tariff-cards"></div>
+    <div class="month-control">
+      <button class="btn ghost small" id="play-btn">▶ Прокрутить год</button>
+      <input type="range" id="month-slider" min="1" max="12" value="12" step="1">
+      <span class="month-num" id="month-num">12 мес.</span>
+    </div>
+
+    <div class="chart-legend">
+      <span><span class="dotmark inhouse"></span>Свой отдел ВЭД — накопленные расходы</span>
+      <span><span class="dotmark bavar"></span>Бавар+ — накопленные расходы</span>
+      <span><span class="dotmark savings"></span>Накопленная экономия</span>
+    </div>
+  </div>
 
   <div class="panel" style="margin-top:24px">
-    <div class="summary">
-      <div>
-        <div class="label">Лучшая экономия / мес</div>
-        <div class="value" id="best-monthly">—</div>
-        <div class="sub" id="best-tariff">—</div>
-      </div>
-      <div>
-        <div class="label">В год</div>
-        <div class="value" id="best-yearly">—</div>
-        <div class="sub">При сохранении объёма работ</div>
-      </div>
-    </div>
-    <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap">
-      <button class="btn">Заказать персональный расчёт</button>
-      <button class="btn ghost" id="btn-reset">Сбросить значения</button>
+    <h2 style="margin-bottom:12px">Что это значит для вашей компании</h2>
+    <p>
+      Год работы со штатным отделом ВЭД из 7 человек обходится примерно в <strong style="color:var(--cost)" id="p-inhouse-year">—</strong> с учётом ФОТ, налогов, командировок и накладных.
+      Тот же объём задач через Бавар+ Лайт — <strong style="color:var(--accent)" id="p-bavar-year">—</strong> по фиксированной абонентке.
+    </p>
+    <p>
+      Разница — <strong style="color:var(--savings)" id="p-savings-year">—</strong> в год. Это не «расчётная экономия», а живые деньги, которые остаются в компании на закупку сырья, расширение производства или R&D.
+    </p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px">
+      <button class="btn">Запустить экономию с первого месяца</button>
+      <a class="btn ghost" href="index.html">← к другим вариантам</a>
     </div>
   </div>
 
   <footer class="footer">
-    Прототип 04 · Детальный расчёт. Цифры — демонстрационные.
+    Прототип 04 · Сценарий года. Цифры — демонстрационные.
     <a href="index.html">← вернуться к выбору варианта</a>
   </footer>
 </div>
 
 <script src="assets/format.js"></script>
 <script>
-const INITIAL = INHOUSE_LINES.map(l => ({...l, enabled: l.default, value: l.monthly}));
-const lines = INITIAL.map(l => ({...l}));
+const INHOUSE_MONTHLY = INHOUSE_LINES.filter(l => l.default).reduce((s, l) => s + l.monthly, 0);
+const BAVAR_MONTHLY = BAVAR_TARIFFS.light.price;
 
-const tbody = document.getElementById('lines');
-const totalEl = document.getElementById('total-inhouse');
+const W = 800, H = 360;
+const PAD = { left: 70, right: 30, top: 20, bottom: 40 };
+const PLOT_W = W - PAD.left - PAD.right;
+const PLOT_H = H - PAD.top - PAD.bottom;
+const MAX_Y = INHOUSE_MONTHLY * 12 * 1.05;
 
-function renderLines() {
-  tbody.innerHTML = '';
-  lines.forEach((line, idx) => {
-    const tr = document.createElement('tr');
-    if (!line.enabled) tr.classList.add('disabled');
-    tr.innerHTML = `
-      <td><input type="checkbox" ${line.enabled ? 'checked' : ''} data-idx="${idx}" class="chk-line"></td>
-      <td>${line.name}</td>
-      <td class="num"><input type="number" min="0" step="1000" value="${line.value}" data-idx="${idx}" class="inp-line" ${line.enabled?'':'disabled'}></td>
-    `;
-    tbody.appendChild(tr);
-  });
-  bindRowEvents();
-  recalc();
+const xOf = m => PAD.left + (m / 12) * PLOT_W;
+const yOf = v => PAD.top + PLOT_H - (v / MAX_Y) * PLOT_H;
+
+function buildGrid() {
+  const grid = document.getElementById('grid');
+  const yLabels = document.getElementById('y-labels');
+  const xLabels = document.getElementById('x-labels');
+  grid.innerHTML = ''; yLabels.innerHTML = ''; xLabels.innerHTML = '';
+
+  // Y grid lines and labels (5 ticks)
+  const STEP = MAX_Y / 4;
+  for (let i = 0; i <= 4; i++) {
+    const v = i * STEP;
+    const y = yOf(v);
+    const l = document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('class','grid');
+    l.setAttribute('x1', PAD.left); l.setAttribute('x2', W - PAD.right);
+    l.setAttribute('y1', y); l.setAttribute('y2', y);
+    grid.appendChild(l);
+    const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('class','axis-label');
+    t.setAttribute('x', PAD.left - 8); t.setAttribute('y', y + 4);
+    t.setAttribute('text-anchor','end');
+    t.textContent = (v / 1_000_000).toFixed(0) + ' млн';
+    yLabels.appendChild(t);
+  }
+  // X labels (every other month)
+  for (let m = 1; m <= 12; m++) {
+    const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('class','axis-label');
+    t.setAttribute('x', xOf(m)); t.setAttribute('y', H - PAD.bottom + 18);
+    t.setAttribute('text-anchor','middle');
+    t.textContent = m;
+    xLabels.appendChild(t);
+  }
 }
 
-function bindRowEvents() {
-  tbody.querySelectorAll('.chk-line').forEach(cb => {
-    cb.addEventListener('change', e => {
-      const i = +e.target.dataset.idx;
-      lines[i].enabled = e.target.checked;
-      renderLines();
+function update(month) {
+  const points = [];
+  for (let m = 0; m <= 12; m++) {
+    points.push({
+      m,
+      inhouse: m * INHOUSE_MONTHLY,
+      bavar: m * BAVAR_MONTHLY,
     });
-  });
-  tbody.querySelectorAll('.inp-line').forEach(inp => {
-    inp.addEventListener('input', e => {
-      const i = +e.target.dataset.idx;
-      lines[i].value = +e.target.value || 0;
-      recalc();
-    });
-  });
+  }
+  const pathInhouse = points.map((p,i) => (i ? 'L' : 'M') + xOf(p.m) + ' ' + yOf(p.inhouse)).join(' ');
+  const pathBavar = points.map((p,i) => (i ? 'L' : 'M') + xOf(p.m) + ' ' + yOf(p.bavar)).join(' ');
+  // area between curves up to selected month
+  const areaTop = [];
+  const areaBottom = [];
+  for (let m = 0; m <= month; m++) {
+    areaTop.push(xOf(m) + ' ' + yOf(m * INHOUSE_MONTHLY));
+    areaBottom.unshift(xOf(m) + ' ' + yOf(m * BAVAR_MONTHLY));
+  }
+  const areaPath = 'M' + areaTop.join(' L') + ' L' + areaBottom.join(' L') + ' Z';
+
+  document.getElementById('line-inhouse').setAttribute('d', pathInhouse);
+  document.getElementById('line-bavar').setAttribute('d', pathBavar);
+  document.getElementById('area-savings').setAttribute('d', areaPath);
+
+  const xm = xOf(month);
+  const yi = yOf(month * INHOUSE_MONTHLY);
+  const yb = yOf(month * BAVAR_MONTHLY);
+  document.getElementById('marker').setAttribute('x1', xm);
+  document.getElementById('marker').setAttribute('x2', xm);
+  document.getElementById('dot-inhouse').setAttribute('cx', xm);
+  document.getElementById('dot-inhouse').setAttribute('cy', yi);
+  document.getElementById('dot-bavar').setAttribute('cx', xm);
+  document.getElementById('dot-bavar').setAttribute('cy', yb);
+
+  const li = document.getElementById('label-inhouse');
+  li.setAttribute('x', xm + 10);
+  li.setAttribute('y', yi - 8);
+  if (month > 9) li.setAttribute('text-anchor', 'end'), li.setAttribute('x', xm - 10);
+  else li.setAttribute('text-anchor', 'start');
+  li.textContent = fmtRub(month * INHOUSE_MONTHLY);
+
+  const lb = document.getElementById('label-bavar');
+  lb.setAttribute('x', xm + 10);
+  lb.setAttribute('y', yb + 18);
+  if (month > 9) lb.setAttribute('text-anchor', 'end'), lb.setAttribute('x', xm - 10);
+  else lb.setAttribute('text-anchor', 'start');
+  lb.textContent = fmtRub(month * BAVAR_MONTHLY);
+
+  const savings = month * (INHOUSE_MONTHLY - BAVAR_MONTHLY);
+  document.getElementById('cum-savings').textContent = fmtRub(savings);
+  document.getElementById('cum-sub').textContent = `за ${month} ${plural(month, ['месяц','месяца','месяцев'])}`;
+  document.getElementById('year-savings').textContent = fmtRub(12 * (INHOUSE_MONTHLY - BAVAR_MONTHLY));
+  document.getElementById('month-num').textContent = `${month} ${plural(month, ['месяц','месяца','месяцев'])}`;
+  document.getElementById('month-label').textContent = month;
+
+  document.getElementById('p-inhouse-year').textContent = fmtRub(12 * INHOUSE_MONTHLY);
+  document.getElementById('p-bavar-year').textContent = fmtRub(12 * BAVAR_MONTHLY);
+  document.getElementById('p-savings-year').textContent = fmtRub(12 * (INHOUSE_MONTHLY - BAVAR_MONTHLY));
 }
 
-function totalInhouse() {
-  return lines.reduce((s, l) => s + (l.enabled ? l.value : 0), 0);
-}
+const slider = document.getElementById('month-slider');
+slider.addEventListener('input', () => update(+slider.value));
 
-const tariffCards = document.getElementById('tariff-cards');
-function renderTariffs() {
-  tariffCards.innerHTML = '';
-  Object.entries(BAVAR_TARIFFS).forEach(([key, t]) => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      <div class="num">${t.name}</div>
-      <div class="title" data-price="${key}">${fmtRub(t.price)} / мес</div>
-      <p class="desc">${t.desc}</p>
-      <div class="stat savings" style="margin-top:8px">
-        <div class="label">Экономия / мес</div>
-        <div class="value" data-savings="${key}">—</div>
-        <div class="sub" data-yearly="${key}">—</div>
-      </div>
-    `;
-    tariffCards.appendChild(card);
-  });
-}
-
-function recalc() {
-  const inhouse = totalInhouse();
-  totalEl.textContent = fmtRub(inhouse);
-
-  let best = null;
-  Object.entries(BAVAR_TARIFFS).forEach(([key, t]) => {
-    const savings = Math.max(0, inhouse - t.price);
-    const savEl = tariffCards.querySelector(`[data-savings="${key}"]`);
-    const yrEl = tariffCards.querySelector(`[data-yearly="${key}"]`);
-    if (savEl) savEl.textContent = fmtRub(savings);
-    if (yrEl) yrEl.textContent = 'в год — ' + fmtRub(savings * 12);
-    if (!best || savings > best.savings) best = { key, name: t.name, savings, price: t.price };
-  });
-
-  document.getElementById('best-monthly').textContent = best ? fmtRub(best.savings) : '—';
-  document.getElementById('best-yearly').textContent = best ? fmtRub(best.savings * 12) : '—';
-  document.getElementById('best-tariff').textContent = best
-    ? `при тарифе «${best.name}» — ${fmtRub(best.price)} / мес`
-    : '—';
-}
-
-document.getElementById('btn-reset').addEventListener('click', () => {
-  lines.forEach((l, i) => {
-    l.enabled = INITIAL[i].enabled;
-    l.value = INITIAL[i].value;
-  });
-  renderLines();
+let playTimer = null;
+document.getElementById('play-btn').addEventListener('click', () => {
+  if (playTimer) { clearInterval(playTimer); playTimer = null; return; }
+  let m = 0;
+  playTimer = setInterval(() => {
+    m += 1;
+    if (m > 12) { clearInterval(playTimer); playTimer = null; return; }
+    slider.value = m;
+    update(m);
+  }, 220);
+  slider.value = 0;
+  update(0);
 });
 
-renderTariffs();
-renderLines();
+buildGrid();
+update(12);
 </script>
 </body>
 </html>

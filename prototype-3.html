@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>03 · Пресеты — Калькулятор Бавар+</title>
+<title>03 · Башня расходов — Калькулятор Бавар+</title>
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
     <div class="brand">
       <div class="brand-mark">Б+</div>
       <div>
-        <div class="brand-name">Прототип 03 · Пресеты</div>
+        <div class="brand-name">Прототип 03 · Башня расходов</div>
         <div class="brand-sub">Калькулятор экономии · Бавар+</div>
       </div>
     </div>
@@ -20,199 +20,176 @@
   </header>
 
   <section style="margin-bottom:24px">
-    <h1>Выберите тип производства — мы покажем экономию</h1>
-    <p class="lead">Это типовые сценарии. После выбора цифры можно скорректировать под вашу реальность.</p>
+    <h1>Так выглядит ваш отдел ВЭД. И так — Бавар+</h1>
+    <p class="lead">Один блок — одна статья расходов в месяц. Высота блока пропорциональна сумме. Наведите на любой, чтобы прочитать описание.</p>
   </section>
 
-  <div class="cards" style="margin-bottom:32px">
-    <div class="preset-card" data-preset="small">
-      <div class="title">Малое производство</div>
-      <div class="desc">3–4 сотрудника ВЭД, 2–4 сделки с Китаем в месяц</div>
-      <div class="meta">≈ 800 тыс ₽/мес на ВЭД</div>
+  <div class="toggle-row" role="tablist">
+    <button data-period="month" class="active">В месяц</button>
+    <button data-period="year">В год</button>
+  </div>
+
+  <div class="towers">
+    <div class="tower">
+      <div class="tower-head">
+        <div class="name">Свой отдел ВЭД</div>
+        <div class="sub">7 человек + накладные</div>
+      </div>
+      <div class="tower-stack" id="stack-inhouse"></div>
+      <div class="tower-foot">
+        <div class="label">Итого</div>
+        <div class="total cost" id="total-inhouse">—</div>
+      </div>
     </div>
-    <div class="preset-card active" data-preset="medium">
-      <div class="title">Среднее производство</div>
-      <div class="desc">6–8 сотрудников, 8–12 сделок в месяц, регулярные закупки</div>
-      <div class="meta">≈ 1,8 млн ₽/мес на ВЭД</div>
-    </div>
-    <div class="preset-card" data-preset="large">
-      <div class="title">Крупное производство</div>
-      <div class="desc">10+ сотрудников, 20+ сделок, постоянный поток контейнеров</div>
-      <div class="meta">≈ 3,2 млн ₽/мес на ВЭД</div>
+
+    <div class="tower-vs">vs</div>
+
+    <div class="tower">
+      <div class="tower-head">
+        <div class="name">Бавар+ Лайт</div>
+        <div class="sub">Фиксированная абонентская плата</div>
+      </div>
+      <div class="tower-stack" id="stack-bavar"></div>
+      <div class="tower-foot">
+        <div class="label">Итого</div>
+        <div class="total bavar" id="total-bavar">—</div>
+      </div>
     </div>
   </div>
 
-  <div class="grid-2">
-
-    <div class="panel">
-      <h2>Параметры — можно подкрутить</h2>
-
-      <label class="field">
-        <div class="lbl"><span>Сотрудников в отделе ВЭД</span><span id="lbl-staff">7 чел.</span></div>
-        <input type="range" id="staff" min="2" max="14" value="7" step="1">
-      </label>
-
-      <label class="field">
-        <div class="lbl"><span>Средняя зарплата на руки</span><span id="lbl-salary">140 000 ₽</span></div>
-        <input type="range" id="salary" min="80000" max="280000" value="140000" step="5000">
-      </label>
-
-      <label class="field">
-        <div class="lbl"><span>Сделок в месяц</span><span id="lbl-deals">10 сделок</span></div>
-        <input type="range" id="deals" min="1" max="40" value="10" step="1">
-      </label>
-
-      <label class="field">
-        <div class="lbl"><span>Тариф Бавар+</span><span id="lbl-tariff">Стандарт</span></div>
-        <div class="chip-row" id="tariff-row">
-          <button class="chip" data-tariff="light">Лайт · 300 тыс</button>
-          <button class="chip active" data-tariff="standard">Стандарт · 500 тыс</button>
-          <button class="chip" data-tariff="premium">Максимум · 800 тыс</button>
-        </div>
-      </label>
+  <div class="grid-2" style="margin-top:24px">
+    <div class="detail-card" id="detail">
+      <div class="title" id="detail-title">Наведите на любой блок</div>
+      <div class="meta" id="detail-meta">Узнаете, что входит в эту статью расходов и сколько она стоит компании</div>
+      <div id="detail-text" style="color:var(--text-muted)"></div>
     </div>
 
     <div class="panel">
-      <h2>Ваша экономия</h2>
-
-      <div class="bar-compare">
-        <div class="name">Свой отдел</div>
-        <div class="bar cost" id="bar-inhouse"><div class="fill"></div><div class="val" id="val-inhouse">0 ₽</div></div>
-      </div>
-      <div class="bar-compare">
-        <div class="name">Бавар+</div>
-        <div class="bar" id="bar-bavar"><div class="fill"></div><div class="val" id="val-bavar">0 ₽</div></div>
-      </div>
-      <div class="bar-compare">
-        <div class="name">Экономия</div>
-        <div class="bar savings" id="bar-savings"><div class="fill"></div><div class="val" id="val-savings">0 ₽</div></div>
-      </div>
-
-      <div class="summary" style="margin-top:20px">
-        <div>
-          <div class="label">Экономия / мес</div>
-          <div class="value" id="sum-monthly">—</div>
-          <div class="sub" id="sum-share">—</div>
-        </div>
-        <div>
-          <div class="label">Экономия / год</div>
-          <div class="value" id="sum-yearly">—</div>
-          <div class="sub">При том же объёме</div>
-        </div>
-      </div>
-
-      <p class="muted-note">Расчёт включает ФОТ, страховые взносы (30%), офис, ПО, командировки в Китай и резерв на риски штрафов растаможки.</p>
-
-      <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap">
-        <button class="btn">Заказать персональный расчёт</button>
-        <button class="btn ghost" id="btn-reset">Сбросить к пресету</button>
+      <div style="font-size:13px; color:var(--text-muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px">Экономия</div>
+      <div style="font-size:36px; font-weight:600; font-variant-numeric:tabular-nums; color:var(--savings); line-height:1.1" id="savings-main">—</div>
+      <div style="color:var(--text-muted); margin-top:4px" id="savings-sub">в месяц по сравнению со штатным отделом</div>
+      <div style="margin-top:16px; padding-top:14px; border-top:1px solid var(--border); display:flex; gap:10px; flex-wrap:wrap">
+        <button class="btn">Получить точный расчёт</button>
+        <a class="btn ghost" href="index.html">← к другим вариантам</a>
       </div>
     </div>
-
   </div>
 
   <footer class="footer">
-    Прототип 03 · Пресеты. Цифры — демонстрационные.
+    Прототип 03 · Башня расходов. Цифры — демонстрационные, по типовому отделу ВЭД.
     <a href="index.html">← вернуться к выбору варианта</a>
   </footer>
 </div>
 
 <script src="assets/format.js"></script>
 <script>
-const PRESETS = {
-  small:  { staff: 4,  salary: 120000, deals: 3,  tariff: 'light' },
-  medium: { staff: 7,  salary: 140000, deals: 10, tariff: 'standard' },
-  large:  { staff: 11, salary: 170000, deals: 22, tariff: 'premium' },
+const INHOUSE_DESC = {
+  head:       'Руководитель направления ВЭД. Координирует команду, согласует контракты, отвечает за результат и риски.',
+  manager:    'Двое менеджеров ВЭД. Ведут поставщиков, оформляют контракты, контролируют отгрузки и претензии.',
+  logist:     'Логист. Согласовывает маршруты, выбирает экспедиторов, отвечает за сроки и сохранность груза.',
+  declarant:  'Декларант / таможенный брокер. Готовит декларации, ведёт оформление в ФТС, классификация ТНВЭД.',
+  lawyer:     'Юрист по ВЭД. Договоры, валютный контроль, споры, репатриация выручки, претензионная работа.',
+  translator: 'Переводчик-китаист. Переговоры с поставщиками, перевод документов, инспекции на фабриках.',
+  taxes:      'Страховые взносы — ≈30% от фонда оплаты труда. Закон считает их обязательной частью расходов на штат.',
+  office:     'Рабочие места и оборудование: ноутбуки, столы, лицензии Microsoft, мебель, расходники.',
+  software:   'ПО, телефония, CRM, ВЭД-сервисы (Альта-Софт, ТКС), интернет, связь с Китаем.',
+  travel:     'Командировки в Китай: визы, билеты, гостиницы, питание, переводчики на месте. По 2–4 поездки в год.',
+  risk:       'Резерв на риски: штрафы за ошибки в декларациях, простои на таможне, корректировки таможенной стоимости.',
 };
-const TARIFF_NAMES = { light: 'Лайт', standard: 'Стандарт', premium: 'Максимум' };
-
-let activePreset = 'medium';
-let activeTariff = 'standard';
-
-const els = {
-  staff: document.getElementById('staff'),
-  salary: document.getElementById('salary'),
-  deals: document.getElementById('deals'),
-  lblStaff: document.getElementById('lbl-staff'),
-  lblSalary: document.getElementById('lbl-salary'),
-  lblDeals: document.getElementById('lbl-deals'),
-  lblTariff: document.getElementById('lbl-tariff'),
-  valInhouse: document.getElementById('val-inhouse'),
-  valBavar: document.getElementById('val-bavar'),
-  valSavings: document.getElementById('val-savings'),
-  fillInhouse: document.querySelector('#bar-inhouse .fill'),
-  fillBavar: document.querySelector('#bar-bavar .fill'),
-  fillSavings: document.querySelector('#bar-savings .fill'),
-  sumMonthly: document.getElementById('sum-monthly'),
-  sumYearly: document.getElementById('sum-yearly'),
-  sumShare: document.getElementById('sum-share'),
+const BAVAR_DESC = {
+  bavar: 'Фиксированная абонентская плата Бавар+ Лайт. Включает менеджера, контракты, логистику, растаможку, переводчика — всё в одном договоре, без скрытых платежей.',
 };
 
-function applyPreset(key) {
-  const p = PRESETS[key];
-  activePreset = key;
-  els.staff.value = p.staff;
-  els.salary.value = p.salary;
-  els.deals.value = p.deals;
-  activeTariff = p.tariff;
-  document.querySelectorAll('.preset-card').forEach(c => c.classList.toggle('active', c.dataset.preset === key));
-  document.querySelectorAll('#tariff-row .chip').forEach(c => c.classList.toggle('active', c.dataset.tariff === p.tariff));
-  compute();
+const TARIFF = BAVAR_TARIFFS.light;
+const stackInhouse = document.getElementById('stack-inhouse');
+const stackBavar = document.getElementById('stack-bavar');
+const totalInhouseEl = document.getElementById('total-inhouse');
+const totalBavarEl = document.getElementById('total-bavar');
+const savingsMainEl = document.getElementById('savings-main');
+const savingsSubEl = document.getElementById('savings-sub');
+const detailTitle = document.getElementById('detail-title');
+const detailMeta = document.getElementById('detail-meta');
+const detailText = document.getElementById('detail-text');
+
+const enabledLines = INHOUSE_LINES.filter(l => l.default);
+const totalInhouse = enabledLines.reduce((s, l) => s + l.monthly, 0);
+const totalBavar = TARIFF.price;
+let period = 'month';
+
+function render() {
+  const mult = period === 'year' ? 12 : 1;
+  const totalInhouseScaled = totalInhouse * mult;
+
+  // each block height = proportional to its share of total inhouse
+  // total stack height: 380px for inhouse
+  const STACK_PX = 380;
+  stackInhouse.innerHTML = '';
+  enabledLines.forEach((l, idx) => {
+    const ratio = l.monthly / totalInhouse;
+    const h = Math.max(22, ratio * STACK_PX);
+    const tiny = h < 30;
+    const div = document.createElement('div');
+    div.className = 'block' + (tiny ? ' tiny' : '');
+    div.style.height = h + 'px';
+    div.style.animationDelay = (idx * 60) + 'ms';
+    div.dataset.key = l.id;
+    div.dataset.type = 'inhouse';
+    div.innerHTML = `<span class="b-name">${l.name}</span><span class="b-cost">${fmtRub(l.monthly * mult)}</span>`;
+    stackInhouse.appendChild(div);
+  });
+
+  // bavar block: scaled the same way (300k / total_inhouse * STACK_PX)
+  stackBavar.innerHTML = '';
+  const bavarH = Math.max(28, (totalBavar / totalInhouse) * STACK_PX);
+  const bavar = document.createElement('div');
+  bavar.className = 'block bavar';
+  bavar.style.height = bavarH + 'px';
+  bavar.dataset.key = 'bavar';
+  bavar.dataset.type = 'bavar';
+  bavar.innerHTML = `<span class="b-name">Бавар+ Лайт</span><span class="b-cost">${fmtRub(totalBavar * mult)}</span>`;
+  stackBavar.appendChild(bavar);
+
+  totalInhouseEl.textContent = fmtRub(totalInhouseScaled);
+  totalBavarEl.textContent = fmtRub(totalBavar * mult);
+  const savings = totalInhouse - totalBavar;
+  savingsMainEl.textContent = fmtRub(savings * mult);
+  savingsSubEl.textContent = period === 'year'
+    ? `в год — это +${fmtRub(savings * 12 / 12)} каждый месяц`
+    : `в месяц — это ${fmtRub(savings * 12)} в год`;
+
+  bindBlocks();
 }
 
-function compute() {
-  const staff = +els.staff.value;
-  const salary = +els.salary.value;
-  const deals = +els.deals.value;
-
-  const fot = staff * salary;
-  const taxes = fot * 0.30;
-  const office = staff * 8000;
-  const software = 35000;
-  const travel = deals * 22000;
-  const risk = deals * 10000;
-  const inhouse = fot + taxes + office + software + travel + risk;
-
-  const bavar = BAVAR_TARIFFS[activeTariff].price;
-  const savings = Math.max(0, inhouse - bavar);
-  const share = inhouse > 0 ? Math.round(savings / inhouse * 100) : 0;
-
-  els.lblStaff.textContent = `${staff} ${plural(staff, ['человек','человека','человек'])}`;
-  els.lblSalary.textContent = fmtRub(salary);
-  els.lblDeals.textContent = `${deals} ${plural(deals, ['сделка','сделки','сделок'])}`;
-  els.lblTariff.textContent = TARIFF_NAMES[activeTariff];
-
-  const max = inhouse || 1;
-  els.fillInhouse.style.width = '100%';
-  els.fillBavar.style.width = (bavar / max * 100) + '%';
-  els.fillSavings.style.width = (savings / max * 100) + '%';
-
-  els.valInhouse.textContent = fmtRub(inhouse);
-  els.valBavar.textContent = fmtRub(bavar);
-  els.valSavings.textContent = fmtRub(savings);
-
-  els.sumMonthly.textContent = fmtRub(savings);
-  els.sumYearly.textContent = fmtRub(savings * 12);
-  els.sumShare.textContent = `≈ ${share}% от текущих затрат`;
+function bindBlocks() {
+  document.querySelectorAll('.block').forEach(b => {
+    b.addEventListener('mouseenter', () => showDetail(b));
+    b.addEventListener('click', () => showDetail(b));
+  });
 }
 
-['staff','salary','deals'].forEach(k => els[k].addEventListener('input', compute));
+function showDetail(b) {
+  document.querySelectorAll('.block').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  const key = b.dataset.key;
+  const type = b.dataset.type;
+  const desc = type === 'bavar' ? BAVAR_DESC[key] : INHOUSE_DESC[key];
+  const name = b.querySelector('.b-name').textContent;
+  const cost = b.querySelector('.b-cost').textContent;
+  detailTitle.textContent = name;
+  detailMeta.textContent = (type === 'bavar' ? 'Бавар+ · ' : 'Свой отдел · ') + cost + (period === 'year' ? ' в год' : ' в месяц');
+  detailText.textContent = desc;
+}
 
-document.querySelectorAll('.preset-card').forEach(card => {
-  card.addEventListener('click', () => applyPreset(card.dataset.preset));
-});
-
-document.querySelectorAll('#tariff-row .chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    activeTariff = chip.dataset.tariff;
-    document.querySelectorAll('#tariff-row .chip').forEach(c => c.classList.toggle('active', c === chip));
-    compute();
+document.querySelectorAll('.toggle-row button').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.toggle-row button').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    period = b.dataset.period;
+    render();
   });
 });
 
-document.getElementById('btn-reset').addEventListener('click', () => applyPreset(activePreset));
-
-applyPreset('medium');
+render();
 </script>
 </body>
 </html>
