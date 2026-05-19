@@ -4,125 +4,201 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Бавар+ — инжиниринг биотехнологических линий и аутсорсинг ВЭД</title>
+<title>Бавар+ · скетч-прототип · Crazy Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 
-<div class="preview-banner">
-  <strong>Прототип лендинга</strong> · текст и оформление демонстрационные · итоговый дизайн будет утверждён после макета
+<!-- ============================================================
+     PROTO-BANNER
+     ============================================================ -->
+<div class="proto-banner">
+  <span class="label">Прототип-скетч</span>
+  <span class="sub">структура и&nbsp;логика блоков · оформление — рукописное, чтобы&nbsp;не&nbsp;путать с&nbsp;дизайном</span>
+  <span class="switcher">
+    <a href="#" class="active">V1</a>
+  </span>
 </div>
 
-<header class="nav" role="banner">
-  <div class="container nav__inner">
-    <a href="#top" class="brand">
-      <span class="brand__mark">Б+</span>
-      <span>
-        Бавар+
-        <span class="brand__sub">инжиниринг · ВЭД</span>
-      </span>
+<!-- ============================================================
+     SITEMAP STRIPE (карта блоков)
+     ============================================================ -->
+<div class="sitemap-stripe">
+  <span class="sm-label">Карта блоков:</span>
+  <a href="#hero">01 · Главный экран</a>
+  <a href="#problem">02 · Проблема/решение</a>
+  <a href="#compare">03 · Сравнение затрат</a>
+  <a href="#services">04 · Услуги</a>
+  <a href="#industries">05 · Отрасли</a>
+  <a href="#process">06 · Процесс</a>
+  <a href="#calc">07 · Калькулятор</a>
+  <a href="#advantages">08 · Преимущества</a>
+  <a href="#shanghai">09 · Офис в&nbsp;Шанхае</a>
+  <a href="#cases">10 · Кейсы</a>
+  <a href="#contact">11 · Контакты</a>
+</div>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#top" class="logo-sketch">
+      <div class="logo-box">Б+</div>
+      <div>
+        <div class="logo-name">БАВАР+</div>
+        <div class="logo-sub">Инжиниринг · ВЭД</div>
+      </div>
     </a>
-    <nav>
-      <ul class="menu">
-        <li><a href="#services">Услуги</a></li>
-        <li><a href="#industries">Отрасли</a></li>
-        <li><a href="#process">Как работаем</a></li>
-        <li><a href="#calc">Калькулятор</a></li>
-        <li><a href="#cases">Кейсы</a></li>
-        <li><a href="#contact">Контакты</a></li>
-      </ul>
+    <nav class="menu">
+      <a href="#services">Услуги</a>
+      <a href="#industries">Отрасли</a>
+      <a href="#process">Как работаем</a>
+      <a href="#calc">Калькулятор</a>
+      <a href="#cases">Кейсы</a>
     </nav>
-    <a href="#contact" class="btn btn--primary">Связаться</a>
+    <div class="header-right">
+      <span class="phone-sketch">+7 (925) 002-82-89</span>
+      <a href="#contact" class="btn-solid">Связаться →</a>
+    </div>
   </div>
 </header>
 
 <main id="top">
 
 <!-- ============================================================
-     01 · HERO
+     01 · HERO (dark + sketch SVG)
      ============================================================ -->
-<section class="hero">
-  <div class="container">
-    <div data-reveal>
-      <span class="hero__kicker">12 лет на рынке · 200+ клиентов · офис в Шанхае</span>
-    </div>
-    <h1 class="hero__title" data-reveal>
-      Запускаем биотехнологические линии <em>под ключ</em><br>
-      и закрываем весь импорт оборудования из&nbsp;Китая
+<div class="hero-image" id="hero">
+  <span class="hero-note">✎ имидж · производство · офис в&nbsp;Шанхае — подменяется на&nbsp;финальный материал</span>
+  <span class="hero-corner">демо-баннер</span>
+  <div class="hero-svg">
+    <svg viewBox="0 0 1600 720" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="hatch1" patternUnits="userSpaceOnUse" width="20" height="20" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="20" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+        </pattern>
+        <radialGradient id="spot1" cx="50%" cy="45%" r="55%">
+          <stop offset="0%" stop-color="rgba(201,169,110,0.22)"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+      </defs>
+      <rect width="1600" height="720" fill="#1a1a1a"/>
+      <rect width="1600" height="720" fill="url(#hatch1)"/>
+      <rect width="1600" height="720" fill="url(#spot1)"/>
+      <!-- dashed inner frame -->
+      <rect x="40" y="40" width="1520" height="640" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="2" stroke-dasharray="10 8"/>
+      <!-- left sketch: gear -->
+      <g opacity="0.85" transform="translate(220, 320)">
+        <circle cx="0" cy="0" r="62" fill="rgba(255,255,255,0.04)" stroke="#c9a96e" stroke-width="3"/>
+        <circle cx="0" cy="0" r="42" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="22" fill="rgba(201,169,110,0.35)"/>
+        <g stroke="#c9a96e" stroke-width="3">
+          <line x1="0" y1="-72" x2="0" y2="-82"/>
+          <line x1="0" y1="72"  x2="0" y2="82"/>
+          <line x1="-72" y1="0" x2="-82" y2="0"/>
+          <line x1="72"  y1="0" x2="82"  y2="0"/>
+          <line x1="-51" y1="-51" x2="-58" y2="-58"/>
+          <line x1="51"  y1="-51" x2="58"  y2="-58"/>
+          <line x1="-51" y1="51"  x2="-58" y2="58"/>
+          <line x1="51"  y1="51"  x2="58"  y2="58"/>
+        </g>
+      </g>
+      <!-- center sketch: connection / flow curve China-Russia -->
+      <g opacity="0.9">
+        <path d="M 480 230 C 700 80 1080 80 1280 230" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-dasharray="6 6"/>
+        <path d="M 480 230 C 700 80 1080 80 1280 230" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="6"/>
+        <circle cx="480" cy="230" r="9" fill="#c9a96e"/>
+        <circle cx="1280" cy="230" r="9" fill="#c9a96e"/>
+        <text x="465" y="265" fill="rgba(255,255,255,0.5)" font-family="Caveat, cursive" font-size="20">Шанхай</text>
+        <text x="1240" y="265" fill="rgba(255,255,255,0.5)" font-family="Caveat, cursive" font-size="20">Россия</text>
+      </g>
+      <!-- right sketch: container/box -->
+      <g opacity="0.85" transform="translate(1320, 440)">
+        <rect x="-80" y="-50" width="160" height="100" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="3"/>
+        <rect x="-80" y="-50" width="160" height="100" fill="rgba(201,169,110,0.08)"/>
+        <line x1="-80" y1="-25" x2="80" y2="-25" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+        <line x1="-80" y1="0" x2="80" y2="0" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+        <line x1="-80" y1="25" x2="80" y2="25" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+        <polygon points="-90,-50 -100,-30 -100,70 -90,50" fill="rgba(201,169,110,0.4)" stroke="#c9a96e" stroke-width="2.5"/>
+      </g>
+      <!-- conveyor curve bottom-left -->
+      <g opacity="0.6" transform="translate(180, 580)">
+        <ellipse cx="0" cy="0" rx="100" ry="20" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+        <circle cx="-72" cy="6" r="7" fill="rgba(201,169,110,0.4)"/>
+        <circle cx="-36" cy="14" r="7" fill="rgba(201,169,110,0.4)"/>
+        <circle cx="0"   cy="18" r="7" fill="rgba(201,169,110,0.4)"/>
+        <circle cx="36"  cy="14" r="7" fill="rgba(201,169,110,0.4)"/>
+        <circle cx="72"  cy="6"  r="7" fill="rgba(201,169,110,0.4)"/>
+      </g>
+      <!-- sparkles -->
+      <g opacity="0.7" transform="translate(1450,170)">
+        <line x1="-14" y1="0" x2="14" y2="0" stroke="#c9a96e" stroke-width="1.5"/>
+        <line x1="0" y1="-14" x2="0" y2="14" stroke="#c9a96e" stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="3" fill="#c9a96e"/>
+      </g>
+      <g opacity="0.5" transform="translate(540,160)">
+        <line x1="-10" y1="0" x2="10" y2="0" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+        <line x1="0" y1="-10" x2="0" y2="10" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+      </g>
+      <g opacity="0.6" transform="translate(1140,600)">
+        <line x1="-8" y1="0" x2="8" y2="0" stroke="#c9a96e" stroke-width="1.5"/>
+        <line x1="0" y1="-8" x2="0" y2="8" stroke="#c9a96e" stroke-width="1.5"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-overlay">
+    <span class="hero-pre">12 лет · 200+ клиентов · офис в&nbsp;Шанхае</span>
+    <div class="hero-logo">БАВАР<span class="accent">+</span></div>
+    <div class="hero-tag">инжиниринг · аутсорсинг ВЭД</div>
+    <h1 class="hero-h1">
+      Запускаем биотехнологические линии <span class="accent">под&nbsp;ключ</span> и&nbsp;закрываем весь импорт оборудования из&nbsp;Китая
     </h1>
-    <p class="hero__lead" data-reveal>
-      Бавар+ — инжиниринговая компания. Монтаж и запуск линий для пищевой,
-      молочной, фармацевтической промышленности.
-      ВЭД-аутсорсинг — наше второе направление: привозим и&nbsp;растамаживаем
-      любые товары и&nbsp;оборудование без вашего штата.
+    <p class="hero-sub">
+      Инжиниринг с&nbsp;12-летней экспертизой плюс ВЭД-аутсорсинг —
+      два&nbsp;направления, единая ответственность, фикс по&nbsp;договору.
     </p>
-    <div class="hero__cta" data-reveal>
-      <a href="#calc" class="btn btn--primary btn--lg">Посчитать экономию</a>
-      <a href="#contact" class="btn btn--ghost btn--lg">Получить консультацию</a>
-    </div>
-
-    <div class="hero__stats" data-reveal>
-      <div class="hero__stat">
-        <div class="num">12 лет</div>
-        <div class="lbl">опыта в инжиниринге и&nbsp;ВЭД</div>
-      </div>
-      <div class="hero__stat">
-        <div class="num">200+</div>
-        <div class="lbl">довольных клиентов в&nbsp;России и&nbsp;СНГ</div>
-      </div>
-      <div class="hero__stat">
-        <div class="num">до 1,7 млн ₽</div>
-        <div class="lbl">экономия в&nbsp;месяц vs.&nbsp;штатный отдел</div>
-      </div>
-      <div class="hero__stat">
-        <div class="num">до 40%</div>
-        <div class="lbl">экономия на&nbsp;оборудовании через&nbsp;китайских партнёров</div>
-      </div>
-    </div>
-
-    <div class="hero__note" data-reveal>
-      <strong>Важный нюанс:</strong>
-      инжиниринг — монтаж и&nbsp;запуск линий — мы&nbsp;делаем только в&nbsp;сфере биотехнологий
-      (молочка, напитки, фарма, пищевая). А&nbsp;вот привезти и&nbsp;растаможить можем абсолютно любой товар или&nbsp;оборудование.
+    <div class="hero-cta">
+      <a href="#calc" class="btn-solid lg" style="background:var(--shimmer);border-color:var(--shimmer)">Посчитать экономию →</a>
+      <a href="#contact" class="btn-outline-sk">Получить консультацию</a>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ============================================================
-     02 · ПРОБЛЕМА И РЕШЕНИЕ
+     02 · ПРОБЛЕМА / РЕШЕНИЕ
      ============================================================ -->
-<section class="section section--soft" id="problem">
-  <div class="container">
-    <div class="section__head" data-reveal>
-      <div class="section__num">02</div>
-      <div>
-        <h2 class="section__title">Содержать отдел ВЭД дорого. Аутсорсинг — единая ответственность</h2>
-        <p class="section__lede">
-          Свой отдел ВЭД — это 7+ человек, страховые взносы, командировки и&nbsp;риск штрафов
-          за&nbsp;ошибки в&nbsp;декларациях. Аутсорсинг закрывает всё это одним договором.
-        </p>
-      </div>
+<section id="problem">
+  <div class="wrap">
+    <div class="section-num">Блок 02 · Проблема и&nbsp;решение</div>
+    <div class="section-title">Содержать свой отдел ВЭД дорого. Аутсорсинг — единая ответственность
+      <span class="annotation">✎ две колонки: «как сейчас» vs «как будет»</span>
     </div>
+    <p class="section-desc">
+      Свой отдел&nbsp;— это 7+ человек, страховые взносы, командировки и&nbsp;риск штрафов
+      за&nbsp;ошибки в&nbsp;декларациях. Аутсорсинг закрывает всё одним договором.
+    </p>
 
-    <div class="compare" data-reveal>
-      <div class="compare__col compare__col--problem">
-        <div class="compare__label">Свой отдел ВЭД</div>
-        <h3 class="compare__title">Высокие затраты и&nbsp;размытая ответственность</h3>
-        <ul class="compare__list">
-          <li>ФОТ менеджеров, логиста, декларанта, юриста, переводчика — от&nbsp;1 млн ₽/мес</li>
+    <div class="compare-grid">
+      <div class="cmp-card problem">
+        <span class="cmp-label">Как сейчас · свой отдел</span>
+        <h3>Высокие затраты и&nbsp;размытая ответственность</h3>
+        <ul class="cmp-list">
+          <li>ФОТ менеджеров, логиста, декларанта, юриста, переводчика — от&nbsp;1&nbsp;млн&nbsp;₽/мес</li>
           <li>Страховые взносы 30% сверху и&nbsp;накладные на&nbsp;рабочие места</li>
           <li>Командировки в&nbsp;Китай за&nbsp;ваш счёт, переговоры через&nbsp;переводчиков</li>
           <li>Штрафы и&nbsp;корректировки на&nbsp;таможне — всегда на&nbsp;вас</li>
-          <li>Уход одного специалиста парализует все сделки</li>
+          <li>Уход одного специалиста парализует все&nbsp;сделки</li>
         </ul>
       </div>
-      <div class="compare__col compare__col--solution">
-        <div class="compare__label">Аутсорсинг с&nbsp;Бавар+</div>
-        <h3 class="compare__title">Фикс в&nbsp;месяц и&nbsp;один исполнитель на&nbsp;всё</h3>
-        <ul class="compare__list">
-          <li>Абонентская плата от&nbsp;300 000 ₽ — заменяет команду из&nbsp;7+&nbsp;человек</li>
+      <div class="cmp-card solution">
+        <span class="cmp-label">Как будет · с&nbsp;Бавар+</span>
+        <h3>Фикс в&nbsp;месяц и&nbsp;один исполнитель на&nbsp;всё</h3>
+        <ul class="cmp-list">
+          <li>Абонентка от&nbsp;300&nbsp;000&nbsp;₽ — заменяет команду из&nbsp;7+ человек</li>
           <li>Свой офис в&nbsp;Шанхае: личный аудит фабрик и&nbsp;контроль отгрузок</li>
-          <li>Финансовые гарантии в&nbsp;договоре — штрафы за&nbsp;ошибки оформления платим мы</li>
+          <li>Финансовые гарантии в&nbsp;договоре — штрафы за&nbsp;ошибки платим мы</li>
           <li>Прозрачный SLA на&nbsp;каждый этап: от&nbsp;поиска до&nbsp;растаможки</li>
           <li>Команда из&nbsp;15+ специалистов — болезни и&nbsp;отпуска не&nbsp;останавливают сделки</li>
         </ul>
@@ -132,107 +208,75 @@
 </section>
 
 <!-- ============================================================
-     03 · СРАВНЕНИЕ: ШТАТ VS АУТСОРСИНГ
+     03 · СРАВНЕНИЕ ЗАТРАТ
      ============================================================ -->
-<section class="section" id="compare">
-  <div class="container">
-    <div class="section__head" data-reveal>
-      <div class="section__num">03</div>
-      <div>
-        <h2 class="section__title">Сколько стоит свой отдел ВЭД vs.&nbsp;Бавар+</h2>
-        <p class="section__lede">
-          Расчёт по&nbsp;типовому отделу из&nbsp;7 сотрудников на&nbsp;среднюю компанию.
-          Точные суммы под&nbsp;вашу структуру — на&nbsp;этапе персонального расчёта.
-        </p>
-      </div>
+<section id="compare">
+  <div class="wrap">
+    <div class="section-num">Блок 03 · Сравнение затрат</div>
+    <div class="section-title">Сколько стоит штатный отдел vs.&nbsp;Бавар+
+      <span class="annotation">✎ таблица из&nbsp;презентации · подменяется на&nbsp;ваши цифры</span>
     </div>
+    <p class="section-desc">
+      Расчёт по&nbsp;типовому отделу из&nbsp;7 сотрудников. Точные суммы под&nbsp;вашу структуру — на&nbsp;консультации.
+    </p>
 
-    <div data-reveal>
-      <table class="cost-table">
-        <thead>
-          <tr>
-            <th>Статья расходов</th>
-            <th class="num">Свой отдел / мес</th>
-            <th class="num">Бавар+ / мес</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>ФОТ команды ВЭД (7 человек)</td>
-            <td class="num">980 000 ₽</td>
-            <td class="num">— включено</td>
-          </tr>
-          <tr>
-            <td>Страховые взносы (≈30%)</td>
-            <td class="num">294 000 ₽</td>
-            <td class="num">— включено</td>
-          </tr>
-          <tr>
-            <td>Рабочие места, ПО, связь</td>
-            <td class="num">95 000 ₽</td>
-            <td class="num">— включено</td>
-          </tr>
-          <tr>
-            <td>Командировки в&nbsp;Китай</td>
-            <td class="num">180 000 ₽</td>
-            <td class="num">— включено</td>
-          </tr>
-          <tr>
-            <td>Резерв на&nbsp;штрафы и&nbsp;корректировки</td>
-            <td class="num">80 000 ₽</td>
-            <td class="num">— покрываем мы</td>
-          </tr>
-          <tr class="row--total">
-            <td>Итого / мес</td>
-            <td class="num">≈ 1 629 000 ₽</td>
-            <td class="num">300 000 ₽</td>
-          </tr>
-        </tbody>
-      </table>
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th>Статья расходов</th>
+          <th class="num">Свой отдел / мес</th>
+          <th class="num">Бавар+ / мес</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>ФОТ команды ВЭД (7 человек)</td><td class="num">980 000 ₽</td><td class="num">— включено</td></tr>
+        <tr><td>Страховые взносы (≈30%)</td><td class="num">294 000 ₽</td><td class="num">— включено</td></tr>
+        <tr><td>Рабочие места, ПО, связь</td><td class="num">95 000 ₽</td><td class="num">— включено</td></tr>
+        <tr><td>Командировки в&nbsp;Китай</td><td class="num">180 000 ₽</td><td class="num">— включено</td></tr>
+        <tr><td>Резерв на&nbsp;штрафы и&nbsp;корректировки</td><td class="num">80 000 ₽</td><td class="num">— покрываем мы</td></tr>
+        <tr class="row-total"><td>Итого / мес</td><td class="num">≈ 1 629 000 ₽</td><td class="num">300 000 ₽</td></tr>
+      </tbody>
+    </table>
 
-      <div class="cost-summary">
-        <div class="cost-summary__card">
-          <div class="cost-summary__lbl">Свой отдел / год</div>
-          <div class="cost-summary__val">≈ 19,5 млн ₽</div>
-          <div class="cost-summary__sub">с учётом всех накладных и&nbsp;командировок</div>
-        </div>
-        <div class="cost-summary__card">
-          <div class="cost-summary__lbl">Бавар+ / год</div>
-          <div class="cost-summary__val">3,6 млн ₽</div>
-          <div class="cost-summary__sub">фикс по&nbsp;договору, без&nbsp;скрытых платежей</div>
-        </div>
-        <div class="cost-summary__card cost-summary__card--accent">
-          <div class="cost-summary__lbl">Экономия / год</div>
-          <div class="cost-summary__val">+15,9 млн ₽</div>
-          <div class="cost-summary__sub">остаются на&nbsp;закупку сырья и&nbsp;развитие</div>
-        </div>
+    <div class="cost-after">
+      <div class="ca-card">
+        <div class="ca-lbl">Свой отдел / год</div>
+        <div class="ca-val">≈ 19,5 млн ₽</div>
+        <div class="ca-sub">со&nbsp;всеми накладными и&nbsp;командировками</div>
+      </div>
+      <div class="ca-card">
+        <div class="ca-lbl">Бавар+ / год</div>
+        <div class="ca-val">3,6 млн ₽</div>
+        <div class="ca-sub">фикс по&nbsp;договору, без&nbsp;скрытых платежей</div>
+      </div>
+      <div class="ca-card accent">
+        <div class="ca-lbl">Экономия / год</div>
+        <div class="ca-val">+15,9 млн ₽</div>
+        <div class="ca-sub">остаются на&nbsp;сырьё и&nbsp;развитие</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     04 · УСЛУГИ
+     04 · УСЛУГИ — два направления
      ============================================================ -->
-<section class="section section--soft" id="services">
-  <div class="container">
-    <div class="section__head" data-reveal>
-      <div class="section__num">04</div>
-      <div>
-        <h2 class="section__title">Два направления: инжиниринг и&nbsp;ВЭД</h2>
-        <p class="section__lede">
-          Инжиниринг — только в&nbsp;биотехнологиях, потому что нужна экспертиза.
-          ВЭД-аутсорсинг — на&nbsp;любые товары: от&nbsp;ингредиентов до&nbsp;промышленного оборудования.
-        </p>
-      </div>
+<section id="services">
+  <div class="wrap">
+    <div class="section-num">Блок 04 · Услуги</div>
+    <div class="section-title">Два направления: инжиниринг и&nbsp;ВЭД
+      <span class="annotation">✎ инжиниринг — только биотех · ВЭД — любые товары</span>
     </div>
+    <p class="section-desc">
+      Инжиниринг — там, где есть экспертиза. ВЭД-аутсорсинг — на&nbsp;любые товары:
+      от&nbsp;ингредиентов до&nbsp;промышленного оборудования.
+    </p>
 
-    <div class="services">
-
-      <div class="svc-group svc-group--engineering" data-reveal>
-        <div class="svc-group__kicker">направление 01 · только биотехнологии</div>
-        <h3 class="svc-group__title">Инжиниринг линий под&nbsp;ключ</h3>
-        <p class="svc-group__sub">
+    <div class="svc-grid">
+      <div class="svc-block dark">
+        <span class="svc-kicker">Направление 01 · только биотехнологии</span>
+        <h3>Инжиниринг линий под&nbsp;ключ</h3>
+        <p class="svc-lead">
           От&nbsp;анализа сырья и&nbsp;разработки рецептуры до&nbsp;первой партии готового продукта.
           Собственный R&amp;D-центр в&nbsp;Китае с&nbsp;пилотными испытаниями.
         </p>
@@ -244,12 +288,12 @@
           </li>
           <li>
             <span class="idx">02</span>
-            <span><span class="name">Подбор и&nbsp;комплектация оборудования</span>
+            <span><span class="name">Подбор и&nbsp;комплектация</span>
             <span class="desc">Аудит фабрик, контроль качества, формирование комплектной линии</span></span>
           </li>
           <li>
             <span class="idx">03</span>
-            <span><span class="name">Монтаж, пусконаладка, запуск</span>
+            <span><span class="name">Монтаж и&nbsp;пусконаладка</span>
             <span class="desc">Шеф-монтаж на&nbsp;вашей площадке, вывод на&nbsp;проектную мощность</span></span>
           </li>
           <li>
@@ -258,15 +302,15 @@
             <span class="desc">Обучение операторов, поставка запчастей, сервисные контракты</span></span>
           </li>
         </ul>
-        <div class="svc-group__note">
+        <div class="svc-note">
           Доступно для&nbsp;отраслей: молочка, напитки, мясопереработка, кондитерская, фарма, БАД, корма.
         </div>
       </div>
 
-      <div class="svc-group" data-reveal>
-        <div class="svc-group__kicker">направление 02 · любые товары</div>
-        <h3 class="svc-group__title">Аутсорсинг ВЭД</h3>
-        <p class="svc-group__sub">
+      <div class="svc-block">
+        <span class="svc-kicker">Направление 02 · любые товары</span>
+        <h3>Аутсорсинг ВЭД</h3>
+        <p class="svc-lead">
           Единственная услуга по&nbsp;ВЭД в&nbsp;формате полного аутсорсинга на&nbsp;российском рынке.
           Заменяет ваш штатный отдел фиксированной абонентской платой.
         </p>
@@ -284,7 +328,7 @@
           <li>
             <span class="idx">03</span>
             <span><span class="name">Логистика и&nbsp;доставка</span>
-            <span class="desc">Море, авиа, ЖД из&nbsp;Китая до&nbsp;вашего склада «под ключ»</span></span>
+            <span class="desc">Море, авиа, ЖД из&nbsp;Китая до&nbsp;вашего склада «под&nbsp;ключ»</span></span>
           </li>
           <li>
             <span class="idx">04</span>
@@ -297,121 +341,115 @@
             <span class="desc">ЕАЭС, ГОСТ, ТР&nbsp;ТС, нотификации ФСБ — полный цикл</span></span>
           </li>
         </ul>
-        <div class="svc-group__note">
-          Категории товаров: оборудование, ингредиенты, упаковка, химия, текстиль, электроника и&nbsp;другое.
+        <div class="svc-note">
+          Категории: оборудование, ингредиенты, упаковка, химия, текстиль, электроника и&nbsp;другое.
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     05 · ОТРАСЛЕВЫЕ НАПРАВЛЕНИЯ
+     05 · ОТРАСЛИ
      ============================================================ -->
-<section class="section" id="industries">
-  <div class="container">
-    <div class="section__head" data-reveal>
-      <div class="section__num">05</div>
-      <div>
-        <h2 class="section__title">Отрасли, в&nbsp;которых мы&nbsp;запускаем линии</h2>
-        <p class="section__lede">
-          Для&nbsp;этих сегментов доступен полный цикл инжиниринга: разработка рецептуры,
-          подбор оборудования, монтаж, запуск, сервис. ВЭД-аутсорсинг работает с&nbsp;любой отраслью.
-        </p>
-      </div>
+<section id="industries">
+  <div class="wrap">
+    <div class="section-num">Блок 05 · Отраслевые направления</div>
+    <div class="section-title">Отрасли, где мы&nbsp;запускаем линии
+      <span class="annotation">✎ для&nbsp;этих сегментов доступен полный цикл инжиниринга</span>
     </div>
+    <p class="section-desc">
+      Для&nbsp;этих сегментов мы&nbsp;делаем разработку рецептуры, подбор оборудования, монтаж, запуск и&nbsp;сервис.
+      ВЭД-аутсорсинг работает с&nbsp;любой отраслью.
+    </p>
 
-    <div class="industries" data-reveal>
-      <div class="industry">
-        <div class="industry__num">01</div>
-        <div class="industry__name">Молочная продукция</div>
-        <div class="industry__desc">Пастеризация, стерилизация, йогурты, сыры, творог, мороженое, детское питание</div>
+    <div class="industries-grid">
+      <div class="industry-card">
+        <span class="ic-num">01</span>
+        <h4>Молочная продукция</h4>
+        <p>Пастеризация, сыры, йогурты, творог, мороженое, детское питание</p>
       </div>
-      <div class="industry">
-        <div class="industry__num">02</div>
-        <div class="industry__name">Напитки и&nbsp;соки</div>
-        <div class="industry__desc">Розлив, пастеризация, пивоварение, переработка чая и&nbsp;кофе</div>
+      <div class="industry-card">
+        <span class="ic-num">02</span>
+        <h4>Напитки и&nbsp;соки</h4>
+        <p>Розлив, пастеризация, пивоварение, чай и&nbsp;кофе</p>
       </div>
-      <div class="industry">
-        <div class="industry__num">03</div>
-        <div class="industry__name">Мясо- и&nbsp;рыбопереработка</div>
-        <div class="industry__desc">Тепловая обработка, охлаждение, замораживание, фасовка, готовые блюда</div>
+      <div class="industry-card">
+        <span class="ic-num">03</span>
+        <h4>Мясо- и&nbsp;рыбопереработка</h4>
+        <p>Тепловая обработка, охлаждение, фасовка, готовые блюда</p>
       </div>
-      <div class="industry">
-        <div class="industry__num">04</div>
-        <div class="industry__name">Соусы и&nbsp;пасты</div>
-        <div class="industry__desc">Кетчупы, майонезы, джемы, шоколадные начинки, эмульсии</div>
+      <div class="industry-card">
+        <span class="ic-num">04</span>
+        <h4>Соусы и&nbsp;пасты</h4>
+        <p>Кетчупы, майонезы, джемы, шоколадные начинки, эмульсии</p>
       </div>
-      <div class="industry">
-        <div class="industry__num">05</div>
-        <div class="industry__name">Кондитерская и&nbsp;выпечка</div>
-        <div class="industry__desc">Шоколад, конфеты, крема, начинки, макаронные изделия, хлеб</div>
+      <div class="industry-card">
+        <span class="ic-num">05</span>
+        <h4>Кондитерская</h4>
+        <p>Шоколад, конфеты, крема, макаронные изделия, хлеб</p>
       </div>
-      <div class="industry">
-        <div class="industry__num">06</div>
-        <div class="industry__name">Фармацевтика и&nbsp;БАД</div>
-        <div class="industry__desc">Линии для&nbsp;GMP-производств, фильтрация, дистилляция, дозирование, таблетирование</div>
+      <div class="industry-card">
+        <span class="ic-num">06</span>
+        <h4>Фарма и&nbsp;БАД</h4>
+        <p>GMP-линии, фильтрация, дистилляция, дозирование, таблетирование</p>
       </div>
-      <div class="industry">
-        <div class="industry__num">07</div>
-        <div class="industry__name">Косметика</div>
-        <div class="industry__desc">Кремы, эмульсии, пасты, шампуни, средства гигиены</div>
+      <div class="industry-card">
+        <span class="ic-num">07</span>
+        <h4>Косметика</h4>
+        <p>Кремы, эмульсии, пасты, шампуни, гигиена</p>
       </div>
-      <div class="industry">
-        <div class="industry__num">08</div>
-        <div class="industry__name">Корма для&nbsp;животных</div>
-        <div class="industry__desc">Petfood: системы приготовления, стерилизации, сушки кормов</div>
+      <div class="industry-card">
+        <span class="ic-num">08</span>
+        <h4>Корма для&nbsp;животных</h4>
+        <p>Petfood: приготовление, стерилизация, сушка</p>
       </div>
     </div>
 
     <p class="industries-note">
-      Не&nbsp;нашли свою отрасль? Импортировать или&nbsp;экспортировать в&nbsp;рамках ВЭД-аутсорсинга мы&nbsp;можем
-      любой товар или&nbsp;оборудование — напишите, обсудим вашу задачу.
+      ✎ Не&nbsp;нашли свою отрасль? Привезти и&nbsp;растаможить через&nbsp;ВЭД-аутсорсинг мы&nbsp;можем любой товар. Напишите — обсудим.
     </p>
   </div>
 </section>
 
 <!-- ============================================================
-     06 · ПРОЦЕСС РАБОТЫ
+     06 · ПРОЦЕСС
      ============================================================ -->
-<section class="section section--soft" id="process">
-  <div class="container">
-    <div class="section__head" data-reveal>
-      <div class="section__num">06</div>
-      <div>
-        <h2 class="section__title">Как мы&nbsp;работаем</h2>
-        <p class="section__lede">
-          От&nbsp;первой заявки до&nbsp;запущенного производства — пять этапов с&nbsp;прозрачным SLA.
-        </p>
-      </div>
+<section id="process">
+  <div class="wrap">
+    <div class="section-num">Блок 06 · Процесс работы</div>
+    <div class="section-title">Как мы&nbsp;работаем — 5 шагов
+      <span class="annotation">✎ от&nbsp;заявки до&nbsp;запущенного производства</span>
     </div>
+    <p class="section-desc">
+      Каждый этап с&nbsp;прозрачным SLA. Вы&nbsp;понимаете, на&nbsp;каком шаге находится сделка.
+    </p>
 
-    <div class="process" data-reveal>
-      <div class="step">
-        <span class="step__num">01</span>
-        <h3 class="step__title">Заявка и&nbsp;бриф</h3>
-        <p class="step__desc">Звонок, обсуждение задачи, фиксируем требования и&nbsp;технические параметры</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h4>Заявка и&nbsp;бриф</h4>
+        <p>Звонок, обсуждение задачи, фиксируем требования и&nbsp;технические параметры</p>
       </div>
-      <div class="step">
-        <span class="step__num">02</span>
-        <h3 class="step__title">ТЗ и&nbsp;договор</h3>
-        <p class="step__desc">Согласование объёма работ, сроков и&nbsp;стоимости. Финансовые гарантии в&nbsp;договоре</p>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h4>ТЗ и&nbsp;договор</h4>
+        <p>Согласование объёма, сроков и&nbsp;стоимости. Финансовые гарантии в&nbsp;договоре</p>
       </div>
-      <div class="step">
-        <span class="step__num">03</span>
-        <h3 class="step__title">Поиск и&nbsp;инжиниринг</h3>
-        <p class="step__desc">Поставщики, аудит фабрик, разработка рецептур и&nbsp;технологических схем</p>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h4>Поиск и&nbsp;инжиниринг</h4>
+        <p>Поставщики, аудит фабрик, разработка рецептур и&nbsp;технологических схем</p>
       </div>
-      <div class="step">
-        <span class="step__num">04</span>
-        <h3 class="step__title">Поставка и&nbsp;монтаж</h3>
-        <p class="step__desc">Логистика, растаможка, шеф-монтаж на&nbsp;вашей площадке силами наших инженеров</p>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <h4>Поставка и&nbsp;монтаж</h4>
+        <p>Логистика, растаможка, шеф-монтаж силами наших инженеров</p>
       </div>
-      <div class="step">
-        <span class="step__num">05</span>
-        <h3 class="step__title">Запуск и&nbsp;сервис</h3>
-        <p class="step__desc">Вывод линии на&nbsp;проектную мощность, обучение персонала, сервисная поддержка</p>
+      <div class="step-card">
+        <div class="step-num">05</div>
+        <h4>Запуск и&nbsp;сервис</h4>
+        <p>Вывод линии на&nbsp;проектную мощность, обучение персонала, сервисная поддержка</p>
       </div>
     </div>
   </div>
@@ -420,72 +458,71 @@
 <!-- ============================================================
      07 · КАЛЬКУЛЯТОР
      ============================================================ -->
-<section class="section" id="calc">
-  <div class="container">
-    <div class="section__head" data-reveal>
-      <div class="section__num">07</div>
-      <div>
-        <h2 class="section__title">Калькулятор экономии</h2>
-        <p class="section__lede">
-          Подставьте параметры вашего отдела ВЭД — посчитаем разницу с&nbsp;абонентской платой Бавар+.
-          Цифры в&nbsp;демо ориентировочные, точный расчёт под&nbsp;вашу структуру — на&nbsp;консультации.
-        </p>
-      </div>
+<section id="calc">
+  <div class="wrap">
+    <div class="section-num">Блок 07 · Калькулятор экономии</div>
+    <div class="section-title">Калькулятор экономии
+      <span class="annotation">✎ слайдеры + детализация по&nbsp;статьям расходов</span>
     </div>
+    <p class="section-desc">
+      Подставьте параметры вашего отдела — посчитаем разницу с&nbsp;абонентской платой Бавар+.
+      Цифры демо, точный расчёт под&nbsp;вашу структуру — на&nbsp;консультации.
+    </p>
 
-    <div class="calc" data-reveal>
+    <div class="calc-grid">
 
-      <div class="calc__panel">
-        <div class="calc__panel-title">Параметры отдела ВЭД</div>
+      <div class="calc-panel">
+        <span class="cp-tag">Параметры вашего отдела</span>
 
-        <div class="calc__field">
-          <div class="calc__lbl">
-            <span class="lbl-name">Сотрудников в&nbsp;отделе</span>
+        <div class="calc-field">
+          <div class="calc-lbl">
+            <span>Сотрудников в&nbsp;отделе</span>
             <span class="lbl-val" id="cl-staff">7 человек</span>
           </div>
-          <input type="range" class="calc__range" id="cf-staff" min="2" max="12" value="7" step="1">
-          <div class="calc__hint">Менеджеры, логист, декларант, юрист, переводчик, руководитель</div>
+          <input type="range" class="calc-range" id="cf-staff" min="2" max="12" value="7" step="1">
+          <div class="calc-hint">Менеджеры, логист, декларант, юрист, переводчик, руководитель</div>
         </div>
 
-        <div class="calc__field">
-          <div class="calc__lbl">
-            <span class="lbl-name">Средняя зарплата на&nbsp;руки</span>
+        <div class="calc-field">
+          <div class="calc-lbl">
+            <span>Средняя зарплата на&nbsp;руки</span>
             <span class="lbl-val" id="cl-salary">140 000 ₽</span>
           </div>
-          <input type="range" class="calc__range" id="cf-salary" min="80000" max="250000" value="140000" step="5000">
-          <div class="calc__hint">Усреднённый оклад одного специалиста</div>
+          <input type="range" class="calc-range" id="cf-salary" min="80000" max="250000" value="140000" step="5000">
+          <div class="calc-hint">Усреднённый оклад одного специалиста</div>
         </div>
 
-        <div class="calc__field">
-          <div class="calc__lbl">
-            <span class="lbl-name">Сделок с&nbsp;Китаем в&nbsp;месяц</span>
+        <div class="calc-field">
+          <div class="calc-lbl">
+            <span>Сделок с&nbsp;Китаем в&nbsp;месяц</span>
             <span class="lbl-val" id="cl-deals">8 сделок</span>
           </div>
-          <input type="range" class="calc__range" id="cf-deals" min="1" max="30" value="8" step="1">
-          <div class="calc__hint">Влияет на&nbsp;командировки, ПО и&nbsp;резерв на&nbsp;штрафы</div>
+          <input type="range" class="calc-range" id="cf-deals" min="1" max="30" value="8" step="1">
+          <div class="calc-hint">Влияет на&nbsp;командировки, ПО и&nbsp;резерв на&nbsp;штрафы</div>
         </div>
       </div>
 
-      <div class="calc__panel calc__panel--dark">
-        <div class="calc__panel-title">Ваша экономия</div>
+      <div class="calc-panel dark">
+        <span class="cp-tag">Ваша экономия с&nbsp;Бавар+</span>
 
-        <div class="calc__hero" id="cr-hero">—</div>
-        <div class="calc__hero-sub" id="cr-hero-sub">—</div>
+        <div class="calc-hero" id="cr-hero">—</div>
+        <div class="calc-hero-sub" id="cr-hero-sub">—</div>
 
-        <ul class="calc__breakdown">
-          <li><span class="name">ФОТ</span><span class="val" id="br-fot">—</span></li>
-          <li><span class="name">Страховые взносы (30%)</span><span class="val" id="br-taxes">—</span></li>
-          <li><span class="name">Офис, ПО, связь</span><span class="val" id="br-office">—</span></li>
-          <li><span class="name">— из них софт и&nbsp;связь</span><span class="val" id="br-software">—</span></li>
-          <li><span class="name">Командировки</span><span class="val" id="br-travel">—</span></li>
-          <li><span class="name">Резерв на&nbsp;штрафы</span><span class="val" id="br-risk">—</span></li>
-          <li class="total"><span class="name">Свой отдел / мес</span><span class="val" id="br-total">—</span></li>
-          <li class="total"><span class="name">Бавар+ / мес</span><span class="val" id="br-bavar">—</span></li>
+        <ul class="calc-breakdown">
+          <li><span class="nm">ФОТ</span><span class="vl" id="br-fot">—</span></li>
+          <li><span class="nm">Страховые взносы (30%)</span><span class="vl" id="br-taxes">—</span></li>
+          <li><span class="nm">Офис и&nbsp;ПО</span><span class="vl" id="br-office">—</span></li>
+          <li><span class="nm">Командировки</span><span class="vl" id="br-travel">—</span></li>
+          <li><span class="nm">Резерв на&nbsp;штрафы</span><span class="vl" id="br-risk">—</span></li>
+          <li class="total"><span class="nm">Свой отдел / мес</span><span class="vl" id="br-total">—</span></li>
+          <li class="total"><span class="nm">Бавар+ / мес</span><span class="vl" id="br-bavar">—</span></li>
         </ul>
 
-        <a href="#contact" class="btn btn--primary btn--block calc__cta" style="background:#fff;color:#0e1a2b">
-          Получить точный расчёт
-        </a>
+        <div class="calc-cta">
+          <a href="#contact" style="display:block;text-align:center;text-decoration:none">
+            <button type="button">Получить точный расчёт →</button>
+          </a>
+        </div>
       </div>
 
     </div>
@@ -495,93 +532,85 @@
 <!-- ============================================================
      08 · ПРЕИМУЩЕСТВА
      ============================================================ -->
-<section class="section section--soft" id="advantages">
-  <div class="container">
-    <div class="section__head" data-reveal>
-      <div class="section__num">08</div>
-      <div>
-        <h2 class="section__title">Почему промышленные предприятия выбирают нас</h2>
-        <p class="section__lede">
-          Восемь причин, по&nbsp;которым 200+ компаний уже&nbsp;передали нам ВЭД и&nbsp;инжиниринг.
-        </p>
-      </div>
+<section id="advantages">
+  <div class="wrap">
+    <div class="section-num">Блок 08 · Преимущества</div>
+    <div class="section-title">Почему промышленные предприятия выбирают нас
+      <span class="annotation">✎ 8 карточек · числовые акценты</span>
     </div>
 
-    <div class="advantages" data-reveal>
+    <div class="adv-grid">
       <div class="adv-card">
-        <div class="adv-card__num">12 лет</div>
-        <h3 class="adv-card__title">Опыт и&nbsp;экспертиза</h3>
-        <p class="adv-card__desc">Сотни сделок и&nbsp;запусков линий. Предсказуемый результат, защита от&nbsp;типичных ошибок</p>
+        <div class="av-big">12 лет</div>
+        <h4>Опыт и&nbsp;экспертиза</h4>
+        <p>Сотни сделок и&nbsp;запусков линий. Предсказуемый результат</p>
       </div>
       <div class="adv-card">
-        <div class="adv-card__num">200+</div>
-        <h3 class="adv-card__title">Довольных клиентов</h3>
-        <p class="adv-card__desc">Производители в&nbsp;России и&nbsp;СНГ — от&nbsp;региональных заводов до&nbsp;федеральных корпораций</p>
+        <div class="av-big">200+</div>
+        <h4>Довольных клиентов</h4>
+        <p>В&nbsp;России и&nbsp;СНГ — от&nbsp;региональных до&nbsp;федеральных</p>
       </div>
       <div class="adv-card">
-        <div class="adv-card__num">Шанхай</div>
-        <h3 class="adv-card__title">Свой офис в&nbsp;Китае</h3>
-        <p class="adv-card__desc">Русскоязычная команда на&nbsp;месте: аудит фабрик и&nbsp;контроль отгрузок за&nbsp;часы, не&nbsp;недели</p>
+        <div class="av-big">Шанхай</div>
+        <h4>Свой офис в&nbsp;Китае</h4>
+        <p>Аудит фабрик и&nbsp;контроль отгрузок за&nbsp;часы, не&nbsp;недели</p>
       </div>
       <div class="adv-card">
-        <div class="adv-card__num">1,7 млн</div>
-        <h3 class="adv-card__title">Экономия в&nbsp;месяц</h3>
-        <p class="adv-card__desc">По&nbsp;сравнению со&nbsp;штатным отделом ВЭД. Фикс от&nbsp;300 000 ₽ заменяет 7+&nbsp;специалистов</p>
+        <div class="av-big">1,7 млн</div>
+        <h4>Экономия / мес</h4>
+        <p>vs.&nbsp;штатный отдел ВЭД. Фикс от&nbsp;300 000 ₽ заменяет 7+ человек</p>
       </div>
       <div class="adv-card">
-        <div class="adv-card__num">R&amp;D</div>
-        <h3 class="adv-card__title">Пилотные испытания</h3>
-        <p class="adv-card__desc">Собственный R&amp;D-центр в&nbsp;Китае: тестируем рецептуры до&nbsp;запуска линии</p>
+        <div class="av-big">R&amp;D</div>
+        <h4>Пилотные испытания</h4>
+        <p>R&amp;D-центр в&nbsp;Китае: рецептуры до&nbsp;запуска линии</p>
       </div>
       <div class="adv-card">
-        <div class="adv-card__num">100%</div>
-        <h3 class="adv-card__title">Финансовые гарантии</h3>
-        <p class="adv-card__desc">Штрафы и&nbsp;корректировки таможенной стоимости компенсируем мы, а&nbsp;не&nbsp;вы</p>
+        <div class="av-big">100%</div>
+        <h4>Фин. гарантии</h4>
+        <p>Штрафы за&nbsp;ошибки оформления компенсируем мы</p>
       </div>
       <div class="adv-card">
-        <div class="adv-card__num">−40%</div>
-        <h3 class="adv-card__title">Выкуп оборудования</h3>
-        <p class="adv-card__desc">Доступ к&nbsp;европейским брендам через&nbsp;китайских партнёров — экономия до&nbsp;40%</p>
+        <div class="av-big">−40%</div>
+        <h4>Выкуп оборудования</h4>
+        <p>Европейские бренды через&nbsp;китайских партнёров</p>
       </div>
       <div class="adv-card">
-        <div class="adv-card__num">1 договор</div>
-        <h3 class="adv-card__title">Единая ответственность</h3>
-        <p class="adv-card__desc">От&nbsp;поиска поставщика до&nbsp;первой партии — всё под&nbsp;одним договором, без&nbsp;цепочки подрядчиков</p>
+        <div class="av-big">1 договор</div>
+        <h4>Единая ответственность</h4>
+        <p>От&nbsp;поиска до&nbsp;первой партии — всё под&nbsp;одним договором</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     09 · ОФИС В ШАНХАЕ
+     09 · ШАНХАЙ
      ============================================================ -->
-<section class="section" id="shanghai">
-  <div class="container">
-    <div class="section__head" data-reveal>
-      <div class="section__num">09</div>
-      <div>
-        <h2 class="section__title">Свой офис в&nbsp;Шанхае — почему это критично</h2>
-        <p class="section__lede">
-          Между вами и&nbsp;китайским поставщиком нет прослойки агентов и&nbsp;переводчиков.
-          Наши инженеры и&nbsp;технологи на&nbsp;месте.
-        </p>
-      </div>
+<section id="shanghai">
+  <div class="wrap">
+    <div class="section-num">Блок 09 · Офис в&nbsp;Шанхае</div>
+    <div class="section-title">Свой офис в&nbsp;Шанхае — почему это критично
+      <span class="annotation">✎ фото офиса/команды · подменяется на&nbsp;реальные</span>
     </div>
+    <p class="section-desc">
+      Между вами и&nbsp;китайским поставщиком нет прослойки агентов и&nbsp;переводчиков.
+      Наши инженеры и&nbsp;технологи на&nbsp;месте.
+    </p>
 
-    <div class="shanghai" data-reveal>
-      <div class="shanghai__visual">
-        <div>
-          <div class="shanghai__visual-label">Office · Shanghai</div>
-          <div class="shanghai__visual-place">上海 · Шанхай</div>
-        </div>
+    <div class="shanghai-grid">
+      <div class="shanghai-photo">
+        <div class="ph-icon">🏢</div>
+        <span class="ph-label">фото · офис в&nbsp;Шанхае или&nbsp;команда</span>
       </div>
-      <div>
-        <h3 class="shanghai__title">Личный контроль на&nbsp;каждом этапе</h3>
-        <p class="shanghai__text">
-          Большинство ВЭД-агентов работают «удалённо» — то&nbsp;есть с&nbsp;вашими деньгами в&nbsp;руках китайских посредников.
-          Мы&nbsp;ездим на&nbsp;фабрики лично, договариваемся напрямую, контролируем отгрузки. Это снимает 80% типичных проблем.
+      <div class="shanghai-text">
+        <h3>Личный контроль на&nbsp;каждом этапе</h3>
+        <p>
+          Большинство ВЭД-агентов работают удалённо — то&nbsp;есть с&nbsp;вашими деньгами в&nbsp;руках китайских посредников.
+          Мы&nbsp;ездим на&nbsp;фабрики лично, договариваемся напрямую, контролируем отгрузки.
+          Это снимает 80% типичных проблем.
         </p>
-        <ul class="shanghai__points">
+        <ul class="shanghai-points">
           <li>
             <span class="k">Аудит</span>
             <span class="v">Личная проверка производства до&nbsp;подписания контракта</span>
@@ -599,7 +628,7 @@
             <span class="v">Решение спорных вопросов за&nbsp;часы, не&nbsp;недели</span>
           </li>
         </ul>
-        <a href="#contact" class="btn btn--primary">Узнать о&nbsp;возможностях офиса</a>
+        <a href="#contact" class="btn-solid">Узнать о&nbsp;возможностях офиса →</a>
       </div>
     </div>
   </div>
@@ -608,141 +637,134 @@
 <!-- ============================================================
      10 · КЕЙСЫ
      ============================================================ -->
-<section class="section section--soft" id="cases">
-  <div class="container">
-    <div class="section__head" data-reveal>
-      <div class="section__num">10</div>
-      <div>
-        <h2 class="section__title">Реализованные проекты</h2>
-        <p class="section__lede">
-          С&nbsp;большинством клиентов подписано NDA, поэтому кейсы анонимные. По&nbsp;запросу
-          можем дать контакты для&nbsp;референса.
-        </p>
-      </div>
+<section id="cases">
+  <div class="wrap">
+    <div class="section-num">Блок 10 · Кейсы и&nbsp;отзывы</div>
+    <div class="section-title">Реализованные проекты
+      <span class="annotation">✎ анонимный формат · по&nbsp;NDA</span>
     </div>
+    <p class="section-desc">
+      С&nbsp;большинством клиентов подписано NDA, поэтому кейсы анонимные. По&nbsp;запросу
+      организуем созвон с&nbsp;текущим заказчиком из&nbsp;вашей отрасли.
+    </p>
 
-    <div class="cases" data-reveal>
+    <div class="cases-grid">
       <div class="case-card">
-        <div class="case-card__tag">Молочная промышленность</div>
-        <p class="case-card__quote">
-          «Запустили полную линию пастеризации и&nbsp;производства йогурта на&nbsp;площадке в&nbsp;Сибири.
-          От&nbsp;первой встречи до&nbsp;первой партии — 5 месяцев. Сейчас работает третий год без&nbsp;остановок.»
+        <span class="case-tag">Молочная промышленность</span>
+        <p class="case-quote">
+          Запустили полную линию пастеризации и&nbsp;производства йогурта на&nbsp;площадке в&nbsp;Сибири.
+          От&nbsp;первой встречи до&nbsp;первой партии — 5 месяцев. Сейчас работает третий год без&nbsp;остановок.
         </p>
-        <div class="case-card__result">
-          <div class="case-card__result-val">5 месяцев</div>
-          <div class="case-card__result-lbl">от&nbsp;договора до&nbsp;запуска</div>
+        <div class="case-result">
+          <div class="case-val">5 месяцев</div>
+          <div class="case-lbl">от&nbsp;договора до&nbsp;запуска</div>
         </div>
       </div>
 
       <div class="case-card">
-        <div class="case-card__tag">Производство соусов</div>
-        <p class="case-card__quote">
-          «Подобрали и&nbsp;поставили универсальную линию диспергирования BSS-1000L.
-          Помогли с&nbsp;адаптацией рецептуры под&nbsp;местное сырьё. Расширили ассортимент в&nbsp;3 раза.»
+        <span class="case-tag">Производство соусов</span>
+        <p class="case-quote">
+          Подобрали и&nbsp;поставили универсальную линию диспергирования BSS-1000L.
+          Помогли с&nbsp;адаптацией рецептуры под&nbsp;местное сырьё. Расширили ассортимент в&nbsp;3 раза.
         </p>
-        <div class="case-card__result">
-          <div class="case-card__result-val">×3 продукта</div>
-          <div class="case-card__result-lbl">на&nbsp;одной линии</div>
+        <div class="case-result">
+          <div class="case-val">×3 продукта</div>
+          <div class="case-lbl">на&nbsp;одной линии</div>
         </div>
       </div>
 
       <div class="case-card">
-        <div class="case-card__tag">Фарма и&nbsp;БАД</div>
-        <p class="case-card__quote">
-          «Полностью закрыли импорт сырья и&nbsp;комплектующих из&nbsp;Китая. До&nbsp;нас компания держала штат
-          из&nbsp;6 человек на&nbsp;ВЭД, после перехода — фикс 500&nbsp;тыс&nbsp;₽ в&nbsp;месяц.»
+        <span class="case-tag">Фарма и&nbsp;БАД</span>
+        <p class="case-quote">
+          Закрыли импорт сырья и&nbsp;комплектующих из&nbsp;Китая. До&nbsp;нас компания держала штат
+          из&nbsp;6 человек на&nbsp;ВЭД, после перехода — фикс 500&nbsp;тыс&nbsp;₽ в&nbsp;месяц.
         </p>
-        <div class="case-card__result">
-          <div class="case-card__result-val">−1,4 млн ₽/мес</div>
-          <div class="case-card__result-lbl">экономия после&nbsp;перехода</div>
+        <div class="case-result">
+          <div class="case-val">−1,4 млн ₽/мес</div>
+          <div class="case-lbl">экономия после&nbsp;перехода</div>
         </div>
       </div>
     </div>
 
     <p class="cases-note">
-      Кейсы публикуются с&nbsp;согласия клиентов. Для&nbsp;референса по&nbsp;запросу
-      организуем созвон с&nbsp;текущим заказчиком из&nbsp;вашей отрасли.
+      ✎ Кейсы публикуются с&nbsp;согласия клиентов. Для&nbsp;референса организуем созвон по&nbsp;запросу.
     </p>
   </div>
 </section>
 
 <!-- ============================================================
-     11 · ФОРМА И КОНТАКТЫ
+     11 · АНКЕРНЫЙ БЛОК — контакты + форма
      ============================================================ -->
-<section class="section" id="contact">
-  <div class="container">
-    <div class="section__head" data-reveal>
-      <div class="section__num">11</div>
-      <div>
-        <h2 class="section__title">Обсудим вашу задачу</h2>
-        <p class="section__lede">
-          Опишите, что нужно привезти, запустить или&nbsp;посчитать.
-          Перезвоним в&nbsp;течение рабочего дня и&nbsp;подготовим расчёт.
-        </p>
-      </div>
-    </div>
+<section class="anchor-section" id="contact">
+  <div class="wrap">
+    <span class="anchor-tag">Блок 11 · Контакты</span>
+    <div class="section-title">Обсудим вашу задачу</div>
+    <p class="section-desc">
+      Опишите, что нужно привезти, запустить или&nbsp;посчитать.
+      Перезвоним в&nbsp;течение рабочего дня и&nbsp;подготовим расчёт.
+    </p>
 
-    <div class="contact" data-reveal>
-      <div>
-        <h3 class="contact__info-title">Прямые контакты</h3>
-        <p class="contact__info-text">
-          Можно сразу позвонить, написать в&nbsp;Telegram или&nbsp;на&nbsp;почту.
-          Если удобнее форма — справа.
+    <div class="anchor-grid">
+      <div class="anchor-left">
+        <h3>Прямые контакты</h3>
+        <p>
+          Удобнее позвонить — звоните. Удобнее форма — справа. Можно сразу написать
+          в&nbsp;Telegram или&nbsp;на&nbsp;почту, отвечаем в&nbsp;течение рабочего дня.
         </p>
-        <ul class="contact__channels">
+        <ul class="anchor-channels">
           <li>
             <span class="k">Телефон</span>
-            <span class="v"><a href="tel:+79250028289">+7&nbsp;925 002-82-89</a></span>
+            <span class="v"><a href="tel:+79250028289">+7&nbsp;925&nbsp;002-82-89</a></span>
           </li>
           <li>
             <span class="k">E-mail</span>
-            <span class="v">
-              <a href="mailto:alv@bavarswiss.ru">alv@bavarswiss.ru</a><br>
-              <a href="mailto:info@bavarswiss.ru">info@bavarswiss.ru</a>
-            </span>
+            <span class="v"><a href="mailto:alv@bavarswiss.ru">alv@bavarswiss.ru</a> · <a href="mailto:info@bavarswiss.ru">info@bavarswiss.ru</a></span>
           </li>
           <li>
             <span class="k">Telegram</span>
             <span class="v"><a href="https://t.me/" target="_blank" rel="noopener">@bavarplus</a></span>
           </li>
           <li>
-            <span class="k">Офис в&nbsp;Москве</span>
-            <span class="v">ул. 2-я Мытищинская, д.&nbsp;2, стр.&nbsp;1, 6/2</span>
+            <span class="k">Москва</span>
+            <span class="v">ул.&nbsp;2-я Мытищинская, д.&nbsp;2, стр.&nbsp;1, 6/2</span>
           </li>
           <li>
-            <span class="k">Офис в&nbsp;Шанхае</span>
+            <span class="k">Шанхай</span>
             <span class="v">Pudong New Area · по&nbsp;запросу</span>
           </li>
         </ul>
       </div>
 
-      <form class="form" id="contact-form" novalidate>
-        <h3 class="form__title">Оставьте заявку</h3>
-        <p class="form__sub">Перезвоним в&nbsp;течение рабочего дня</p>
+      <form class="hero-form" id="contact-form" novalidate>
+        <span class="hf-tag">Заявка</span>
+        <h3>Оставьте заявку</h3>
+        <p class="hf-sub">Перезвоним в&nbsp;течение рабочего дня</p>
 
-        <div class="form__row">
+        <div class="form-row">
           <label for="f-name">Как к&nbsp;вам обращаться</label>
           <input type="text" id="f-name" name="name" placeholder="Иван Петров" required>
         </div>
-        <div class="form__row">
+        <div class="form-row">
           <label for="f-phone">Телефон</label>
           <input type="tel" id="f-phone" name="phone" placeholder="+7 ___ ___-__-__" required>
         </div>
-        <div class="form__row">
+        <div class="form-row">
           <label for="f-email">E-mail</label>
           <input type="email" id="f-email" name="email" placeholder="name@company.ru">
         </div>
-        <div class="form__row">
+        <div class="form-row">
           <label for="f-msg">Что нужно сделать</label>
-          <textarea id="f-msg" name="message" placeholder="Кратко опишите задачу: что привезти, какую линию запустить, какие сроки"></textarea>
+          <textarea id="f-msg" name="message" placeholder="Кратко: что привезти, какую линию запустить, какие сроки"></textarea>
+        </div>
+        <div class="form-row check-line">
+          <input type="checkbox" id="f-agree" required>
+          <label for="f-agree" style="text-transform:none;letter-spacing:0;color:var(--ink-mid);font-size:14px;margin:0">
+            Согласен на&nbsp;обработку персональных данных согласно <a href="#privacy">политике конфиденциальности</a>
+          </label>
         </div>
 
-        <label class="form__check">
-          <input type="checkbox" id="f-agree" required>
-          <span>Согласен на&nbsp;обработку персональных данных согласно <a href="#privacy">политике конфиденциальности</a></span>
-        </label>
-
-        <button type="submit" class="btn btn--primary btn--block btn--lg">Отправить заявку</button>
+        <button type="submit" class="form-submit">Отправить заявку →</button>
+        <p class="hf-foot">Без&nbsp;спама. Только по&nbsp;вашему вопросу.</p>
       </form>
     </div>
   </div>
@@ -750,15 +772,47 @@
 
 </main>
 
-<footer class="footer">
-  <div class="container footer__inner">
-    <div>© 2026 Бавар+ · ООО «Бавар Трейдинг» · Все права защищены</div>
-    <div class="footer__links">
-      <a href="#privacy">Политика конфиденциальности</a>
-      <a href="https://bavarswiss.ru" target="_blank" rel="noopener">bavarswiss.ru</a>
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h5>БАВАР+</h5>
+        <p>
+          Инжиниринг биотехнологических линий и&nbsp;аутсорсинг ВЭД полного цикла.
+          12 лет на&nbsp;рынке, офис в&nbsp;Шанхае.
+        </p>
+        <p style="color:rgba(255,255,255,0.35);font-size:13px;margin-top:8px">
+          © 2026 · ООО «Бавар Трейдинг» · <a href="https://bavarswiss.ru" target="_blank" rel="noopener">bavarswiss.ru</a>
+        </p>
+      </div>
+      <div>
+        <h5>Разделы</h5>
+        <a href="#services">Услуги</a>
+        <a href="#industries">Отрасли</a>
+        <a href="#process">Процесс работы</a>
+        <a href="#calc">Калькулятор</a>
+        <a href="#cases">Кейсы</a>
+      </div>
+      <div>
+        <h5>Контакты</h5>
+        <a href="tel:+79250028289">+7 925 002-82-89</a>
+        <a href="mailto:info@bavarswiss.ru">info@bavarswiss.ru</a>
+        <a href="https://t.me/" target="_blank" rel="noopener">Telegram · @bavarplus</a>
+        <a href="#privacy">Политика конфиденциальности</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>Crazy.Studio · скетч-прототип · 2026-05-19</div>
+      <div>Тексты и&nbsp;цифры демонстрационные · подменяются на&nbsp;финальные</div>
     </div>
   </div>
 </footer>
+
+<button class="chat-icon" onclick="alert('Прототип: иконка чата без всплывающего приглашения · по ТЗ')" title="Чат">💬</button>
+<button class="to-top" id="toTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Наверх">↑</button>
 
 <script src="assets/app.js"></script>
 </body>

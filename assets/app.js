@@ -1,5 +1,5 @@
 /* ============================================================
-   Бавар+ · скрипт прототипа
+   Бавар+ · скетч-прототип · скрипты
    ============================================================ */
 
 // ---------- formatters ----------
@@ -24,26 +24,6 @@ const plural = (n, forms) => {
   return forms[2];
 };
 
-// ---------- nav scroll state ----------
-const nav = document.querySelector('.nav');
-const onScroll = () => {
-  if (window.scrollY > 4) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
-};
-window.addEventListener('scroll', onScroll, { passive: true });
-onScroll();
-
-// ---------- reveal on scroll ----------
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('revealed');
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
-
 // ============================================================
 // Calculator
 // ============================================================
@@ -66,7 +46,6 @@ const calcEls = {
   brkFot: document.getElementById('br-fot'),
   brkTaxes: document.getElementById('br-taxes'),
   brkOffice: document.getElementById('br-office'),
-  brkSoftware: document.getElementById('br-software'),
   brkTravel: document.getElementById('br-travel'),
   brkRisk: document.getElementById('br-risk'),
   brkTotal: document.getElementById('br-total'),
@@ -81,11 +60,10 @@ function recalc() {
 
   const fot = staff * salary;
   const taxes = fot * TAX_RATE;
-  const office = staff * OFFICE_PER_PERSON;
-  const software = SOFTWARE_BASE;
+  const office = staff * OFFICE_PER_PERSON + SOFTWARE_BASE;
   const travel = deals * TRAVEL_PER_DEAL;
   const risk = deals * RISK_PER_DEAL;
-  const inhouse = fot + taxes + office + software + travel + risk;
+  const inhouse = fot + taxes + office + travel + risk;
   const savings = Math.max(0, inhouse - BAVAR_FIXED);
 
   calcEls.lblStaff.textContent = staff + ' ' + plural(staff, ['человек','человека','человек']);
@@ -95,7 +73,6 @@ function recalc() {
   calcEls.brkFot.textContent = fmtRub(fot);
   calcEls.brkTaxes.textContent = fmtRub(taxes);
   calcEls.brkOffice.textContent = fmtRub(office);
-  calcEls.brkSoftware.textContent = fmtRub(software);
   calcEls.brkTravel.textContent = fmtRub(travel);
   calcEls.brkRisk.textContent = fmtRub(risk);
   calcEls.brkTotal.textContent = fmtRub(inhouse);
@@ -111,16 +88,26 @@ function recalc() {
 recalc();
 
 // ============================================================
-// Form (prototype only — does not actually submit)
+// Form (prototype only)
 // ============================================================
 const form = document.getElementById('contact-form');
 if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const btn = form.querySelector('button[type=submit]');
+    const btn = form.querySelector('.form-submit');
     const old = btn.textContent;
     btn.textContent = '✓ Заявка отправлена';
     btn.disabled = true;
-    setTimeout(() => { btn.textContent = old; btn.disabled = false; form.reset(); }, 2200);
+    setTimeout(() => { btn.textContent = old; btn.disabled = false; form.reset(); }, 2400);
   });
+}
+
+// ============================================================
+// To-top button
+// ============================================================
+const toTopBtn = document.getElementById('toTop');
+if (toTopBtn) {
+  window.addEventListener('scroll', () => {
+    toTopBtn.classList.toggle('show', window.scrollY > window.innerHeight);
+  }, { passive: true });
 }
