@@ -795,6 +795,42 @@ section:nth-of-type(even) { background: var(--paper-dark); }
   font-size: 16px;
 }
 
+/* Scope-нюанс «инжиниринг только в биотех / ВЭД любые товары» */
+.scope-note {
+  margin: 24px 0 32px;
+  background: var(--hl);
+  border: 2px dashed var(--hl-border);
+  padding: 22px 26px 22px 84px;
+  position: relative;
+  box-shadow: 5px 5px 0 rgba(212,160,23,0.25);
+}
+.scope-note__tag {
+  position: absolute;
+  left: -8px;
+  top: 22px;
+  background: var(--ink);
+  color: var(--white);
+  padding: 8px 14px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  transform: rotate(-3deg);
+  box-shadow: 3px 3px 0 var(--ink-faint);
+  z-index: 2;
+}
+.scope-note p {
+  font-size: 16px;
+  color: #6e5300;
+  line-height: 1.6;
+  max-width: 840px;
+}
+.scope-note p strong { color: var(--ink); font-weight: 700; }
+@media (max-width: 640px) {
+  .scope-note { padding: 60px 22px 22px; }
+  .scope-note__tag { top: -14px; left: 16px; }
+}
+
 /* Инжиниринг для отраслей — выделенный блок снизу блока 05 */
 .industries-expertise {
   margin-top: 40px;
