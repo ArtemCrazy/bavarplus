@@ -788,47 +788,32 @@ section:nth-of-type(even) { background: var(--paper-dark); }
 }
 .industries-note {
   margin-top: 24px;
-  padding: 16px 20px;
-  background: var(--hl);
-  border: 1px dashed var(--hl-border);
-  color: #8a6800;
-  font-size: 16px;
+  padding: 14px 18px;
+  border-left: 2px dashed var(--ink-faint);
+  color: var(--ink-mid);
+  font-size: 14px;
+  line-height: 1.55;
+  max-width: 880px;
 }
+.industries-note strong { color: var(--ink); font-weight: 700; }
 
-/* Scope-нюанс «инжиниринг только в биотех / ВЭД любые товары» */
-.scope-note {
-  margin: 24px 0 32px;
-  background: var(--hl);
-  border: 2px dashed var(--hl-border);
-  padding: 22px 26px 22px 84px;
-  position: relative;
-  box-shadow: 5px 5px 0 rgba(212,160,23,0.25);
+/* Industries intro — short bridge between section-desc and cards */
+.industries-intro {
+  margin: 8px 0 28px;
+  padding: 18px 24px;
+  border-left: 4px solid var(--ink);
+  background: rgba(0,0,0,0.02);
 }
-.scope-note__tag {
-  position: absolute;
-  left: -8px;
-  top: 22px;
-  background: var(--ink);
-  color: var(--white);
-  padding: 8px 14px;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-weight: 700;
-  transform: rotate(-3deg);
-  box-shadow: 3px 3px 0 var(--ink-faint);
-  z-index: 2;
+.industries-intro h3 {
+  font-size: 24px;
+  line-height: 1.25;
+  margin-bottom: 8px;
 }
-.scope-note p {
+.industries-intro p {
   font-size: 16px;
-  color: #6e5300;
-  line-height: 1.6;
-  max-width: 840px;
-}
-.scope-note p strong { color: var(--ink); font-weight: 700; }
-@media (max-width: 640px) {
-  .scope-note { padding: 60px 22px 22px; }
-  .scope-note__tag { top: -14px; left: 16px; }
+  color: var(--ink-mid);
+  line-height: 1.55;
+  max-width: 780px;
 }
 
 /* Инжиниринг для отраслей — выделенный блок снизу блока 05 */
