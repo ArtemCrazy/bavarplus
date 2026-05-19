@@ -617,6 +617,140 @@ section:nth-of-type(even) { background: var(--paper-dark); }
 }
 
 /* ============================================================
+   04b · «Доска со стикерами» — 5 услуг ВЭД
+   ============================================================ */
+.svc-stickers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px 22px;
+  margin: 14px 0 40px;
+  padding-top: 18px;
+}
+@media (max-width: 540px) {
+  .svc-stickers { grid-template-columns: 1fr; gap: 28px; }
+}
+
+.sticker {
+  background: var(--white);
+  border: 2px solid var(--ink);
+  padding: 22px 22px 24px;
+  box-shadow: 6px 6px 0 var(--ink-faint);
+  position: relative;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.sticker:nth-child(odd)  { transform: rotate(-0.8deg); }
+.sticker:nth-child(even) { transform: rotate(0.8deg); }
+.sticker:nth-child(3n)   { transform: rotate(-1.2deg); }
+.sticker:nth-child(5n)   { transform: rotate(1.4deg); }
+.sticker:hover {
+  transform: rotate(0deg) translate(-2px, -2px);
+  box-shadow: 9px 9px 0 var(--ink-faint);
+  z-index: 2;
+}
+.sticker:nth-child(2) { background: var(--paper); }
+.sticker:nth-child(3) { background: #fff8eb; }
+.sticker:nth-child(4) { background: var(--paper-dark); }
+.sticker:nth-child(5) { background: #f4f0e3; }
+
+.sticker__num {
+  position: absolute;
+  top: -16px;
+  left: -12px;
+  background: var(--shimmer);
+  color: var(--white);
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 2px solid var(--ink);
+  transform: rotate(-6deg);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.sticker__title {
+  font-size: 21px;
+  line-height: 1.25;
+  margin: 8px 0 10px;
+  padding-right: 6px;
+}
+.sticker__desc {
+  font-size: 15px;
+  color: var(--ink-mid);
+  line-height: 1.5;
+}
+
+/* Жёлтая «приклеенная» плашка гарантий — без двух колонок */
+.svc-guarantees {
+  background: var(--hl);
+  border: 2px dashed var(--hl-border);
+  padding: 26px 28px 24px;
+  position: relative;
+  margin-top: 12px;
+  box-shadow: 5px 5px 0 rgba(212,160,23,0.25);
+}
+.svc-guarantees .sg-stamp {
+  position: absolute;
+  top: -22px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  background: var(--ink);
+  color: var(--shimmer);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  transform: rotate(8deg);
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink-faint);
+}
+.svc-guarantees .sg-head {
+  font-size: 24px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  color: #5c4500;
+  padding-right: 60px;
+}
+.svc-guarantees .sg-lead {
+  font-size: 16px;
+  color: #7a5b00;
+  margin-bottom: 18px;
+  max-width: 720px;
+  line-height: 1.5;
+}
+.sg-chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.sg-chips li {
+  background: var(--white);
+  border: 1.5px solid var(--ink);
+  padding: 8px 14px;
+  font-size: 16px;
+  color: var(--ink);
+  font-family: 'Caveat', cursive;
+  position: relative;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.sg-chips li::before {
+  content: '✓ ';
+  color: var(--shimmer);
+  font-weight: 700;
+  margin-right: 2px;
+}
+.sg-chips li:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink-faint);
+}
+@media (max-width: 540px) {
+  .svc-guarantees .sg-stamp { width: 38px; height: 38px; font-size: 18px; top: -18px; }
+  .svc-guarantees .sg-head { padding-right: 50px; font-size: 21px; }
+}
+
+/* ============================================================
    05 · ОТРАСЛЕВЫЕ НАПРАВЛЕНИЯ
    ============================================================ */
 .industries-grid {
