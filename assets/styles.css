@@ -1070,7 +1070,76 @@ section:nth-of-type(even) { background: var(--paper-dark); }
 }
 
 /* ============================================================
-   11 · ЯКОРЬ-КОНТАКТЫ (dark + form)
+   11 · FAQ — аккордеон в скетч-стиле
+   ============================================================ */
+.faq-list {
+  display: grid;
+  gap: 14px;
+  max-width: 920px;
+}
+.faq-item {
+  background: var(--white);
+  border: 2px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--ink-faint);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.faq-item:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--ink-faint);
+}
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 700;
+  font-family: 'Caveat', cursive;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::marker { content: ''; }
+.faq-item summary::after {
+  content: '+';
+  font-size: 32px;
+  color: var(--shimmer);
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--shimmer);
+  background: #fff6e3;
+  transition: transform 0.15s ease;
+}
+.faq-item[open] summary::after {
+  content: '−';
+  color: var(--white);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.faq-item summary:hover { color: var(--shimmer-dk); }
+.faq-item .faq-body {
+  padding: 16px 24px 22px;
+  margin: 0 24px;
+  border-top: 1px dashed var(--ink-faint);
+  font-size: 16px;
+  color: var(--ink-mid);
+  line-height: 1.6;
+}
+@media (max-width: 540px) {
+  .faq-item summary { font-size: 19px; padding: 16px 18px; gap: 12px; }
+  .faq-item summary::after { width: 28px; height: 28px; font-size: 26px; }
+  .faq-item .faq-body { padding: 14px 18px 18px; margin: 0 18px; font-size: 15px; }
+}
+
+/* ============================================================
+   12 · ЯКОРЬ-КОНТАКТЫ (dark + form)
    ============================================================ */
 .anchor-section {
   background: var(--ink) !important;
