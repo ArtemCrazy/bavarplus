@@ -662,7 +662,7 @@ section:nth-of-type(even) { background: var(--paper-dark); }
 }
 
 /* Инжиниринг для отраслей — выделенный блок снизу блока 05 */
-.industries-engineering {
+.industries-expertise {
   margin-top: 40px;
   background: var(--ink);
   color: var(--white);
@@ -675,9 +675,9 @@ section:nth-of-type(even) { background: var(--paper-dark); }
   align-items: start;
 }
 @media (max-width: 980px) {
-  .industries-engineering { grid-template-columns: 1fr; gap: 24px; padding: 24px; }
+  .industries-expertise { grid-template-columns: 1fr; gap: 24px; padding: 24px; }
 }
-.industries-engineering .ie-head .ie-kicker {
+.industries-expertise .ie-head .ie-kicker {
   display: inline-block;
   padding: 4px 12px;
   background: var(--shimmer);
@@ -687,27 +687,27 @@ section:nth-of-type(even) { background: var(--paper-dark); }
   text-transform: uppercase;
   margin-bottom: 14px;
 }
-.industries-engineering .ie-head h3 {
+.industries-expertise .ie-head h3 {
   font-size: 26px;
   line-height: 1.2;
   margin-bottom: 12px;
   color: var(--white);
 }
-.industries-engineering .ie-head p {
+.industries-expertise .ie-head p {
   font-size: 16px;
   color: rgba(255,255,255,0.7);
   line-height: 1.55;
 }
-.industries-engineering .ie-list {
+.industries-expertise .ie-list {
   list-style: none;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
 @media (max-width: 600px) {
-  .industries-engineering .ie-list { grid-template-columns: 1fr; }
+  .industries-expertise .ie-list { grid-template-columns: 1fr; }
 }
-.industries-engineering .ie-list li {
+.industries-expertise .ie-list li {
   display: grid;
   grid-template-columns: 42px 1fr;
   gap: 8px;
@@ -716,18 +716,18 @@ section:nth-of-type(even) { background: var(--paper-dark); }
   border: 1px dashed rgba(255,255,255,0.2);
   align-items: start;
 }
-.industries-engineering .ie-num {
+.industries-expertise .ie-num {
   font-size: 22px;
   font-weight: 700;
   color: var(--shimmer);
   line-height: 1;
 }
-.industries-engineering .ie-name {
+.industries-expertise .ie-name {
   font-size: 17px;
   font-weight: 700;
   margin-bottom: 4px;
 }
-.industries-engineering .ie-desc {
+.industries-expertise .ie-desc {
   font-size: 14px;
   color: rgba(255,255,255,0.6);
   line-height: 1.45;
