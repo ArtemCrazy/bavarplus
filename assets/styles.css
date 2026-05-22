@@ -481,14 +481,15 @@ p { margin: 0; }
   user-select: none;
   pointer-events: none;
 }
-/* обёртка для покачивания контейнера */
+/* обёртка для покачивания контейнера — цепочки приклёпаны к корпусу,
+   ось поворота на верхушке цепей (где крюк крана) */
 .hero--v3 .hero__visual-swing {
   position: absolute;
-  top: 230px;
+  top: 140px;          /* верх цепей вплотную к концу крюка */
   left: 50%;
   width: 460px;
   transform: translateX(-50%);
-  transform-origin: 50% -30px;
+  transform-origin: 50% 0;
   animation: containerSway 5s ease-in-out infinite;
   z-index: 2;
 }
@@ -510,12 +511,12 @@ p { margin: 0; }
   .hero--v3 .hero__visual { min-height: 500px; margin-right: 0; }
   .hero--v3 .hero__visual-map { max-width: 600px; }
   .hero--v3 .hero__visual-kran { width: 100px; }
-  .hero--v3 .hero__visual-swing { top: 180px; width: 360px; }
+  .hero--v3 .hero__visual-swing { top: 110px; width: 360px; }
 }
 @media (max-width: 540px) {
   .hero--v3 .hero__visual { min-height: 420px; }
   .hero--v3 .hero__visual-kran { width: 80px; }
-  .hero--v3 .hero__visual-swing { top: 150px; width: 280px; }
+  .hero--v3 .hero__visual-swing { top: 88px; width: 280px; }
 }
 @media (max-width: 1024px) {
   .hero--v3 .hero__inner { grid-template-columns: 1fr; gap: 40px; padding: 56px 0 64px; min-height: 0; }
