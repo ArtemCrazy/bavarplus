@@ -620,7 +620,7 @@ p { margin: 0; }
 @media (max-width: 880px) { .compare-grid { grid-template-columns: 1fr; } }
 
 .cmp-card {
-  background: var(--surface);
+  background: #f3f5f9;
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
   padding: 36px 36px 32px;
