@@ -482,7 +482,7 @@ p { margin: 0; }
   z-index: 3;
   user-select: none;
   pointer-events: none;
-  mix-blend-mode: multiply;  /* убираем белый фон PNG */
+  filter: url(#white-to-alpha);  /* белый фон → прозрачность, корпус остаётся непрозрачным */
 }
 /* контейнер — позиционирование, анимация и blend на самом img,
    без обёртки (обёртка создавала свой stacking context из-за transform
@@ -490,13 +490,13 @@ p { margin: 0; }
 .hero--v3 .hero__visual-container {
   position: absolute;
   top: 115px;          /* визуальный конец крюка ~ y=172, верхушка цепей ~ y=45 */
-  left: calc(50% + 20px);  /* сдвиг вправо с композицией, но на 10px меньше крана — выравнивание цепей с крюком */
+  left: calc(50% + 17px);  /* сдвиг вправо с композицией, на 13px левее крана — выравнивание цепей с крюком */
   width: 660px;
   height: auto;
   display: block;
   transform-origin: 50% 45px;  /* пивот = видимая верхушка цепей */
   animation: containerSway 5s ease-in-out infinite;
-  mix-blend-mode: multiply;
+  filter: url(#white-to-alpha);  /* белый фон → прозрачность; корпус остаётся непрозрачным */
   z-index: 2;
 }
 @keyframes containerSway {
