@@ -132,9 +132,7 @@ p { margin: 0; }
 
 .logo {
   display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1px;
+  align-items: center;
   text-decoration: none;
 }
 .logo__text {
