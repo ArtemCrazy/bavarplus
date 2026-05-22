@@ -37,8 +37,8 @@
   /* type */
   --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
 
-  /* layout */
-  --w-container: 1440px;
+  /* layout — 1440 внутренний контент + 40px padding по бокам */
+  --w-container: 1520px;
 }
 
 html { scroll-behavior: smooth; }
@@ -424,10 +424,10 @@ p { margin: 0; }
 .hero--v3 { background: var(--bg); }
 .hero--v3 .hero__inner {
   position: relative;
-  min-height: 720px;
+  min-height: 760px;
   padding: 80px 0;
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: 0.85fr 1.25fr;
   gap: 60px;
   align-items: center;
 }
@@ -452,16 +452,17 @@ p { margin: 0; }
 }
 .hero--v3 .hero__visual {
   position: relative;
-  min-height: 520px;
+  min-height: 600px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  margin-right: -40px;
 }
 .hero--v3 .hero__visual-container {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 720px;
+  max-width: 100%;
   height: auto;
   display: block;
 }
