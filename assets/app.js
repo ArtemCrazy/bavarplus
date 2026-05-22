@@ -1,5 +1,5 @@
 /* ============================================================
-   Бавар+ · скетч-прототип · скрипты
+   БАВАР+ · полированный прототип v2 · скрипты
    ============================================================ */
 
 // ---------- formatters ----------
@@ -23,6 +23,46 @@ const plural = (n, forms) => {
   if (n1 === 1) return forms[0];
   return forms[2];
 };
+
+// ============================================================
+// Hero variant switcher
+// ============================================================
+const heroVariants = document.querySelectorAll('.hero[data-variant]');
+const switcherLinks = document.querySelectorAll('#v-switcher a');
+
+function showVariant(v) {
+  heroVariants.forEach(h => {
+    const match = h.dataset.variant === v;
+    h.hidden = !match;
+  });
+  switcherLinks.forEach(a => {
+    a.classList.toggle('active', a.dataset.v === v);
+  });
+  // Update logo color in nav based on hero v1 (red) vs v2/v3 (red on white default)
+  // No change needed — logo is consistent red.
+}
+
+function getVariantFromHash() {
+  const h = (location.hash || '').replace('#', '').trim();
+  return ['v1', 'v2', 'v3'].includes(h) ? h : 'v1';
+}
+
+showVariant(getVariantFromHash());
+
+window.addEventListener('hashchange', () => {
+  const v = getVariantFromHash();
+  showVariant(v);
+  // smooth scroll to top so the new hero is in view
+  if (location.hash.match(/^#v[123]$/)) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+});
+
+switcherLinks.forEach(a => {
+  a.addEventListener('click', (e) => {
+    // hashchange will fire and handle the rest
+  });
+});
 
 // ============================================================
 // Calculator
@@ -94,20 +134,10 @@ const form = document.getElementById('contact-form');
 if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const btn = form.querySelector('.form-submit');
+    const btn = form.querySelector('button[type=submit]');
     const old = btn.textContent;
     btn.textContent = '✓ Заявка отправлена';
     btn.disabled = true;
     setTimeout(() => { btn.textContent = old; btn.disabled = false; form.reset(); }, 2400);
   });
-}
-
-// ============================================================
-// To-top button
-// ============================================================
-const toTopBtn = document.getElementById('toTop');
-if (toTopBtn) {
-  window.addEventListener('scroll', () => {
-    toTopBtn.classList.toggle('show', window.scrollY > window.innerHeight);
-  }, { passive: true });
 }
