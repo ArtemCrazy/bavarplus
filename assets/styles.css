@@ -460,7 +460,7 @@ p { margin: 0; }
 .hero--v3 .hero__visual-map {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: calc(50% + 20px);
   transform: translate(-50%, -50%);
   width: 110%;
   max-width: 1000px;
@@ -475,7 +475,7 @@ p { margin: 0; }
 .hero--v3 .hero__visual-kran {
   position: absolute;
   top: 0;
-  left: 50%;
+  left: calc(50% + 30px);
   transform: translateX(-50%);
   width: 150px;
   height: auto;
@@ -490,7 +490,7 @@ p { margin: 0; }
 .hero--v3 .hero__visual-container {
   position: absolute;
   top: 115px;          /* визуальный конец крюка ~ y=172, верхушка цепей ~ y=45 */
-  left: 50%;
+  left: calc(50% + 20px);  /* сдвиг вправо с композицией, но на 10px меньше крана — выравнивание цепей с крюком */
   width: 660px;
   height: auto;
   display: block;
