@@ -291,65 +291,10 @@ p { margin: 0; }
 }
 
 /* ============================================================
-   HERO V1 · фото завода фоном
-   ============================================================ */
-.hero--v1 { background: var(--bg-alt); }
-.hero--v1 .hero__inner {
-  position: relative;
-  min-height: 720px;
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  align-items: center;
-  padding: 80px 0;
-}
-.hero--v1 .hero__content {
-  position: relative;
-  z-index: 2;
-  padding-right: 40px;
-}
-.hero--v1 .hero__visual {
-  position: relative;
-  height: 600px;
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  background: linear-gradient(135deg, #2a2e3a 0%, #0f0f10 100%);
-}
-.hero--v1 .hero__visual::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    repeating-linear-gradient(95deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 80px),
-    repeating-linear-gradient(0deg,  rgba(255,255,255,0.03) 0 1px, transparent 1px 60px);
-}
-.hero--v1 .hero__visual-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-.hero--v1 .hero__logo { font-size: clamp(56px, 7vw, 92px); color: var(--accent); }
-.hero--v1 .hero__photo-label {
-  position: absolute;
-  bottom: 18px;
-  right: 22px;
-  font-size: 12px;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  z-index: 3;
-}
-@media (max-width: 1024px) {
-  .hero--v1 .hero__inner { grid-template-columns: 1fr; min-height: 0; padding: 56px 0; gap: 40px; }
-  .hero--v1 .hero__content { padding-right: 0; }
-  .hero--v1 .hero__visual { height: 360px; }
-}
-
-/* ============================================================
    HERO V2 · центральный БАВАР+ + контейнер
    ============================================================ */
-.hero--v2 { background: var(--bg); }
-.hero--v2 .hero__inner {
+.hero--v1 { background: var(--bg); }
+.hero--v1 .hero__inner {
   position: relative;
   min-height: 720px;
   padding: 100px 0 80px;
@@ -357,42 +302,42 @@ p { margin: 0; }
   align-items: center;
   justify-content: center;
 }
-.hero--v2 .hero__content {
+.hero--v1 .hero__content {
   position: relative;
   z-index: 2;
   text-align: center;
   max-width: 760px;
 }
-.hero--v2 .hero__kicker {
+.hero--v1 .hero__kicker {
   margin: 0 auto 36px;
 }
-.hero--v2 .hero__kicker::before { display: none; }
-.hero--v2 .hero__kicker {
+.hero--v1 .hero__kicker::before { display: none; }
+.hero--v1 .hero__kicker {
   padding: 8px 22px;
   background: transparent;
   border: 1px solid var(--border);
 }
-.hero--v2 .hero__logo {
+.hero--v1 .hero__logo {
   font-size: clamp(80px, 12vw, 180px);
   margin-bottom: 14px;
   letter-spacing: -0.06em;
 }
-.hero--v2 .hero__divider {
+.hero--v1 .hero__divider {
   width: 60px;
   height: 3px;
   background: var(--accent);
   margin: 0 auto 28px;
 }
-.hero--v2 .hero__title {
+.hero--v1 .hero__title {
   font-size: clamp(28px, 3.6vw, 44px);
   margin: 0 auto 22px;
   max-width: 720px;
 }
-.hero--v2 .hero__sub { margin: 0 auto 36px; }
-.hero--v2 .hero__cta { justify-content: center; }
+.hero--v1 .hero__sub { margin: 0 auto 36px; }
+.hero--v1 .hero__cta { justify-content: center; }
 /* V2: full-width изометрическая сцена за центральным текстом */
-.hero--v2 { position: relative; overflow: hidden; }
-.hero--v2__scene {
+.hero--v1 { position: relative; overflow: hidden; }
+.hero--v1__scene {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -406,18 +351,18 @@ p { margin: 0; }
   user-select: none;
 }
 @media (max-width: 1100px) {
-  .hero--v2 .hero__inner { min-height: 0; padding: 56px 0 64px; }
-  .hero--v2__scene { min-width: 900px; opacity: 0.7; }
+  .hero--v1 .hero__inner { min-height: 0; padding: 56px 0 64px; }
+  .hero--v1__scene { min-width: 900px; opacity: 0.7; }
 }
 @media (max-width: 600px) {
-  .hero--v2__scene { min-width: 600px; opacity: 0.4; }
+  .hero--v1__scene { min-width: 600px; opacity: 0.4; }
 }
 
 /* ============================================================
    HERO V3 · левый текст + контейнер с картой
    ============================================================ */
-.hero--v3 { background: var(--bg); }
-.hero--v3 .hero__inner {
+.hero--v2 { background: var(--bg); }
+.hero--v2 .hero__inner {
   position: relative;
   min-height: 760px;
   padding: 80px 0 64px;  /* нижний 64 + section padding-top 96 = 160, столько же как сверху */
@@ -426,17 +371,17 @@ p { margin: 0; }
   gap: 60px;
   align-items: start;
 }
-.hero--v3 .hero__content {
+.hero--v2 .hero__content {
   padding-top: 80px;  /* отступ от верха — текст не лепится к самому верху */
 }
-.hero--v3 .hero__title {
+.hero--v2 .hero__title {
   font-size: clamp(30px, 3.6vw, 46px);  /* +2px к базовому */
 }
-.hero--v3 .hero__content {
+.hero--v2 .hero__content {
   position: relative;
   z-index: 2;
 }
-.hero--v3 .hero__kicker {
+.hero--v2 .hero__kicker {
   padding: 0 0 0 16px;
   background: transparent;
   border: none;
@@ -445,20 +390,20 @@ p { margin: 0; }
   text-transform: uppercase;
   margin-bottom: 32px;
 }
-.hero--v3 .hero__kicker::before { display: none; }
-.hero--v3 .hero__logo {
+.hero--v2 .hero__kicker::before { display: none; }
+.hero--v2 .hero__logo {
   font-size: clamp(80px, 11vw, 156px);
   margin-bottom: 24px;
   letter-spacing: -0.06em;
 }
-.hero--v3 .hero__visual {
+.hero--v2 .hero__visual {
   position: relative;
   min-height: 720px;
   margin-right: -40px;
   background: var(--bg);  /* белый фон под multiply-blend */
 }
 /* подложка-карта — белый фон убираем multiply'ом */
-.hero--v3 .hero__visual-map {
+.hero--v2 .hero__visual-map {
   position: absolute;
   top: 50%;
   left: calc(50% + 20px);
@@ -474,7 +419,7 @@ p { margin: 0; }
 }
 /* кран — статичный, сверху. Маска с градиентом сверху —
    верхушка плавно появляется, как будто кран спускается из «выше экрана» */
-.hero--v3 .hero__visual-kran {
+.hero--v2 .hero__visual-kran {
   position: absolute;
   top: 0;
   left: calc(50% + 30px);
@@ -491,7 +436,7 @@ p { margin: 0; }
 /* контейнер — позиционирование, анимация и blend на самом img,
    без обёртки (обёртка создавала свой stacking context из-за transform
    и multiply не доставал до карты позади) */
-.hero--v3 .hero__visual-container {
+.hero--v2 .hero__visual-container {
   position: absolute;
   top: 115px;          /* визуальный конец крюка ~ y=172, верхушка цепей ~ y=45 */
   left: calc(50% + 15px);  /* сдвиг вправо с композицией, на 15px левее крана — выравнивание цепей с крюком */
@@ -509,22 +454,22 @@ p { margin: 0; }
   100% { transform: translateX(-50%) rotate(-2.2deg); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero--v3 .hero__visual-container { animation: none; transform: translateX(-50%); }
+  .hero--v2 .hero__visual-container { animation: none; transform: translateX(-50%); }
 }
 @media (max-width: 1024px) {
-  .hero--v3 .hero__visual { min-height: 580px; margin-right: 0; }
-  .hero--v3 .hero__visual-map { max-width: 640px; }
-  .hero--v3 .hero__visual-kran { width: 120px; }
-  .hero--v3 .hero__visual-container { top: 90px; width: 520px; transform-origin: 50% 36px; }
+  .hero--v2 .hero__visual { min-height: 580px; margin-right: 0; }
+  .hero--v2 .hero__visual-map { max-width: 640px; }
+  .hero--v2 .hero__visual-kran { width: 120px; }
+  .hero--v2 .hero__visual-container { top: 90px; width: 520px; transform-origin: 50% 36px; }
 }
 @media (max-width: 540px) {
-  .hero--v3 .hero__visual { min-height: 440px; }
-  .hero--v3 .hero__visual-kran { width: 90px; }
-  .hero--v3 .hero__visual-container { top: 68px; width: 380px; transform-origin: 50% 26px; }
+  .hero--v2 .hero__visual { min-height: 440px; }
+  .hero--v2 .hero__visual-kran { width: 90px; }
+  .hero--v2 .hero__visual-container { top: 68px; width: 380px; transform-origin: 50% 26px; }
 }
 @media (max-width: 1024px) {
-  .hero--v3 .hero__inner { grid-template-columns: 1fr; gap: 40px; padding: 56px 0 64px; min-height: 0; }
-  .hero--v3 .hero__visual { min-height: 340px; }
+  .hero--v2 .hero__inner { grid-template-columns: 1fr; gap: 40px; padding: 56px 0 64px; min-height: 0; }
+  .hero--v2 .hero__visual { min-height: 340px; }
 }
 
 /* ============================================================

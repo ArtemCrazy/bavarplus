@@ -44,7 +44,7 @@ function showVariant(v) {
 
 function getVariantFromHash() {
   const h = (location.hash || '').replace('#', '').trim();
-  return ['v1', 'v2', 'v3'].includes(h) ? h : 'v1';
+  return ['v1', 'v2'].includes(h) ? h : 'v1';
 }
 
 showVariant(getVariantFromHash());
@@ -53,7 +53,7 @@ window.addEventListener('hashchange', () => {
   const v = getVariantFromHash();
   showVariant(v);
   // smooth scroll to top so the new hero is in view
-  if (location.hash.match(/^#v[123]$/)) {
+  if (location.hash.match(/^#v[12]$/)) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 });
