@@ -655,9 +655,11 @@ p { margin: 0; }
   color: var(--text);
 }
 .cmp-card__visual {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
+  aspect-ratio: 1448 / 1086;   /* родное соотношение PNG, чтобы layout не обрезал */
+  object-fit: contain;
   margin: 0 0 22px;
   border-radius: 10px;
 }
