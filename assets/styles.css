@@ -390,30 +390,27 @@ p { margin: 0; }
 }
 .hero--v2 .hero__sub { margin: 0 auto 36px; }
 .hero--v2 .hero__cta { justify-content: center; }
-.hero--v2 .hero__visual-bg {
+/* V2: full-width изометрическая сцена за центральным текстом */
+.hero--v2 { position: relative; overflow: hidden; }
+.hero--v2__scene {
   position: absolute;
   top: 50%;
-  right: -4%;
-  width: 620px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  min-width: 1400px;
+  max-width: 1920px;
   height: auto;
-  transform: translateY(-50%);
-  opacity: 0.92;
   z-index: 1;
   pointer-events: none;
-}
-.hero--v2 .hero__visual-bg-left {
-  position: absolute;
-  top: 40%;
-  left: -100px;
-  width: 380px;
-  transform: translateY(-50%);
-  opacity: 0.4;
-  z-index: 1;
-  pointer-events: none;
+  user-select: none;
 }
 @media (max-width: 1100px) {
-  .hero--v2 .hero__visual-bg, .hero--v2 .hero__visual-bg-left { display: none; }
   .hero--v2 .hero__inner { min-height: 0; padding: 56px 0 64px; }
+  .hero--v2__scene { min-width: 900px; opacity: 0.7; }
+}
+@media (max-width: 600px) {
+  .hero--v2__scene { min-width: 600px; opacity: 0.4; }
 }
 
 /* ============================================================
