@@ -595,38 +595,19 @@ p { margin: 0; }
 }
 
 /* ============================================================
-   Brand-mark в углу секции (как watermark презентационного слайда)
+   Inline brand-mark — BAVAR+ как логотип внутри текста
    ============================================================ */
-.block-brand {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 18px;
-  margin-bottom: 24px;
-}
-.block-brand__text {
-  font-size: 30px;
+.brand-inline {
+  display: inline-flex;
+  align-items: baseline;
   font-weight: 900;
-  letter-spacing: -0.04em;
   color: var(--accent);
-  line-height: 1;
+  letter-spacing: -0.02em;
+  font-size: 1.15em;
+  text-transform: none;
+  margin-left: 4px;
 }
-.block-brand__plus {
-  color: var(--accent);
-}
-.block-brand__divider {
-  width: 1px;
-  height: 36px;
-  background: var(--border);
-}
-.block-brand__sub {
-  font-size: 13px;
-  color: var(--text-mid);
-  letter-spacing: 0.01em;
-}
-@media (max-width: 720px) {
-  .block-brand { display: none; }
-}
+.brand-inline__plus { color: var(--accent); }
 
 /* ============================================================
    BLOCK 02 — problem / solution (compare-grid)
