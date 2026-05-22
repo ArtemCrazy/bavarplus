@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=9">
+<link rel="stylesheet" href="assets/styles.css?v=10">
 </head>
 <body>
 
@@ -55,15 +55,19 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <filter id="white-to-alpha" color-interpolation-filters="sRGB">
-      <!-- Порог 0.99: яркость >= 0.99 (чистый белый фон) → alpha=0;
-           всё ниже (включая блики 0.98) → alpha=1 -->
+      <!-- Шаг 1: яркостная маска. Очень резкий наклон -300/891 -->
       <feColorMatrix type="matrix" values="
         1 0 0 0 0
         0 1 0 0 0
         0 0 1 0 0
-        -100 -100 -100 0 297
-      " result="brightnessMask"/>
-      <feComposite in="SourceGraphic" in2="brightnessMask" operator="in"/>
+        -300 -300 -300 0 891
+      " result="rawMask"/>
+      <!-- Шаг 2: дотягиваем переход до бинарного — отрезаем середину -->
+      <feComponentTransfer in="rawMask" result="sharpMask">
+        <feFuncA type="linear" slope="3" intercept="-1"/>
+      </feComponentTransfer>
+      <!-- Шаг 3: умножаем на исходный alpha, чтобы прозрачные области PNG остались прозрачными -->
+      <feComposite in="SourceGraphic" in2="sharpMask" operator="in"/>
     </filter>
   </defs>
 </svg>

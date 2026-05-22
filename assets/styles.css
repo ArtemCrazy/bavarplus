@@ -471,7 +471,8 @@ p { margin: 0; }
   user-select: none;
   pointer-events: none;
 }
-/* кран — статичный, сверху */
+/* кран — статичный, сверху. Маска с градиентом сверху —
+   верхушка плавно появляется, как будто кран спускается из «выше экрана» */
 .hero--v3 .hero__visual-kran {
   position: absolute;
   top: 0;
@@ -483,6 +484,8 @@ p { margin: 0; }
   user-select: none;
   pointer-events: none;
   filter: url(#white-to-alpha);  /* белый фон → прозрачность, корпус остаётся непрозрачным */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 15%, #000 45%, #000 100%);
+          mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 15%, #000 45%, #000 100%);
 }
 /* контейнер — позиционирование, анимация и blend на самом img,
    без обёртки (обёртка создавала свой stacking context из-за transform
@@ -490,7 +493,7 @@ p { margin: 0; }
 .hero--v3 .hero__visual-container {
   position: absolute;
   top: 115px;          /* визуальный конец крюка ~ y=172, верхушка цепей ~ y=45 */
-  left: calc(50% + 17px);  /* сдвиг вправо с композицией, на 13px левее крана — выравнивание цепей с крюком */
+  left: calc(50% + 15px);  /* сдвиг вправо с композицией, на 15px левее крана — выравнивание цепей с крюком */
   width: 660px;
   height: auto;
   display: block;
