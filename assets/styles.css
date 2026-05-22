@@ -423,7 +423,7 @@ p { margin: 0; }
 .hero--v3 .hero__inner {
   position: relative;
   min-height: 760px;
-  padding: 80px 0;
+  padding: 80px 0 64px;  /* нижний 64 + section padding-top 96 = 160, столько же как сверху */
   display: grid;
   grid-template-columns: 0.85fr 1.25fr;
   gap: 60px;
