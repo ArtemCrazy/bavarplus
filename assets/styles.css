@@ -429,7 +429,10 @@ p { margin: 0; }
   display: grid;
   grid-template-columns: 0.85fr 1.25fr;
   gap: 60px;
-  align-items: start;     /* левый текст прижат к верху, не центрируется */
+  align-items: start;
+}
+.hero--v3 .hero__content {
+  padding-top: 80px;  /* отступ от верха — текст не лепится к самому верху */
 }
 .hero--v3 .hero__title {
   font-size: clamp(30px, 3.6vw, 46px);  /* +2px к базовому */
