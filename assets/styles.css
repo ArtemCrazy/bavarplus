@@ -487,11 +487,11 @@ p { margin: 0; }
    ось поворота на верхушке цепей (где крюк крана) */
 .hero--v3 .hero__visual-swing {
   position: absolute;
-  top: 90px;          /* цепочки доходят до крюка */
+  top: 120px;         /* конец крюка вплотную к верхушке цепей */
   left: 50%;
   width: 660px;
   transform: translateX(-50%);
-  transform-origin: 50% 0;
+  transform-origin: 50% 45px;  /* пивот = видимая верхушка цепей внутри картинки */
   animation: containerSway 5s ease-in-out infinite;
   z-index: 2;
 }
@@ -513,12 +513,12 @@ p { margin: 0; }
   .hero--v3 .hero__visual { min-height: 580px; margin-right: 0; }
   .hero--v3 .hero__visual-map { max-width: 640px; }
   .hero--v3 .hero__visual-kran { width: 120px; }
-  .hero--v3 .hero__visual-swing { top: 72px; width: 520px; }
+  .hero--v3 .hero__visual-swing { top: 95px; width: 520px; transform-origin: 50% 36px; }
 }
 @media (max-width: 540px) {
   .hero--v3 .hero__visual { min-height: 440px; }
   .hero--v3 .hero__visual-kran { width: 90px; }
-  .hero--v3 .hero__visual-swing { top: 55px; width: 380px; }
+  .hero--v3 .hero__visual-swing { top: 72px; width: 380px; transform-origin: 50% 26px; }
 }
 @media (max-width: 1024px) {
   .hero--v3 .hero__inner { grid-template-columns: 1fr; gap: 40px; padding: 56px 0 64px; min-height: 0; }
