@@ -484,23 +484,20 @@ p { margin: 0; }
   pointer-events: none;
   mix-blend-mode: multiply;  /* убираем белый фон PNG */
 }
-/* обёртка для покачивания контейнера — цепочки приклёпаны к корпусу,
-   ось поворота на верхушке цепей (где крюк крана) */
-.hero--v3 .hero__visual-swing {
+/* контейнер — позиционирование, анимация и blend на самом img,
+   без обёртки (обёртка создавала свой stacking context из-за transform
+   и multiply не доставал до карты позади) */
+.hero--v3 .hero__visual-container {
   position: absolute;
-  top: 120px;         /* конец крюка вплотную к верхушке цепей */
+  top: 115px;          /* визуальный конец крюка ~ y=172, верхушка цепей ~ y=45 */
   left: 50%;
   width: 660px;
-  transform: translateX(-50%);
-  transform-origin: 50% 45px;  /* пивот = видимая верхушка цепей внутри картинки */
-  animation: containerSway 5s ease-in-out infinite;
-  z-index: 2;
-}
-.hero--v3 .hero__visual-container {
-  width: 100%;
   height: auto;
   display: block;
-  mix-blend-mode: multiply;  /* убираем белый фон PNG */
+  transform-origin: 50% 45px;  /* пивот = видимая верхушка цепей */
+  animation: containerSway 5s ease-in-out infinite;
+  mix-blend-mode: multiply;
+  z-index: 2;
 }
 @keyframes containerSway {
   0%   { transform: translateX(-50%) rotate(-2.2deg); }
@@ -508,18 +505,18 @@ p { margin: 0; }
   100% { transform: translateX(-50%) rotate(-2.2deg); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero--v3 .hero__visual-swing { animation: none; transform: translateX(-50%); }
+  .hero--v3 .hero__visual-container { animation: none; transform: translateX(-50%); }
 }
 @media (max-width: 1024px) {
   .hero--v3 .hero__visual { min-height: 580px; margin-right: 0; }
   .hero--v3 .hero__visual-map { max-width: 640px; }
   .hero--v3 .hero__visual-kran { width: 120px; }
-  .hero--v3 .hero__visual-swing { top: 95px; width: 520px; transform-origin: 50% 36px; }
+  .hero--v3 .hero__visual-container { top: 90px; width: 520px; transform-origin: 50% 36px; }
 }
 @media (max-width: 540px) {
   .hero--v3 .hero__visual { min-height: 440px; }
   .hero--v3 .hero__visual-kran { width: 90px; }
-  .hero--v3 .hero__visual-swing { top: 72px; width: 380px; transform-origin: 50% 26px; }
+  .hero--v3 .hero__visual-container { top: 68px; width: 380px; transform-origin: 50% 26px; }
 }
 @media (max-width: 1024px) {
   .hero--v3 .hero__inner { grid-template-columns: 1fr; gap: 40px; padding: 56px 0 64px; min-height: 0; }
