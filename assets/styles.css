@@ -666,7 +666,7 @@ p { margin: 0; }
 /* Фрейм для левой карточки — серая подложка, которая просвечивает сквозь
    удалённый белый фон minus.png (та же что внутри plus.png) */
 .cmp-card__visual-frame {
-  background: #f6f7f9;
+  background: #fcfbfc;
   border-radius: 16px;
   margin: 0 0 22px;
   overflow: hidden;
