@@ -663,6 +663,21 @@ p { margin: 0; }
   margin: 0 0 22px;
   border-radius: 10px;
 }
+/* Фрейм для левой карточки — серая подложка, которая просвечивает сквозь
+   удалённый белый фон minus.png (та же что внутри plus.png) */
+.cmp-card__visual-frame {
+  background: #f6f7f9;
+  border-radius: 16px;
+  margin: 0 0 22px;
+  overflow: hidden;
+}
+.cmp-card__visual-frame .cmp-card__visual {
+  margin: 0;
+  border-radius: 0;
+}
+.cmp-card__visual--keyed {
+  filter: url(#white-to-alpha);  /* белый фон PNG → прозрачность */
+}
 .cmp-card__list {
   list-style: none;
   margin: 0;
