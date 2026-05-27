@@ -329,9 +329,9 @@ p { margin: 0; }
   margin: 0 auto 28px;
 }
 .hero--v1 .hero__title {
-  font-size: clamp(28px, 3.6vw, 44px);
+  font-size: clamp(30px, 3.8vw, 48px);
   margin: 0 auto 22px;
-  max-width: 720px;
+  max-width: 760px;
 }
 .hero--v1 .hero__sub { margin: 0 auto 36px; }
 .hero--v1 .hero__cta { justify-content: center; }
