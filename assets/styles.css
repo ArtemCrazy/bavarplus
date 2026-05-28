@@ -369,8 +369,8 @@ p { margin: 0; }
    как будто едет по дороге в композиции. Фильтр снимает «шахматный» фон PNG */
 .hero--v1__truck {
   position: absolute;
-  top: calc(32% + 8px);
-  left: calc(68% + 50px);
+  top: calc(32% - 2px);
+  left: calc(68% + 70px);
   width: 19%;
   height: auto;
   filter: url(#checker-remove);
