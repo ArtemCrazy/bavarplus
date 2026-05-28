@@ -387,7 +387,7 @@ p { margin: 0; }
    Фильтр снимает «шахматный» фон PNG. */
 .hero--v1__pin {
   position: absolute;
-  top: calc(70% + 5px);
+  top: calc(70% + 10px);
   left: calc(90% - 10px);
   width: 7%;
   height: auto;
