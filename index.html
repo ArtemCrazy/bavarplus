@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=45">
+<link rel="stylesheet" href="assets/styles.css?v=46">
 </head>
 <body>
 
@@ -79,20 +79,22 @@
       </feComponentTransfer>
       <feComposite in="SourceGraphic" in2="sharpMask" operator="in"/>
     </filter>
-    <!-- Версия для грузовика: тот же checker-cut, но с лёгким Gaussian blur
-         на альфа-маске — это сглаживает «лестницу» вдоль края тени -->
+    <!-- Версия для грузовика: плавный градиентный ramp по яркости.
+         Альфа НЕ бинарная — она плавно растёт от 0 (фон/шахматка)
+         через полутона тени к 1 (тело грузовика). Это сохраняет
+         мягкий градиент тени без «лестницы» на краях. -->
     <filter id="truck-clean" color-interpolation-filters="sRGB">
       <feColorMatrix type="matrix" values="
         1 0 0 0 0
         0 1 0 0 0
         0 0 1 0 0
-        -25 -25 -25 0 70
-      " result="rawMask"/>
-      <feComponentTransfer in="rawMask" result="sharpMask">
-        <feFuncA type="linear" slope="3" intercept="-1"/>
+        -3 -3 -3 0 8.5
+      " result="rampAlpha"/>
+      <feComponentTransfer in="rampAlpha" result="cleanAlpha">
+        <feFuncA type="linear" slope="1.3" intercept="-0.05"/>
       </feComponentTransfer>
-      <feGaussianBlur in="sharpMask" stdDeviation="0.6" result="smoothMask"/>
-      <feComposite in="SourceGraphic" in2="smoothMask" operator="in"/>
+      <feGaussianBlur in="cleanAlpha" stdDeviation="0.3" result="smoothAlpha"/>
+      <feComposite in="SourceGraphic" in2="smoothAlpha" operator="in"/>
     </filter>
   </defs>
 </svg>
