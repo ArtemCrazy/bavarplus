@@ -374,6 +374,9 @@ p { margin: 0; }
   width: 19%;
   height: auto;
   filter: url(#checker-remove);
+  /* Срезаем «пиксельную» тень снизу мягким градиентом */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 82%, rgba(0,0,0,0.6) 90%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 0%, #000 82%, rgba(0,0,0,0.6) 90%, transparent 100%);
   animation: truckDriveIn 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
 }
 @keyframes truckDriveIn {
