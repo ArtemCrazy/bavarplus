@@ -373,6 +373,10 @@ p { margin: 0; }
   left: 75%;
   width: 19%;
   height: auto;
+  /* PNG предварительно «выбелен» (шахматка → 255,255,255).
+     multiply на белом фоне страницы: белый×белый=белый (исчезает),
+     серый/тёмный/тень — multiply с белым = остаётся как в исходнике. */
+  mix-blend-mode: multiply;
   animation: truckDriveIn 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
 }
 @keyframes truckDriveIn {
