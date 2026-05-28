@@ -296,7 +296,7 @@ p { margin: 0; }
 .hero--v1 { background: var(--bg); }
 .hero--v1 .hero__inner {
   position: relative;
-  min-height: 720px;
+  min-height: 900px;   /* подняли, чтобы фон-картинка bg-v2.png помещалась целиком */
   padding: 80px 0 100px;
   display: flex;
   align-items: center;
