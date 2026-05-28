@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=42">
+<link rel="stylesheet" href="assets/styles.css?v=43">
 </head>
 <body>
 
@@ -78,6 +78,20 @@
         <feFuncA type="linear" slope="3" intercept="-1"/>
       </feComponentTransfer>
       <feComposite in="SourceGraphic" in2="sharpMask" operator="in"/>
+    </filter>
+    <!-- Мягкий вариант для грузовика — сохраняет полутона тени,
+         чтобы её градиент не превращался в «лестницу» -->
+    <filter id="truck-clean" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        -20 -20 -20 0 55
+      " result="rawMask"/>
+      <feComponentTransfer in="rawMask" result="softMask">
+        <feFuncA type="linear" slope="1" intercept="0"/>
+      </feComponentTransfer>
+      <feComposite in="SourceGraphic" in2="softMask" operator="in"/>
     </filter>
   </defs>
 </svg>
