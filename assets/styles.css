@@ -373,7 +373,6 @@ p { margin: 0; }
   left: 75%;
   width: 19%;
   height: auto;
-  filter: url(#truck-clean);
   animation: truckDriveIn 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
 }
 @keyframes truckDriveIn {
