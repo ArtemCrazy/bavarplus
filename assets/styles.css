@@ -384,11 +384,11 @@ p { margin: 0; }
    Фильтр снимает «шахматный» фон PNG. */
 .hero--v1__pin {
   position: absolute;
-  top: 60%;
-  left: 86%;
-  width: 5%;
+  top: 70%;
+  left: 90%;
+  width: 7%;
   height: auto;
-  filter: url(#checker-remove) drop-shadow(0 6px 8px rgba(230,57,70,0.18));
+  filter: url(#checker-remove) drop-shadow(0 8px 10px rgba(230,57,70,0.22));
   animation: pinFloat 2.6s ease-in-out infinite;
 }
 @keyframes pinFloat {
