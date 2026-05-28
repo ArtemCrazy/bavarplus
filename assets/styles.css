@@ -373,9 +373,7 @@ p { margin: 0; }
   left: 75%;
   width: 19%;
   height: auto;
-  /* PNG со встроенной тенью на «шахматке»: multiply убирает
-     светлый фон без обрезки полутонов — тень сохраняется как в исходнике */
-  mix-blend-mode: multiply;
+  filter: url(#truck-clean);
   animation: truckDriveIn 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
 }
 @keyframes truckDriveIn {
