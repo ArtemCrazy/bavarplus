@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=32">
+<link rel="stylesheet" href="assets/styles.css?v=33">
 </head>
 <body>
 
@@ -63,6 +63,20 @@
         <feFuncA type="linear" slope="3" intercept="-1"/>
       </feComponentTransfer>
       <!-- Шаг 3: умножаем на исходный alpha, чтобы прозрачные области PNG остались прозрачными -->
+      <feComposite in="SourceGraphic" in2="sharpMask" operator="in"/>
+    </filter>
+    <!-- Более мягкая версия — для gruz.png и metka.png, у которых фон не чистый,
+         а светло-серый «шахматный» паттерн RGB 245-253 -->
+    <filter id="checker-remove" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        -25 -25 -25 0 70
+      " result="rawMask"/>
+      <feComponentTransfer in="rawMask" result="sharpMask">
+        <feFuncA type="linear" slope="3" intercept="-1"/>
+      </feComponentTransfer>
       <feComposite in="SourceGraphic" in2="sharpMask" operator="in"/>
     </filter>
   </defs>

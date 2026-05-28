@@ -365,28 +365,31 @@ p { margin: 0; }
   width: 100%;
   height: auto;
 }
-/* Грузовик — въезжает справа при загрузке и встаёт на место рядом с таможней */
+/* Грузовик — выезжает из-под таможни (сверху-справа) к своей позиции по диагонали,
+   как будто едет по дороге в композиции. Фильтр снимает «шахматный» фон PNG */
 .hero--v1__truck {
   position: absolute;
   top: 32%;
   left: 68%;
   width: 19%;
   height: auto;
-  animation: truckDriveIn 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+  filter: url(#checker-remove);
+  animation: truckDriveIn 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
 }
 @keyframes truckDriveIn {
-  0%   { transform: translateX(70%); opacity: 0; }
-  100% { transform: translateX(0); opacity: 1; }
+  0%   { transform: translate(80px, -55px); opacity: 0; }
+  100% { transform: translate(0, 0);        opacity: 1; }
 }
-/* Метка — плавно покачивается вверх-вниз над картой мира */
+/* Метка — плавно покачивается вверх-вниз над картой мира.
+   Фильтр снимает «шахматный» фон PNG. */
 .hero--v1__pin {
   position: absolute;
   top: 60%;
   left: 86%;
   width: 5%;
   height: auto;
+  filter: url(#checker-remove) drop-shadow(0 6px 8px rgba(230,57,70,0.18));
   animation: pinFloat 2.6s ease-in-out infinite;
-  filter: drop-shadow(0 6px 8px rgba(230,57,70,0.18));
 }
 @keyframes pinFloat {
   0%, 100% { transform: translateY(0); }
