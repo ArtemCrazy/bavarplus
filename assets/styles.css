@@ -283,6 +283,7 @@ p { margin: 0; }
   margin-bottom: 36px;
   max-width: 540px;
 }
+.hero__sub-accent { color: var(--accent); font-weight: 600; }
 
 .hero__cta {
   display: flex;
@@ -318,9 +319,9 @@ p { margin: 0; }
   border: 1px solid var(--border);
 }
 .hero--v1 .hero__logo {
-  font-size: clamp(80px, 12vw, 180px);
-  margin-bottom: 14px;
-  letter-spacing: -0.06em;
+  font-size: clamp(34px, 4vw, 52px);
+  margin-bottom: 16px;
+  letter-spacing: -0.04em;
 }
 .hero--v1 .hero__divider {
   width: 60px;
@@ -329,9 +330,12 @@ p { margin: 0; }
   margin: 0 auto 28px;
 }
 .hero--v1 .hero__title {
-  font-size: clamp(30px, 3.8vw, 48px);
-  margin: 0 auto 22px;
-  max-width: 760px;
+  font-size: clamp(56px, 7.2vw, 104px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+  margin: 0 auto 24px;
+  max-width: 1100px;
 }
 .hero--v1 .hero__sub { margin: 0 auto 36px; }
 .hero--v1 .hero__cta { justify-content: center; }
