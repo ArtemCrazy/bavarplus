@@ -73,7 +73,8 @@ switcherLinks.forEach(a => {
   const SEL = [
     '.section__title', '.section__lede',
     '.cmp-card', '.process-flow', '.guarantees',
-    '.ind-card', '.step', '.adv', '.calc__panel'
+    '.bio__intro', '.bio-card', '.bio-notes',
+    '.step', '.adv', '.calc__panel'
   ].join(', ');
 
   const els = Array.from(document.querySelectorAll(SEL));

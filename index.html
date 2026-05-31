@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=68">
+<link rel="stylesheet" href="assets/styles.css?v=69">
 </head>
 <body>
 
@@ -303,46 +303,75 @@
      ============================================================ -->
 <section class="section section--alt" id="industries">
   <div class="wrap">
-    <div class="section__head">
-      <div class="section__head-text">
-        <h2 class="section__title">Отраслевые направления&nbsp;— биотехнологии</h2>
-        <p class="section__lede">
-          Помимо ВЭД, для&nbsp;предприятий <strong>биотехнологической отрасли</strong> подключаем
-          инженерные услуги: инжиниринг, монтаж, запуск и&nbsp;обслуживание производственных
-          линий&nbsp;— там, где у&nbsp;команды есть 12-летний профильный опыт.
+    <div class="bio">
+      <!-- Левая колонка: чип, заголовок, лид, фоновая изометрия -->
+      <div class="bio__intro">
+        <span class="bio__chip">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 3h6M10 3v6.5L5 18a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-8.5V3"/>
+          </svg>
+          Только для биотехнологической отрасли
+        </span>
+        <h2 class="bio__title">Биотехнологии<br>и&nbsp;инженерные услуги</h2>
+        <p class="bio__lede">
+          Помимо ВЭД, Бавар+ помогает предприятиям <strong>биотехнологической отрасли</strong>
+          с&nbsp;инжинирингом, монтажом, запуском и&nbsp;сервисом производственных линий.
         </p>
+        <img class="bio__illo" src="assets/bio-line.png?v=1" alt="Производственная биотех-линия">
+      </div>
+
+      <!-- Правая колонка: 4 карточки услуг -->
+      <div class="bio__cards">
+        <div class="bio-card">
+          <div class="bio-card__num">01</div>
+          <div class="bio-card__icon"><img src="assets/ind-eng.png?v=1" alt=""></div>
+          <h4 class="bio-card__title">Инжиниринг</h4>
+          <p class="bio-card__desc">Подбор и&nbsp;комплектация оборудования под&nbsp;производственную задачу. Технологические схемы, расчёт линии, проверка спецификаций до&nbsp;закупки.</p>
+          <span class="bio-card__arrow" aria-hidden="true">→</span>
+        </div>
+        <div class="bio-card">
+          <div class="bio-card__num">02</div>
+          <div class="bio-card__icon"><img src="assets/ind-mount.png?v=1" alt=""></div>
+          <h4 class="bio-card__title">Монтаж линий</h4>
+          <p class="bio-card__desc">Шеф-монтаж и&nbsp;координация подрядчиков на&nbsp;площадке заказчика. Сборка оборудования силами наших инженеров.</p>
+          <span class="bio-card__arrow" aria-hidden="true">→</span>
+        </div>
+        <div class="bio-card">
+          <div class="bio-card__num">03</div>
+          <div class="bio-card__icon"><img src="assets/ind-launch.png?v=1" alt=""></div>
+          <h4 class="bio-card__title">Запуск производства</h4>
+          <p class="bio-card__desc">Пусконаладка, вывод линии на&nbsp;проектную мощность, выпуск первых партий, обучение операторов на&nbsp;площадке.</p>
+          <span class="bio-card__arrow" aria-hidden="true">→</span>
+        </div>
+        <div class="bio-card">
+          <div class="bio-card__num">04</div>
+          <div class="bio-card__icon"><img src="assets/ind-service.png?v=1" alt=""></div>
+          <h4 class="bio-card__title">Обслуживание</h4>
+          <p class="bio-card__desc">Сервисная поддержка после запуска: профилактика, ремонт, поставка запчастей и&nbsp;расходников, удалённая помощь.</p>
+          <span class="bio-card__arrow" aria-hidden="true">→</span>
+        </div>
       </div>
     </div>
 
-    <div class="industries-grid">
-      <div class="ind-card">
-        <div class="ind-card__num">01</div>
-        <h4 class="ind-card__title">Инжиниринг</h4>
-        <p class="ind-card__desc">Подбор и&nbsp;комплектация оборудования под&nbsp;производственную задачу. Технологические схемы, расчёт линии, проверка спецификаций до&nbsp;закупки.</p>
+    <!-- Нижняя плашка-примечание -->
+    <div class="bio-notes">
+      <div class="bio-note">
+        <span class="bio-note__ic">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/>
+          </svg>
+        </span>
+        <p><strong>Важно.</strong> Инженерные услуги (инжиниринг, монтаж, запуск, обслуживание линий) предоставляются исключительно предприятиям биотехнологической отрасли.</p>
       </div>
-      <div class="ind-card">
-        <div class="ind-card__num">02</div>
-        <h4 class="ind-card__title">Монтаж линий</h4>
-        <p class="ind-card__desc">Шеф-монтаж и&nbsp;координация подрядчиков на&nbsp;площадке заказчика. Сборка оборудования силами наших инженеров.</p>
-      </div>
-      <div class="ind-card">
-        <div class="ind-card__num">03</div>
-        <h4 class="ind-card__title">Запуск производства</h4>
-        <p class="ind-card__desc">Пусконаладка, вывод линии на&nbsp;проектную мощность, выпуск первых партий, обучение операторов на&nbsp;площадке.</p>
-      </div>
-      <div class="ind-card">
-        <div class="ind-card__num">04</div>
-        <h4 class="ind-card__title">Обслуживание</h4>
-        <p class="ind-card__desc">Сервисная поддержка после запуска: профилактика, ремонт, поставка запчастей и&nbsp;расходников, удалённая помощь.</p>
+      <div class="bio-note">
+        <span class="bio-note__ic">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/>
+          </svg>
+        </span>
+        <p>ВЭД-аутсорсинг&nbsp;— самостоятельная услуга Бавар+, работает с&nbsp;любыми законными категориями товаров и&nbsp;оборудования.</p>
       </div>
     </div>
-
-    <p class="scope-note">
-      <strong>Важно.</strong>
-      Инженерные услуги (монтаж, запуск, обслуживание линий) доступны только в&nbsp;сфере
-      биотехнологий. ВЭД-аутсорсинг&nbsp;— самостоятельная услуга, работает с&nbsp;любыми
-      законными категориями товаров и&nbsp;оборудования.
-    </p>
   </div>
 </section>
 
@@ -488,6 +517,6 @@
 </main>
 
 
-<script src="assets/app.js?v=7"></script>
+<script src="assets/app.js?v=8"></script>
 </body>
 </html>
