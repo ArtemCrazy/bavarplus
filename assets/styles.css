@@ -628,13 +628,19 @@ p { margin: 0; }
    ============================================================ */
 #problem .section__head,
 #services .section__head,
-#process .section__head { justify-content: center; }
+#process .section__head,
+#calc .section__head,
+#advantages .section__head { justify-content: center; }
 #problem .section__head-text,
 #services .section__head-text,
-#process .section__head-text { margin: 0 auto; text-align: center; }
+#process .section__head-text,
+#calc .section__head-text,
+#advantages .section__head-text { margin: 0 auto; text-align: center; }
 #problem .section__lede,
 #services .section__lede,
-#process .section__lede { margin-left: auto; margin-right: auto; }
+#process .section__lede,
+#calc .section__lede,
+#advantages .section__lede { margin-left: auto; margin-right: auto; }
 .compare-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
