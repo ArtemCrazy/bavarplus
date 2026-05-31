@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=54">
+<link rel="stylesheet" href="assets/styles.css?v=55">
 </head>
 <body>
 
@@ -367,6 +367,144 @@
       Бавар+ есть практический опыт. ВЭД-аутсорсинг&nbsp;— самостоятельная услуга,
       работает с&nbsp;любыми законными категориями товаров и&nbsp;оборудования.
     </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     06 · ПРОЦЕСС РАБОТЫ
+     ============================================================ -->
+<section class="section section--alt" id="process">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <h2 class="section__title">Как мы работаем&nbsp;— 5&nbsp;шагов</h2>
+        <p class="section__lede">
+          От&nbsp;первой заявки до&nbsp;запущенного производства&nbsp;— каждый этап
+          с&nbsp;прозрачным SLA и&nbsp;зафиксированной зоной ответственности.
+        </p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step__num">01</div>
+        <h3 class="step__title">Заявка и&nbsp;бриф</h3>
+        <p class="step__desc">Звонок, обсуждение задачи, фиксируем требования и&nbsp;технические параметры</p>
+      </div>
+      <div class="step">
+        <div class="step__num">02</div>
+        <h3 class="step__title">ТЗ и&nbsp;договор</h3>
+        <p class="step__desc">Согласование объёма, сроков и&nbsp;стоимости. Финансовые гарантии в&nbsp;договоре</p>
+      </div>
+      <div class="step">
+        <div class="step__num">03</div>
+        <h3 class="step__title">Поиск и&nbsp;проверка</h3>
+        <p class="step__desc">Поставщики, аудит фабрик, разработка рецептур и&nbsp;технологических схем</p>
+      </div>
+      <div class="step">
+        <div class="step__num">04</div>
+        <h3 class="step__title">Поставка и&nbsp;оформление</h3>
+        <p class="step__desc">Логистика, растаможка, доставка до&nbsp;склада или&nbsp;площадки</p>
+      </div>
+      <div class="step">
+        <div class="step__num">05</div>
+        <h3 class="step__title">Запуск и&nbsp;сервис</h3>
+        <p class="step__desc">Передача груза, обучение, сервисная поддержка по&nbsp;договору</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     07 · КАЛЬКУЛЯТОР ЭКОНОМИИ
+     ============================================================ -->
+<section class="section" id="calc">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <h2 class="section__title">Калькулятор экономии</h2>
+        <p class="section__lede">
+          Подставьте параметры вашего отдела&nbsp;— посчитаем разницу с&nbsp;абонентской
+          платой Бавар+. Цифры демо, точный расчёт под&nbsp;вашу структуру&nbsp;— на&nbsp;консультации.
+        </p>
+      </div>
+    </div>
+
+    <div class="calc">
+      <div class="calc__panel">
+        <div class="calc__panel-tag">Параметры вашего отдела</div>
+        <div class="calc__field">
+          <div class="calc__lbl">
+            <span>Сотрудников в&nbsp;отделе</span>
+            <span class="lbl-val" id="cl-staff">7 человек</span>
+          </div>
+          <input type="range" class="calc__range" id="cf-staff" min="2" max="12" value="7" step="1">
+          <div class="calc__hint">Менеджеры, логист, декларант, юрист, переводчик, руководитель</div>
+        </div>
+        <div class="calc__field">
+          <div class="calc__lbl">
+            <span>Средняя зарплата на&nbsp;руки</span>
+            <span class="lbl-val" id="cl-salary">140 000 ₽</span>
+          </div>
+          <input type="range" class="calc__range" id="cf-salary" min="80000" max="250000" value="140000" step="5000">
+          <div class="calc__hint">Усреднённый оклад одного специалиста</div>
+        </div>
+        <div class="calc__field">
+          <div class="calc__lbl">
+            <span>Сделок с&nbsp;Китаем в&nbsp;месяц</span>
+            <span class="lbl-val" id="cl-deals">8 сделок</span>
+          </div>
+          <input type="range" class="calc__range" id="cf-deals" min="1" max="30" value="8" step="1">
+          <div class="calc__hint">Влияет на&nbsp;командировки, ПО и&nbsp;резерв на&nbsp;штрафы</div>
+        </div>
+      </div>
+
+      <div class="calc__panel calc__panel--dark">
+        <div class="calc__panel-tag">Ваша экономия с&nbsp;Бавар+</div>
+        <div class="calc__hero" id="cr-hero">—</div>
+        <div class="calc__hero-sub" id="cr-hero-sub">—</div>
+        <ul class="calc__breakdown">
+          <li><span class="nm">ФОТ</span><span class="vl" id="br-fot">—</span></li>
+          <li><span class="nm">Страховые взносы (30%)</span><span class="vl" id="br-taxes">—</span></li>
+          <li><span class="nm">Офис и&nbsp;ПО</span><span class="vl" id="br-office">—</span></li>
+          <li><span class="nm">Командировки</span><span class="vl" id="br-travel">—</span></li>
+          <li><span class="nm">Резерв на&nbsp;штрафы</span><span class="vl" id="br-risk">—</span></li>
+          <li class="total"><span class="nm">Свой отдел / мес</span><span class="vl" id="br-total">—</span></li>
+          <li class="total"><span class="nm">Бавар+ / мес</span><span class="vl" id="br-bavar">—</span></li>
+        </ul>
+        <div class="calc__cta">
+          <a href="#contact" class="btn btn--primary">Получить точный расчёт <span class="btn__arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     08 · ПРЕИМУЩЕСТВА
+     ============================================================ -->
+<section class="section section--alt" id="advantages">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <h2 class="section__title">Почему промышленные предприятия выбирают&nbsp;нас</h2>
+        <p class="section__lede">
+          Не&nbsp;агентство-посредник, а&nbsp;инженерная команда с&nbsp;собственным офисом
+          в&nbsp;Шанхае и&nbsp;финансовой ответственностью по&nbsp;договору.
+        </p>
+      </div>
+    </div>
+
+    <div class="adv-grid">
+      <div class="adv"><div class="adv__big">12 лет</div><h4 class="adv__title">Опыт и&nbsp;экспертиза</h4><p class="adv__desc">Сотни сделок и&nbsp;запусков линий. Предсказуемый результат</p></div>
+      <div class="adv"><div class="adv__big">200+</div><h4 class="adv__title">Довольных клиентов</h4><p class="adv__desc">В России и&nbsp;СНГ&nbsp;— от&nbsp;региональных до&nbsp;федеральных</p></div>
+      <div class="adv"><div class="adv__big">Шанхай</div><h4 class="adv__title">Свой офис в&nbsp;Китае</h4><p class="adv__desc">Аудит фабрик и&nbsp;контроль отгрузок за&nbsp;часы, не&nbsp;недели</p></div>
+      <div class="adv"><div class="adv__big">1,7 млн</div><h4 class="adv__title">Экономия / мес</h4><p class="adv__desc">vs.&nbsp;штатный отдел ВЭД. Фикс от&nbsp;300 000&nbsp;₽</p></div>
+      <div class="adv"><div class="adv__big">Техника</div><h4 class="adv__title">Опыт с&nbsp;оборудованием</h4><p class="adv__desc">Видим спецификацию глазами инженера&nbsp;— замечаем риски до&nbsp;закупки</p></div>
+      <div class="adv"><div class="adv__big">100%</div><h4 class="adv__title">Фин.&nbsp;гарантии</h4><p class="adv__desc">Штрафы за&nbsp;ошибки оформления компенсируем&nbsp;мы</p></div>
+      <div class="adv"><div class="adv__big">−40%</div><h4 class="adv__title">Выкуп оборудования</h4><p class="adv__desc">Европейские бренды через китайских партнёров</p></div>
+      <div class="adv"><div class="adv__big">1 договор</div><h4 class="adv__title">Единая ответственность</h4><p class="adv__desc">От&nbsp;поиска до&nbsp;первой партии&nbsp;— всё в&nbsp;одном договоре</p></div>
+    </div>
   </div>
 </section>
 
