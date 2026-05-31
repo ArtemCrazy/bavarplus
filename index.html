@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=58">
+<link rel="stylesheet" href="assets/styles.css?v=59">
 </head>
 <body>
 
@@ -230,36 +230,71 @@
       <span class="section__chip">единственный формат на&nbsp;рынке</span>
     </div>
 
-    <div class="services-grid">
-      <div class="svc">
-        <div class="svc__num">01</div>
-        <h3 class="svc__title">Поиск товаров</h3>
-        <p class="svc__desc">Подбор поставщиков и&nbsp;фабрик под&nbsp;вашу задачу, аудит производства до&nbsp;подписания контракта.</p>
+    <div class="process-flow">
+      <!-- Красный пунктирный зигзаг-путь + узлы-точки (рисуется на SVG) -->
+      <svg class="pf-svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <path class="pf-line" d="M100 370 L300 230 L500 370 L700 230 L900 370 L1100 230"/>
+        <g class="pf-node"><circle cx="100"  cy="370" r="14"/><circle class="pf-node__dot" cx="100"  cy="370" r="8"/></g>
+        <g class="pf-node"><circle cx="300"  cy="230" r="14"/><circle class="pf-node__dot" cx="300"  cy="230" r="8"/></g>
+        <g class="pf-node"><circle cx="500"  cy="370" r="14"/><circle class="pf-node__dot" cx="500"  cy="370" r="8"/></g>
+        <g class="pf-node"><circle cx="700"  cy="230" r="14"/><circle class="pf-node__dot" cx="700"  cy="230" r="8"/></g>
+        <g class="pf-node"><circle cx="900"  cy="370" r="14"/><circle class="pf-node__dot" cx="900"  cy="370" r="8"/></g>
+        <g class="pf-node"><circle cx="1100" cy="230" r="14"/><circle class="pf-node__dot" cx="1100" cy="230" r="8"/></g>
+      </svg>
+
+      <!-- 01 -->
+      <div class="pf-stage pf-stage--down" style="left:8.333%">
+        <div class="pf-card">
+          <div class="pf-card__num">01</div>
+          <h3 class="pf-card__title">Поиск товаров</h3>
+          <p class="pf-card__desc">Подбор поставщиков и&nbsp;фабрик под&nbsp;вашу задачу, аудит производства до&nbsp;подписания контракта.</p>
+        </div>
+        <div class="pf-img"><img src="assets/svc-01.png?v=1" alt="Поиск товаров"><span class="pf-img__ph">Поиск</span></div>
       </div>
-      <div class="svc">
-        <div class="svc__num">02</div>
-        <h3 class="svc__title">Выкуп</h3>
-        <p class="svc__desc">Оплата поставщику из&nbsp;Шанхайского офиса, приёмка партии перед отгрузкой, контроль соответствия спецификации.</p>
+      <!-- 02 -->
+      <div class="pf-stage pf-stage--up" style="left:25%">
+        <div class="pf-card">
+          <div class="pf-card__num">02</div>
+          <h3 class="pf-card__title">Выкуп</h3>
+          <p class="pf-card__desc">Оплата поставщику из&nbsp;Шанхайского офиса, приёмка партии перед отгрузкой, контроль соответствия спецификации.</p>
+        </div>
+        <div class="pf-img"><img src="assets/svc-02.png?v=1" alt="Выкуп"><span class="pf-img__ph">Выкуп</span></div>
       </div>
-      <div class="svc">
-        <div class="svc__num">03</div>
-        <h3 class="svc__title">Юридическое сопровождение</h3>
-        <p class="svc__desc">Контракты, валютный контроль, подготовка и&nbsp;проверка всех документов по&nbsp;сделке.</p>
+      <!-- 03 -->
+      <div class="pf-stage pf-stage--down" style="left:41.667%">
+        <div class="pf-card">
+          <div class="pf-card__num">03</div>
+          <h3 class="pf-card__title">Юридическое сопровождение</h3>
+          <p class="pf-card__desc">Контракты, валютный контроль, подготовка и&nbsp;проверка всех документов по&nbsp;сделке.</p>
+        </div>
+        <div class="pf-img"><img src="assets/svc-03.png?v=1" alt="Юридическое сопровождение"><span class="pf-img__ph">Документы</span></div>
       </div>
-      <div class="svc">
-        <div class="svc__num">04</div>
-        <h3 class="svc__title">Доставка</h3>
-        <p class="svc__desc">Море, авиа, ЖД из&nbsp;Китая «под&nbsp;ключ»: бронирование, перевалка, страхование, доставка до&nbsp;вашего склада.</p>
+      <!-- 04 -->
+      <div class="pf-stage pf-stage--up" style="left:58.333%">
+        <div class="pf-card">
+          <div class="pf-card__num">04</div>
+          <h3 class="pf-card__title">Доставка</h3>
+          <p class="pf-card__desc">Море, авиа, ЖД из&nbsp;Китая «под&nbsp;ключ»: бронирование, перевалка, страхование, доставка до&nbsp;вашего склада.</p>
+        </div>
+        <div class="pf-img"><img src="assets/svc-04.png?v=1" alt="Доставка"><span class="pf-img__ph">Доставка</span></div>
       </div>
-      <div class="svc">
-        <div class="svc__num">05</div>
-        <h3 class="svc__title">Таможенное оформление</h3>
-        <p class="svc__desc">Декларации, коды&nbsp;ТН&nbsp;ВЭД, корректировки таможенной стоимости. Штрафы за&nbsp;ошибки оформления компенсируем мы.</p>
+      <!-- 05 -->
+      <div class="pf-stage pf-stage--down" style="left:75%">
+        <div class="pf-card">
+          <div class="pf-card__num">05</div>
+          <h3 class="pf-card__title">Таможенное оформление</h3>
+          <p class="pf-card__desc">Декларации, коды&nbsp;ТН&nbsp;ВЭД, корректировки таможенной стоимости. Штрафы за&nbsp;ошибки оформления компенсируем мы.</p>
+        </div>
+        <div class="pf-img"><img src="assets/svc-05.png?v=1" alt="Таможенное оформление"><span class="pf-img__ph">Таможня</span></div>
       </div>
-      <div class="svc">
-        <div class="svc__num">06</div>
-        <h3 class="svc__title">Сертификация</h3>
-        <p class="svc__desc">Оформление сертификатов и&nbsp;деклараций соответствия, разрешительной документации для&nbsp;ввоза и&nbsp;продажи.</p>
+      <!-- 06 -->
+      <div class="pf-stage pf-stage--up" style="left:91.667%">
+        <div class="pf-card">
+          <div class="pf-card__num">06</div>
+          <h3 class="pf-card__title">Сертификация</h3>
+          <p class="pf-card__desc">Оформление сертификатов и&nbsp;деклараций соответствия, разрешительной документации для&nbsp;ввоза и&nbsp;продажи.</p>
+        </div>
+        <div class="pf-img"><img src="assets/svc-06.png?v=1" alt="Сертификация"><span class="pf-img__ph">Сертификат</span></div>
       </div>
     </div>
 
@@ -469,6 +504,6 @@
 </main>
 
 
-<script src="assets/app.js?v=4"></script>
+<script src="assets/app.js?v=6"></script>
 </body>
 </html>

@@ -825,6 +825,143 @@ p { margin: 0; }
   line-height: 1.55;
 }
 
+/* ============================================================
+   BLOCK 04 — process-flow зигзаг (изометрии на пунктирном пути)
+   Холст с фиксированной пропорцией 1200×600 — SVG-путь и узлы
+   масштабируются без искажений, карточки/картинки позиционируются
+   в процентах. На мобиле — вертикальный стек.
+   ============================================================ */
+.process-flow {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 44px;
+  aspect-ratio: 1200 / 600;
+}
+.pf-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  z-index: 1;
+}
+.pf-line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-dasharray: 2 11;
+  stroke-linecap: round;
+  opacity: 0.6;
+}
+.pf-node { filter: drop-shadow(0 4px 7px rgba(230,57,70,0.28)); }
+.pf-node circle { fill: #fff; }
+.pf-node__dot { fill: var(--accent); }
+
+.pf-stage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 16.5%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.pf-img {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 86%;
+  aspect-ratio: 1 / 0.92;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pf-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* плейсхолдер, пока нет реальных PNG; прячется, когда img загрузилась */
+.pf-img__ph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px dashed var(--border);
+  border-radius: var(--r-md, 12px);
+  background: rgba(0,0,0,0.015);
+  font-size: clamp(11px, 1vw, 13px);
+  color: var(--text-soft);
+  letter-spacing: 0.02em;
+}
+.pf-img.is-loaded .pf-img__ph { display: none; }
+
+.pf-card {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: left;
+}
+.pf-card__num {
+  font-size: clamp(28px, 2.8vw, 42px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.pf-card__title {
+  font-size: clamp(15px, 1.45vw, 20px);
+  font-weight: 700;
+  line-height: 1.18;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.pf-card__desc {
+  font-size: clamp(12px, 1.05vw, 14px);
+  color: var(--text-mid);
+  line-height: 1.45;
+}
+
+/* odd (--down): изображение внизу (низ на узле y=370 → 38.3% от низа), карточка сверху */
+.pf-stage--down .pf-img  { bottom: 38.33%; }
+.pf-stage--down .pf-card { top: 2%; }
+/* even (--up): изображение вверху (низ на узле y=230 → 61.6% от низа), карточка снизу */
+.pf-stage--up .pf-img  { bottom: 61.66%; }
+.pf-stage--up .pf-card { bottom: 2%; }
+
+@media (max-width: 880px) {
+  .process-flow {
+    aspect-ratio: auto;
+    max-width: 460px;
+  }
+  .pf-svg { display: none; }
+  .pf-stage {
+    position: relative;
+    top: auto; bottom: auto;
+    left: auto !important;
+    width: 100%;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 22px 0;
+    border-top: 1px dashed var(--border);
+  }
+  .pf-stage:first-child { border-top: none; }
+  .pf-img, .pf-card {
+    position: static;
+    transform: none;
+    width: auto;
+    bottom: auto; top: auto;
+  }
+  .pf-img { width: 150px; order: 1; margin-bottom: 14px; }
+  .pf-card { order: 2; max-width: 340px; text-align: center; }
+}
+
 .guarantees {
   background: var(--bg-dark);
   color: #fff;

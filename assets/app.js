@@ -65,6 +65,21 @@ switcherLinks.forEach(a => {
 });
 
 // ============================================================
+// Process-flow (блок 04): показываем плейсхолдер, пока нет PNG
+// ============================================================
+document.querySelectorAll('.pf-img img').forEach(img => {
+  const wrap = img.closest('.pf-img');
+  if (!wrap) return;
+  const markLoaded = () => wrap.classList.add('is-loaded');
+  const markFailed = () => { img.style.display = 'none'; };
+  if (img.complete) {
+    if (img.naturalWidth > 0) markLoaded(); else markFailed();
+  }
+  img.addEventListener('load', markLoaded);
+  img.addEventListener('error', markFailed);
+});
+
+// ============================================================
 // Calculator
 // ============================================================
 const BAVAR_FIXED = 300_000;
