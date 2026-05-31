@@ -610,9 +610,12 @@ p { margin: 0; }
 /* ============================================================
    BLOCK 02 — problem / solution (compare-grid)
    ============================================================ */
-#problem .section__head { justify-content: center; }
-#problem .section__head-text { margin: 0 auto; text-align: center; }
-#problem .section__lede { margin-left: auto; margin-right: auto; }
+#problem .section__head,
+#services .section__head { justify-content: center; }
+#problem .section__head-text,
+#services .section__head-text { margin: 0 auto; text-align: center; }
+#problem .section__lede,
+#services .section__lede { margin-left: auto; margin-right: auto; }
 .compare-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
