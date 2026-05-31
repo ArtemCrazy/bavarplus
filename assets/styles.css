@@ -934,7 +934,7 @@ p { margin: 0; }
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  text-align: left;
+  text-align: center;
 }
 .pf-card__num {
   font-size: clamp(28px, 2.8vw, 42px);
