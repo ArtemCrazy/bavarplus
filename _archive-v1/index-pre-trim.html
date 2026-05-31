@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>БАВАР+ — полный аутсорсинг ВЭД для промышленного бизнеса</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=18">
+</head>
+<body>
+
+<!-- ============================================================
+     PROTO-BANNER + V-switcher
+     ============================================================ -->
+<div class="proto-banner">
+  <div class="proto-banner__inner">
+    <div>
+      <strong>Прототип лендинга</strong> · оформление и тексты подменяются на финальные · сравните три варианта hero
+    </div>
+    <div class="proto-banner__switcher" id="v-switcher">
+      <a href="#v1" data-v="v1" class="active">V1 · Фото завода</a>
+      <a href="#v2" data-v="v2">V2 · Центральный логотип</a>
+      <a href="#v3" data-v="v3">V3 · Контейнер с картой</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<header class="nav">
+  <div class="nav__inner">
+    <a href="#top" class="logo">
+      <span class="logo__text">BAVAR<span class="logo__plus">+</span></span>
+    </a>
+    <ul class="nav__menu">
+      <li><a href="#services">Услуги</a></li>
+      <li><a href="#industries">Отрасли</a></li>
+      <li><a href="#process">Как работаем</a></li>
+      <li><a href="#calc">Калькулятор</a></li>
+      <li><a href="#cases">Кейсы</a></li>
+    </ul>
+    <a class="nav__phone" href="tel:+79250028289">+7 (925) 002-82-89</a>
+    <a href="#contact" class="btn btn--primary">Связаться <span class="btn__arrow">→</span></a>
+  </div>
+</header>
+
+<!-- SVG-фильтр: конвертирует белый фон PNG в прозрачность (alpha)
+     без mix-blend-mode, чтобы корпус контейнера был непрозрачным.
+     feComposite сохраняет оригинальную прозрачность по краям картинки -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="white-to-alpha" color-interpolation-filters="sRGB">
+      <!-- Шаг 1: яркостная маска. Очень резкий наклон -300/891 -->
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        -300 -300 -300 0 891
+      " result="rawMask"/>
+      <!-- Шаг 2: дотягиваем переход до бинарного — отрезаем середину -->
+      <feComponentTransfer in="rawMask" result="sharpMask">
+        <feFuncA type="linear" slope="3" intercept="-1"/>
+      </feComponentTransfer>
+      <!-- Шаг 3: умножаем на исходный alpha, чтобы прозрачные области PNG остались прозрачными -->
+      <feComposite in="SourceGraphic" in2="sharpMask" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+
+<main id="top">
+
+<!-- ============================================================
+     HERO V1 · фото завода фоном
+     ============================================================ -->
+<section class="hero hero--v1" data-variant="v1">
+  <div class="wrap">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <div class="hero__kicker">Полный аутсорсинг ВЭД для промышленного бизнеса</div>
+        <div class="hero__logo">
+          BAVAR<span class="hero__logo-plus">+</span>
+        </div>
+        <h1 class="hero__title">
+          Поиск, поставка, логистика и таможенное оформление <em>под ключ</em>
+        </h1>
+        <p class="hero__sub">
+          Найдём поставщика, проверим документы, организуем логистику, оформим таможню
+          и доведём груз до склада с прозрачными сроками, SLA и финансовой ответственностью
+          по договору.
+        </p>
+        <div class="hero__cta">
+          <a href="#calc" class="btn btn--primary btn--lg">Рассчитать экономию <span class="btn__arrow">→</span></a>
+          <a href="#contact" class="btn btn--ghost btn--lg">Получить консультацию</a>
+        </div>
+      </div>
+      <div class="hero__visual">
+        <svg class="hero__visual-svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <!-- Стилизованный силуэт завода/нефтепереработки -->
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3a3f4a"/>
+              <stop offset="100%" stop-color="#1a1c22"/>
+            </linearGradient>
+          </defs>
+          <rect width="600" height="600" fill="url(#sky)"/>
+          <!-- горизонт -->
+          <line x1="0" y1="440" x2="600" y2="440" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+          <!-- дальний силуэт -->
+          <g fill="rgba(255,255,255,0.06)">
+            <rect x="40" y="380" width="80" height="60"/>
+            <rect x="120" y="360" width="60" height="80"/>
+            <rect x="200" y="340" width="40" height="100"/>
+            <rect x="420" y="370" width="70" height="70"/>
+          </g>
+          <!-- основной силуэт -->
+          <g fill="rgba(255,255,255,0.14)">
+            <rect x="30" y="260" width="40" height="180"/>
+            <rect x="80" y="220" width="50" height="220"/>
+            <rect x="140" y="280" width="40" height="160"/>
+            <rect x="190" y="180" width="60" height="260"/>
+            <rect x="260" y="240" width="50" height="200"/>
+            <rect x="320" y="200" width="40" height="240"/>
+            <rect x="370" y="260" width="60" height="180"/>
+            <rect x="440" y="220" width="40" height="220"/>
+            <rect x="490" y="280" width="80" height="160"/>
+          </g>
+          <!-- трубы вертикальные -->
+          <g stroke="rgba(255,255,255,0.18)" stroke-width="2" fill="none">
+            <line x1="100" y1="220" x2="100" y2="160"/>
+            <line x1="220" y1="180" x2="220" y2="120"/>
+            <line x1="340" y1="200" x2="340" y2="140"/>
+            <line x1="460" y1="220" x2="460" y2="160"/>
+          </g>
+          <!-- горизонтальные трубопроводы -->
+          <g stroke="rgba(255,255,255,0.1)" stroke-width="1.5" fill="none">
+            <line x1="0" y1="310" x2="600" y2="310"/>
+            <line x1="0" y1="330" x2="600" y2="330"/>
+            <line x1="0" y1="350" x2="600" y2="350"/>
+          </g>
+          <!-- цистерны/танки -->
+          <g fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.25)" stroke-width="1.5">
+            <rect x="40" y="460" width="120" height="70" rx="35"/>
+            <rect x="200" y="460" width="120" height="70" rx="35"/>
+            <rect x="360" y="460" width="120" height="70" rx="35"/>
+          </g>
+          <!-- акцентные красные точки -->
+          <circle cx="100" cy="170" r="3" fill="#e63946"/>
+          <circle cx="220" cy="130" r="3" fill="#e63946"/>
+          <circle cx="340" cy="150" r="3" fill="#e63946"/>
+          <circle cx="460" cy="170" r="3" fill="#e63946"/>
+        </svg>
+        <div class="hero__photo-label">фото · промышленный объект</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HERO V2 · центральный БАВАР+ + контейнер
+     ============================================================ -->
+<section class="hero hero--v2" data-variant="v2" hidden>
+  <div class="wrap">
+    <div class="hero__inner">
+      <!-- декорация слева — точки/линия -->
+      <svg class="hero__visual-bg-left" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#e6e8ed">
+          <circle cx="20" cy="20" r="2"/><circle cx="50" cy="20" r="2"/><circle cx="80" cy="20" r="2"/>
+          <circle cx="20" cy="50" r="2"/><circle cx="50" cy="50" r="2"/><circle cx="80" cy="50" r="2"/>
+          <circle cx="20" cy="80" r="2"/><circle cx="50" cy="80" r="2"/><circle cx="80" cy="80" r="2"/>
+          <circle cx="20" cy="110" r="2"/><circle cx="50" cy="110" r="2"/><circle cx="80" cy="110" r="2"/>
+          <circle cx="20" cy="140" r="2"/><circle cx="50" cy="140" r="2"/><circle cx="80" cy="140" r="2"/>
+        </g>
+        <line x1="40" y1="200" x2="240" y2="380" stroke="#e63946" stroke-width="1.5" opacity="0.5"/>
+        <circle cx="200" cy="200" r="80" fill="none" stroke="#e6e8ed" stroke-width="1"/>
+      </svg>
+      <!-- контейнер справа — реальный фирменный визуал -->
+      <img class="hero__visual-bg" src="assets/bavar-container.png" alt="Контейнер BAVAR+ с фирменной графикой">
+
+
+      <div class="hero__content">
+        <div class="hero__kicker">Полный аутсорсинг ВЭД для промышленного бизнеса</div>
+        <div class="hero__logo">БАВАР<span class="hero__logo-plus">+</span></div>
+        <div class="hero__divider"></div>
+        <h1 class="hero__title">
+          Поиск, поставка, логистика и таможенное оформление <em>под ключ</em>
+        </h1>
+        <p class="hero__sub">
+          Найдём поставщика, проверим документы, организуем логистику, оформим таможню
+          и доведём груз до склада с прозрачными сроками, SLA и финансовой ответственностью
+          по договору.
+        </p>
+        <div class="hero__cta">
+          <a href="#calc" class="btn btn--primary btn--lg">Рассчитать экономию</a>
+          <a href="#contact" class="btn btn--ghost btn--lg">Получить консультацию</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HERO V3 · контейнер с картой мира
+     ============================================================ -->
+<section class="hero hero--v3" data-variant="v3" hidden>
+  <div class="wrap">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <div class="hero__kicker">Полный аутсорсинг ВЭД</div>
+        <h1 class="hero__title">
+          Поиск, поставка, логистика и таможенное оформление <em>под ключ</em>
+        </h1>
+        <p class="hero__sub">
+          Найдём поставщика, проверим документы, организуем логистику, оформим таможню
+          и доведём груз до склада с прозрачными сроками, SLA и финансовой ответственностью
+          по договору.
+        </p>
+        <div class="hero__cta">
+          <a href="#calc" class="btn btn--primary btn--lg">Рассчитать экономию <span class="btn__arrow">→</span></a>
+          <a href="#contact" class="btn btn--ghost btn--lg">Получить консультацию</a>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <img class="hero__visual-map" src="assets/karta.png?v=5" alt="Карта мировых маршрутов BAVAR+">
+        <img class="hero__visual-kran" src="assets/kran.png?v=5" alt="">
+        <img class="hero__visual-container" src="assets/conteiner.png?v=5" alt="Контейнер BAVAR+">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     02 · ПРОБЛЕМА / РЕШЕНИЕ
+     ============================================================ -->
+<section class="section section--alt" id="problem">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <h2 class="section__title">ВЭД требует больше, чем просто привезти товар</h2>
+        <p class="section__lede">
+          Собственный отдел ВЭД — это люди, документы, логистика, таможня, поставщики
+          и постоянные риски ошибок. BAVAR+ берёт процесс на себя: от поиска
+          и проверки поставщика до оформления и передачи груза.
+        </p>
+      </div>
+    </div>
+
+    <div class="compare-grid">
+      <div class="cmp-card cmp-card--problem">
+        <div class="cmp-card__icon">!</div>
+        <div class="cmp-card__label">Когда ВЭД внутри компании</div>
+        <h3 class="cmp-card__title">Много участников и распределённая ответственность</h3>
+        <ul class="cmp-card__list">
+          <li>Нужна команда из нескольких специалистов: менеджер, логист, декларант, юрист, переводчик</li>
+          <li>Расходы на зарплаты, налоги, ПО, обучение и рабочие места</li>
+          <li>Ошибки в документах и кодах ТН ВЭД могут привести к штрафам и задержкам</li>
+          <li>Поставщиков, логистику и таможню приходится координировать отдельно</li>
+          <li>Ответственность часто распределена между разными людьми и подрядчиками</li>
+        </ul>
+      </div>
+      <div class="cmp-card cmp-card--solution">
+        <div class="cmp-card__icon">✓</div>
+        <div class="cmp-card__label">Когда ВЭД ведёт <span class="brand-inline">BAVAR<span class="brand-inline__plus">+</span></span></div>
+        <h3 class="cmp-card__title">Один договор, одна команда и понятная зона ответственности</h3>
+        <ul class="cmp-card__list">
+          <li>Один исполнитель отвечает за весь процесс — от поиска поставщика до передачи груза</li>
+          <li>Поиск, проверка, логистика, документы и таможня — в одной системе</li>
+          <li>Собственный офис в Шанхае помогает контролировать поставщиков на месте</li>
+          <li>Сроки, этапы и зона ответственности фиксируются заранее</li>
+          <li>Финансовые гарантии прописываются в договоре таможенного представителя</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03 · СРАВНЕНИЕ ЗАТРАТ
+     ============================================================ -->
+<section class="section" id="compare">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <div class="section__num">Блок 03 · Сравнение затрат</div>
+        <h2 class="section__title">Сколько стоит штатный отдел vs. БАВАР+</h2>
+        <p class="section__lede">
+          Расчёт по типовому отделу из 7 сотрудников. Точные суммы под вашу структуру —
+          на персональной консультации.
+        </p>
+      </div>
+    </div>
+
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th>Статья расходов</th>
+          <th class="num">Свой отдел / мес</th>
+          <th class="num">БАВАР+ / мес</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>ФОТ команды ВЭД (7 человек)</td><td class="num">980 000 ₽</td><td class="num">— включено</td></tr>
+        <tr><td>Страховые взносы (≈30%)</td><td class="num">294 000 ₽</td><td class="num">— включено</td></tr>
+        <tr><td>Рабочие места, ПО, связь</td><td class="num">95 000 ₽</td><td class="num">— включено</td></tr>
+        <tr><td>Командировки в Китай</td><td class="num">180 000 ₽</td><td class="num">— включено</td></tr>
+        <tr><td>Резерв на штрафы и корректировки</td><td class="num">80 000 ₽</td><td class="num">— покрываем мы</td></tr>
+        <tr class="row-total"><td>Итого / мес</td><td class="num">≈ 1 629 000 ₽</td><td class="num">300 000 ₽</td></tr>
+      </tbody>
+    </table>
+
+    <div class="cost-after">
+      <div class="cost-after__card">
+        <div class="cost-after__lbl">Свой отдел / год</div>
+        <div class="cost-after__val">≈ 19,5 млн ₽</div>
+        <div class="cost-after__sub">со всеми накладными и командировками</div>
+      </div>
+      <div class="cost-after__card">
+        <div class="cost-after__lbl">БАВАР+ / год</div>
+        <div class="cost-after__val">3,6 млн ₽</div>
+        <div class="cost-after__sub">фикс по договору, без скрытых платежей</div>
+      </div>
+      <div class="cost-after__card cost-after__card--accent">
+        <div class="cost-after__lbl">Экономия / год</div>
+        <div class="cost-after__val">+15,9 млн ₽</div>
+        <div class="cost-after__sub">остаются на сырьё и развитие</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     04 · УСЛУГИ
+     ============================================================ -->
+<section class="section section--alt" id="services">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <div class="section__num">Блок 04 · Услуги</div>
+        <h2 class="section__title">Что входит в полный аутсорсинг ВЭД</h2>
+        <p class="section__lede">
+          Пять зон работы команды БАВАР+ — на любых товарах и оборудовании.
+          Снизу — что зафиксировано в договоре как наши обязательства.
+        </p>
+      </div>
+      <span class="section__chip">единственная услуга такого формата на рынке</span>
+    </div>
+
+    <div class="services-grid">
+      <div class="svc">
+        <div class="svc__num">01</div>
+        <h3 class="svc__title">Поиск и проверка поставщика</h3>
+        <p class="svc__desc">Подбор фабрик, аудит производства до подписания контракта. Выкуп европейского оборудования через китайских партнёров — экономия до 40%.</p>
+      </div>
+      <div class="svc">
+        <div class="svc__num">02</div>
+        <h3 class="svc__title">Юридическое сопровождение</h3>
+        <p class="svc__desc">Контракты, валютный контроль, репатриация выручки, претензионная работа, риск-менеджмент сделки.</p>
+      </div>
+      <div class="svc">
+        <div class="svc__num">03</div>
+        <h3 class="svc__title">Логистика и доставка</h3>
+        <p class="svc__desc">Море, авиа, ЖД из Китая «под ключ»: бронирование, перевалка, страхование, доставка до вашего склада.</p>
+      </div>
+      <div class="svc">
+        <div class="svc__num">04</div>
+        <h3 class="svc__title">Таможенное оформление</h3>
+        <p class="svc__desc">Декларации, коды ТН ВЭД, корректировки таможенной стоимости. Штрафы за ошибки оформления компенсируем мы.</p>
+      </div>
+    </div>
+
+    <div class="guarantees">
+      <div class="guarantees__head">
+        <h3 class="guarantees__title">Финансовые гарантии в договоре</h3>
+        <span class="guarantees__chip">Не консультации — исполнительский договор</span>
+      </div>
+      <ul class="guarantees__list">
+        <li>Компенсация штрафов ФТС</li>
+        <li>Один договор и счёт</li>
+        <li>Команда 15+ специалистов</li>
+        <li>Аудит фабрик в Шанхае</li>
+        <li>Фикс без скрытых платежей</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     05 · ИНЖИНИРИНГ И СЕРВИС ЛИНИЙ
+     ============================================================ -->
+<section class="section" id="industries">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <div class="section__num">Блок 05 · Отраслевые направления</div>
+        <h2 class="section__title">Инжиниринг и сервис производственных линий</h2>
+        <p class="section__lede">
+          ВЭД-аутсорсинг БАВАР+ работает с любыми товарами и оборудованием, которые можно
+          законно ввезти или вывезти. В профильных направлениях, где у команды есть 12-летний
+          инженерный опыт, мы дополнительно подключаем услуги: инжиниринг, монтаж, запуск
+          и обслуживание производственных линий.
+        </p>
+      </div>
+    </div>
+
+    <div class="industries-grid">
+      <div class="ind-card">
+        <div class="ind-card__num">01</div>
+        <h4 class="ind-card__title">Инжиниринг</h4>
+        <p class="ind-card__desc">Подбор и комплектация оборудования под производственную задачу. Технологические схемы, расчёт линии, проверка спецификаций до закупки.</p>
+      </div>
+      <div class="ind-card">
+        <div class="ind-card__num">02</div>
+        <h4 class="ind-card__title">Монтаж линий</h4>
+        <p class="ind-card__desc">Шеф-монтаж и координация подрядчиков на площадке заказчика. Сборка оборудования силами наших инженеров.</p>
+      </div>
+      <div class="ind-card">
+        <div class="ind-card__num">03</div>
+        <h4 class="ind-card__title">Запуск производства</h4>
+        <p class="ind-card__desc">Пусконаладка, вывод линии на проектную мощность, выпуск первых партий, обучение операторов на площадке.</p>
+      </div>
+      <div class="ind-card">
+        <div class="ind-card__num">04</div>
+        <h4 class="ind-card__title">Обслуживание</h4>
+        <p class="ind-card__desc">Сервисная поддержка после запуска: профилактика, ремонт, поставка запчастей и расходников, удалённая помощь.</p>
+      </div>
+    </div>
+
+    <p class="scope-note">
+      <strong>Важно про scope.</strong>
+      Инженерные услуги доступны только в профильных направлениях, где у команды БАВАР+
+      есть практический опыт. ВЭД-аутсорсинг — самостоятельная услуга, работает с любыми
+      законными категориями товаров и оборудования.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     06 · ПРОЦЕСС
+     ============================================================ -->
+<section class="section section--alt" id="process">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <div class="section__num">Блок 06 · Процесс работы</div>
+        <h2 class="section__title">Как мы работаем — 5 шагов</h2>
+        <p class="section__lede">
+          От первой заявки до запущенного производства — каждый этап с прозрачным SLA.
+        </p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step__num">01</div>
+        <h3 class="step__title">Заявка и бриф</h3>
+        <p class="step__desc">Звонок, обсуждение задачи, фиксируем требования и технические параметры</p>
+      </div>
+      <div class="step">
+        <div class="step__num">02</div>
+        <h3 class="step__title">ТЗ и договор</h3>
+        <p class="step__desc">Согласование объёма, сроков и стоимости. Финансовые гарантии в договоре</p>
+      </div>
+      <div class="step">
+        <div class="step__num">03</div>
+        <h3 class="step__title">Поиск и проверка</h3>
+        <p class="step__desc">Поставщики, аудит фабрик, разработка рецептур и технологических схем</p>
+      </div>
+      <div class="step">
+        <div class="step__num">04</div>
+        <h3 class="step__title">Поставка и оформление</h3>
+        <p class="step__desc">Логистика, растаможка, доставка до склада или площадки</p>
+      </div>
+      <div class="step">
+        <div class="step__num">05</div>
+        <h3 class="step__title">Запуск и сервис</h3>
+        <p class="step__desc">Передача груза, обучение, сервисная поддержка по договору</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     07 · КАЛЬКУЛЯТОР
+     ============================================================ -->
+<section class="section" id="calc">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <div class="section__num">Блок 07 · Калькулятор экономии</div>
+        <h2 class="section__title">Калькулятор экономии</h2>
+        <p class="section__lede">
+          Подставьте параметры вашего отдела — посчитаем разницу с абонентской платой БАВАР+.
+          Цифры демо, точный расчёт под вашу структуру — на консультации.
+        </p>
+      </div>
+    </div>
+
+    <div class="calc">
+      <div class="calc__panel">
+        <div class="calc__panel-tag">Параметры вашего отдела</div>
+        <div class="calc__field">
+          <div class="calc__lbl">
+            <span>Сотрудников в отделе</span>
+            <span class="lbl-val" id="cl-staff">7 человек</span>
+          </div>
+          <input type="range" class="calc__range" id="cf-staff" min="2" max="12" value="7" step="1">
+          <div class="calc__hint">Менеджеры, логист, декларант, юрист, переводчик, руководитель</div>
+        </div>
+        <div class="calc__field">
+          <div class="calc__lbl">
+            <span>Средняя зарплата на руки</span>
+            <span class="lbl-val" id="cl-salary">140 000 ₽</span>
+          </div>
+          <input type="range" class="calc__range" id="cf-salary" min="80000" max="250000" value="140000" step="5000">
+          <div class="calc__hint">Усреднённый оклад одного специалиста</div>
+        </div>
+        <div class="calc__field">
+          <div class="calc__lbl">
+            <span>Сделок с Китаем в месяц</span>
+            <span class="lbl-val" id="cl-deals">8 сделок</span>
+          </div>
+          <input type="range" class="calc__range" id="cf-deals" min="1" max="30" value="8" step="1">
+          <div class="calc__hint">Влияет на командировки, ПО и резерв на штрафы</div>
+        </div>
+      </div>
+
+      <div class="calc__panel calc__panel--dark">
+        <div class="calc__panel-tag">Ваша экономия с БАВАР+</div>
+        <div class="calc__hero" id="cr-hero">—</div>
+        <div class="calc__hero-sub" id="cr-hero-sub">—</div>
+        <ul class="calc__breakdown">
+          <li><span class="nm">ФОТ</span><span class="vl" id="br-fot">—</span></li>
+          <li><span class="nm">Страховые взносы (30%)</span><span class="vl" id="br-taxes">—</span></li>
+          <li><span class="nm">Офис и ПО</span><span class="vl" id="br-office">—</span></li>
+          <li><span class="nm">Командировки</span><span class="vl" id="br-travel">—</span></li>
+          <li><span class="nm">Резерв на штрафы</span><span class="vl" id="br-risk">—</span></li>
+          <li class="total"><span class="nm">Свой отдел / мес</span><span class="vl" id="br-total">—</span></li>
+          <li class="total"><span class="nm">БАВАР+ / мес</span><span class="vl" id="br-bavar">—</span></li>
+        </ul>
+        <div class="calc__cta">
+          <a href="#contact" class="btn btn--primary">Получить точный расчёт <span class="btn__arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     08 · ПРЕИМУЩЕСТВА
+     ============================================================ -->
+<section class="section section--alt" id="advantages">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <div class="section__num">Блок 08 · Преимущества</div>
+        <h2 class="section__title">Почему промышленные предприятия выбирают нас</h2>
+      </div>
+    </div>
+
+    <div class="adv-grid">
+      <div class="adv"><div class="adv__big">12 лет</div><h4 class="adv__title">Опыт и экспертиза</h4><p class="adv__desc">Сотни сделок и запусков линий. Предсказуемый результат</p></div>
+      <div class="adv"><div class="adv__big">200+</div><h4 class="adv__title">Довольных клиентов</h4><p class="adv__desc">В России и СНГ — от региональных до федеральных</p></div>
+      <div class="adv"><div class="adv__big">Шанхай</div><h4 class="adv__title">Свой офис в Китае</h4><p class="adv__desc">Аудит фабрик и контроль отгрузок за часы, не недели</p></div>
+      <div class="adv"><div class="adv__big">1,7 млн</div><h4 class="adv__title">Экономия / мес</h4><p class="adv__desc">vs. штатный отдел ВЭД. Фикс от 300 000 ₽</p></div>
+      <div class="adv"><div class="adv__big">Техника</div><h4 class="adv__title">Опыт с оборудованием</h4><p class="adv__desc">Видим спецификацию глазами инженера — замечаем риски до закупки</p></div>
+      <div class="adv"><div class="adv__big">100%</div><h4 class="adv__title">Фин. гарантии</h4><p class="adv__desc">Штрафы за ошибки оформления компенсируем мы</p></div>
+      <div class="adv"><div class="adv__big">−40%</div><h4 class="adv__title">Выкуп оборудования</h4><p class="adv__desc">Европейские бренды через китайских партнёров</p></div>
+      <div class="adv"><div class="adv__big">1 договор</div><h4 class="adv__title">Единая ответственность</h4><p class="adv__desc">От поиска до первой партии — всё в одном договоре</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     09 · ШАНХАЙ
+     ============================================================ -->
+<section class="section" id="shanghai">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <div class="section__num">Блок 09 · Офис в Шанхае</div>
+        <h2 class="section__title">Свой офис в Шанхае — почему это критично</h2>
+        <p class="section__lede">
+          Между вами и китайским поставщиком нет прослойки агентов и переводчиков.
+          Наши инженеры и технологи на месте.
+        </p>
+      </div>
+    </div>
+
+    <div class="shanghai">
+      <div class="shanghai__visual">
+        <div>
+          <div class="shanghai__visual-label">Office · Shanghai</div>
+          <div class="shanghai__visual-place">上海 · <span class="red">Шанхай</span></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="shanghai__title">Личный контроль на каждом этапе</h3>
+        <p class="shanghai__text">
+          Большинство ВЭД-агентов работают удалённо — с вашими деньгами в руках китайских посредников.
+          Мы ездим на фабрики лично, договариваемся напрямую, контролируем отгрузки.
+          Это снимает 80% типичных проблем.
+        </p>
+        <ul class="shanghai__points">
+          <li><span class="k">Аудит</span><span class="v">Личная проверка производства до подписания контракта</span></li>
+          <li><span class="k">Переговоры</span><span class="v">Русскоязычные специалисты ведут поставщика на китайском</span></li>
+          <li><span class="k">Контроль</span><span class="v">Инспекция партии до отгрузки, фото- и видеоотчёт</span></li>
+          <li><span class="k">Реакция</span><span class="v">Решение спорных вопросов за часы, не недели</span></li>
+        </ul>
+        <a href="#contact" class="btn btn--dark">Узнать о возможностях офиса <span class="btn__arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     10 · КЕЙСЫ
+     ============================================================ -->
+<section class="section section--alt" id="cases">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <div class="section__num">Блок 10 · Примеры ВЭД-задач</div>
+        <h2 class="section__title">Что мы уже привозили</h2>
+        <p class="section__lede">
+          С большинством клиентов подписано NDA — приводим обезличенно.
+          По запросу организуем созвон с текущим заказчиком из вашей отрасли.
+        </p>
+      </div>
+    </div>
+
+    <div class="cases-grid">
+      <div class="case">
+        <span class="case__tag">Молочная промышленность</span>
+        <p class="case__quote">
+          Нашли поставщика линии пастеризации в Китае, лично проверили фабрику в Циндао,
+          заключили контракт, привезли и оформили оборудование на таможне, скоординировали
+          приёмку на площадке в Сибири.
+        </p>
+        <div class="case__result">
+          <div class="case__val">5 месяцев</div>
+          <div class="case__lbl">от поиска до запуска поставки</div>
+        </div>
+      </div>
+      <div class="case">
+        <span class="case__tag">Производство соусов</span>
+        <p class="case__quote">
+          Подобрали универсальную линию диспергирования у проверенного китайского производителя,
+          прошли весь цикл: контракт → инспекция → логистика → таможня → доставка на площадку.
+          Клиент сам адаптировал рецептуры.
+        </p>
+        <div class="case__result">
+          <div class="case__val">×3 продукта</div>
+          <div class="case__lbl">после поставки оборудования</div>
+        </div>
+      </div>
+      <div class="case">
+        <span class="case__tag">Фарма и БАД</span>
+        <p class="case__quote">
+          Полностью закрыли импорт сырья и комплектующих из Китая. До нас компания держала
+          штат из 6 человек на ВЭД, после перехода на нас — фикс 500 тыс ₽ в месяц
+          и нулевые штрафы ФТС за год.
+        </p>
+        <div class="case__result">
+          <div class="case__val">−1,4 млн ₽/мес</div>
+          <div class="case__lbl">экономия после перехода</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     11 · FAQ
+     ============================================================ -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <div class="section__num">Блок 11 · Частые вопросы</div>
+        <h2 class="section__title">Частые вопросы</h2>
+        <p class="section__lede">
+          Шесть вопросов, которые чаще всего слышим на первом созвоне.
+        </p>
+      </div>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Чем вы отличаетесь от обычного таможенного брокера или логистической компании?</summary>
+        <div class="faq-item__body">
+          Брокер закрывает таможню, логист — доставку, юрист — контракт. Друг за друга они не отвечают, и координировать всю цепочку приходится вам. Мы закрываем всё одним договором: от поиска поставщика до растаможки и доставки на ваш склад. И платим из своего кармана, если ошиблись на таможне.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Какие финансовые гарантии вы даёте?</summary>
+        <div class="faq-item__body">
+          В договоре таможенного представителя зафиксировано: штрафы, доначисления и корректировки таможенной стоимости, возникшие по нашей ошибке, компенсируем мы. Это не маркетинговое обещание, а юридическая обязанность по договору.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Сколько стоит аутсорсинг и от чего зависит цена?</summary>
+        <div class="faq-item__body">
+          Фиксированная абонентская плата от 300 000 ₽ в месяц. Точная сумма зависит от объёма сделок в месяц, сложности товаров и регуляторных требований (фарма и БАД дороже, типовые ингредиенты — дешевле).
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Что входит в фикс, а что нужно платить отдельно?</summary>
+        <div class="faq-item__body">
+          В абонентку входит работа команды: поиск и проверка поставщиков, переговоры, контракты, валютный контроль, логистика, таможенное оформление, сертификация, документы, юридическое сопровождение. Отдельно платится только стоимость самого товара, фрахт и государственные пошлины.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Можно работать на разовую сделку, без абонентки?</summary>
+        <div class="faq-item__body">
+          Да, есть проектный формат — стоимость считается по объёму работ конкретной сделки. Но в большинстве случаев абонентка выгоднее: вы получаете не только текущую сделку, но и команду «на подхвате» для последующих запросов.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>А если у нас уже есть свой ВЭД-отдел? Как происходит переход?</summary>
+        <div class="faq-item__body">
+          Это не редкость. Передача — 1–2 месяца плавного онбординга: знакомство с поставщиками, передача контактов и договоров, перенос документации. Ваш отдел можно сократить, переориентировать на стратегию или оставить как контролёра — решение за вами.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     12 · КОНТАКТЫ + ФОРМА
+     ============================================================ -->
+<section class="section section--dark" id="contact">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <div class="section__num">Блок 12 · Контакты</div>
+        <h2 class="section__title">Обсудим вашу задачу</h2>
+        <p class="section__lede">
+          Опишите, что нужно привезти, запустить или посчитать. Перезвоним в течение
+          рабочего дня и подготовим расчёт.
+        </p>
+      </div>
+    </div>
+
+    <div class="contact">
+      <div>
+        <h3 class="contact__info-title">Прямые контакты</h3>
+        <p class="contact__info-text">
+          Удобнее позвонить — звоните. Удобнее форма — справа. Можно сразу написать
+          в Telegram или на почту.
+        </p>
+        <ul class="contact__channels">
+          <li><span class="k">Телефон</span><span class="v"><a href="tel:+79250028289">+7 925 002-82-89</a></span></li>
+          <li><span class="k">E-mail</span><span class="v"><a href="mailto:alv@bavarswiss.ru">alv@bavarswiss.ru</a></span></li>
+          <li><span class="k">Telegram</span><span class="v"><a href="https://t.me/" target="_blank" rel="noopener">@bavarplus</a></span></li>
+          <li><span class="k">Москва</span><span class="v">ул. 2-я Мытищинская, д. 2, стр. 1, 6/2</span></li>
+          <li><span class="k">Шанхай</span><span class="v">Pudong New Area · по запросу</span></li>
+        </ul>
+      </div>
+
+      <form class="form" id="contact-form" novalidate>
+        <h3 class="form__title">Оставьте заявку</h3>
+        <p class="form__sub">Перезвоним в течение рабочего дня</p>
+        <div class="form__row">
+          <label for="f-name">Как к вам обращаться</label>
+          <input type="text" id="f-name" name="name" placeholder="Иван Петров" required>
+        </div>
+        <div class="form__row">
+          <label for="f-phone">Телефон</label>
+          <input type="tel" id="f-phone" name="phone" placeholder="+7 ___ ___-__-__" required>
+        </div>
+        <div class="form__row">
+          <label for="f-email">E-mail</label>
+          <input type="email" id="f-email" name="email" placeholder="name@company.ru">
+        </div>
+        <div class="form__row">
+          <label for="f-msg">Что нужно сделать</label>
+          <textarea id="f-msg" name="message" placeholder="Кратко: что привезти, какие сроки"></textarea>
+        </div>
+        <label class="form__check">
+          <input type="checkbox" id="f-agree" required>
+          <span>Согласен на обработку персональных данных согласно <a href="#privacy">политике конфиденциальности</a></span>
+        </label>
+        <button type="submit" class="btn btn--primary btn--block btn--lg">Отправить заявку</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <h5>БАВАР+</h5>
+        <p>Полный аутсорсинг ВЭД для промышленного бизнеса. 12 лет на рынке, офис в Шанхае.</p>
+        <p style="margin-top:8px; opacity:0.5">© 2026 · ООО «БАВАР Трейдинг»</p>
+      </div>
+      <div>
+        <h5>Разделы</h5>
+        <a href="#services">Услуги</a>
+        <a href="#industries">Отрасли</a>
+        <a href="#process">Процесс работы</a>
+        <a href="#calc">Калькулятор</a>
+        <a href="#cases">Кейсы</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div>
+        <h5>Контакты</h5>
+        <a href="tel:+79250028289">+7 925 002-82-89</a>
+        <a href="mailto:info@bavarswiss.ru">info@bavarswiss.ru</a>
+        <a href="https://t.me/" target="_blank" rel="noopener">Telegram · @bavarplus</a>
+        <a href="#privacy">Политика конфиденциальности</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div>Crazy.Studio · прототип · 2026-05-22</div>
+      <div>Тексты и цифры демонстрационные</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js?v=4"></script>
+</body>
+</html>
