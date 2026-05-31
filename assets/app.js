@@ -155,6 +155,8 @@ const calcEls = {
   brkRisk: document.getElementById('br-risk'),
   brkTotal: document.getElementById('br-total'),
   brkBavar: document.getElementById('br-bavar'),
+  barOwn: document.getElementById('bar-own'),
+  barBavar: document.getElementById('bar-bavar'),
 };
 
 function recalc() {
@@ -182,6 +184,11 @@ function recalc() {
   calcEls.brkRisk.textContent = fmtRub(risk);
   calcEls.brkTotal.textContent = fmtRub(inhouse);
   calcEls.brkBavar.textContent = fmtRub(BAVAR_FIXED);
+
+  // Полосы-бары: ширина пропорциональна сумме (макс = свой отдел)
+  const maxVal = Math.max(inhouse, BAVAR_FIXED, 1);
+  if (calcEls.barOwn)   calcEls.barOwn.style.width   = (inhouse / maxVal * 100) + '%';
+  if (calcEls.barBavar) calcEls.barBavar.style.width = (BAVAR_FIXED / maxVal * 100) + '%';
 
   calcEls.heroSavings.textContent = fmtShort(savings);
   calcEls.heroSub.textContent = `в месяц · ${fmtShort(savings * 12)} в год`;

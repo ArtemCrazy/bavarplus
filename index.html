@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=71">
+<link rel="stylesheet" href="assets/styles.css?v=72">
 </head>
 <body>
 
@@ -468,8 +468,14 @@
           <li><span class="nm">Офис и&nbsp;ПО</span><span class="vl" id="br-office">—</span></li>
           <li><span class="nm">Командировки</span><span class="vl" id="br-travel">—</span></li>
           <li><span class="nm">Резерв на&nbsp;штрафы</span><span class="vl" id="br-risk">—</span></li>
-          <li class="total"><span class="nm">Свой отдел / мес</span><span class="vl" id="br-total">—</span></li>
-          <li class="total"><span class="nm">Бавар+ / мес</span><span class="vl" id="br-bavar">—</span></li>
+          <li class="total total--bar">
+            <div class="bar-head"><span class="nm">Свой отдел / мес</span><span class="vl" id="br-total">—</span></div>
+            <div class="bar"><span class="bar__fill bar__fill--own" id="bar-own"></span></div>
+          </li>
+          <li class="total total--bar">
+            <div class="bar-head"><span class="nm">Бавар+ / мес</span><span class="vl" id="br-bavar">—</span></div>
+            <div class="bar"><span class="bar__fill bar__fill--bavar" id="bar-bavar"></span></div>
+          </li>
         </ul>
         <div class="calc__cta">
           <a href="#contact" class="btn btn--primary">Получить точный расчёт <span class="btn__arrow">→</span></a>
@@ -511,6 +517,6 @@
 </main>
 
 
-<script src="assets/app.js?v=8"></script>
+<script src="assets/app.js?v=9"></script>
 </body>
 </html>

@@ -1341,6 +1341,42 @@ p { margin: 0; }
 }
 .calc__breakdown .nm { color: rgba(255,255,255,0.65); }
 .calc__breakdown .vl { color: #fff; font-variant-numeric: tabular-nums; font-weight: 600; }
+
+/* Две итоговые строки — наглядные полосы-бары */
+.calc__breakdown li.total--bar {
+  display: block;
+  border-top: none;
+  margin-top: 0;
+  padding: 16px 0 0;
+}
+.calc__breakdown li.total--bar:first-of-type { margin-top: 8px; padding-top: 18px; border-top: 2px solid rgba(255,255,255,0.12); }
+.bar-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+.bar-head .nm { text-transform: uppercase; letter-spacing: 0.04em; font-size: 12px; font-weight: 600; }
+.bar-head .vl { font-size: 17px; }
+.bar {
+  height: 10px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+.bar__fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: 100px;
+  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bar__fill--own {
+  background: linear-gradient(90deg, #b22330, var(--accent));
+}
+.bar__fill--bavar {
+  background: linear-gradient(90deg, var(--accent), #ff6b78);
+}
 .calc__cta { margin-top: 28px; }
 .calc__cta .btn { width: 100%; }
 
