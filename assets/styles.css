@@ -1240,14 +1240,14 @@ p { margin: 0; }
 .step::after {
   content: attr(data-step);
   position: absolute;
-  right: -8px;
-  bottom: -42px;
-  font-size: 150px;
+  right: -6px;
+  bottom: 2px;
+  font-size: 190px;
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.05em;
   color: var(--accent);
-  opacity: 0.08;
+  opacity: 0.09;
   font-variant-numeric: tabular-nums;
   pointer-events: none;
   z-index: 0;
