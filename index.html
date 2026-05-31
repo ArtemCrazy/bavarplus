@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=60">
+<link rel="stylesheet" href="assets/styles.css?v=61">
 </head>
 <body>
 
@@ -231,16 +231,18 @@
     </div>
 
     <div class="process-flow">
-      <!-- Красный пунктирный зигзаг-путь + узлы-точки (рисуется на SVG) -->
-      <svg class="pf-svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-        <path class="pf-line" d="M100 370 L300 230 L500 370 L700 230 L900 370 L1100 230"/>
-        <g class="pf-node"><circle cx="100"  cy="370" r="14"/><circle class="pf-node__dot" cx="100"  cy="370" r="8"/></g>
-        <g class="pf-node"><circle cx="300"  cy="230" r="14"/><circle class="pf-node__dot" cx="300"  cy="230" r="8"/></g>
-        <g class="pf-node"><circle cx="500"  cy="370" r="14"/><circle class="pf-node__dot" cx="500"  cy="370" r="8"/></g>
-        <g class="pf-node"><circle cx="700"  cy="230" r="14"/><circle class="pf-node__dot" cx="700"  cy="230" r="8"/></g>
-        <g class="pf-node"><circle cx="900"  cy="370" r="14"/><circle class="pf-node__dot" cx="900"  cy="370" r="8"/></g>
-        <g class="pf-node"><circle cx="1100" cy="230" r="14"/><circle class="pf-node__dot" cx="1100" cy="230" r="8"/></g>
+      <!-- Красный пунктирный зигзаг-путь (SVG растягивается на всю ширину,
+           толщина штриха постоянная). Узлы-точки — отдельными HTML-кружками,
+           чтобы оставались круглыми при любой ширине. -->
+      <svg class="pf-svg" viewBox="0 0 1200 600" preserveAspectRatio="none" aria-hidden="true">
+        <path class="pf-line" d="M100 370 L300 230 L500 370 L700 230 L900 370 L1100 230" vector-effect="non-scaling-stroke"/>
       </svg>
+      <span class="pf-dot" style="left:8.333%;top:61.667%"></span>
+      <span class="pf-dot" style="left:25%;top:38.333%"></span>
+      <span class="pf-dot" style="left:41.667%;top:61.667%"></span>
+      <span class="pf-dot" style="left:58.333%;top:38.333%"></span>
+      <span class="pf-dot" style="left:75%;top:61.667%"></span>
+      <span class="pf-dot" style="left:91.667%;top:38.333%"></span>
 
       <!-- 01 -->
       <div class="pf-stage pf-stage--down" style="left:8.333%">

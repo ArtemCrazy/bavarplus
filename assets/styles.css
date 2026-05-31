@@ -834,9 +834,9 @@ p { margin: 0; }
 .process-flow {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto 44px;
-  aspect-ratio: 1200 / 600;
+  aspect-ratio: 1440 / 600;
 }
 .pf-svg {
   position: absolute;
@@ -854,9 +854,18 @@ p { margin: 0; }
   stroke-linecap: round;
   opacity: 0.6;
 }
-.pf-node { filter: drop-shadow(0 4px 7px rgba(230,57,70,0.28)); }
-.pf-node circle { fill: #fff; }
-.pf-node__dot { fill: var(--accent); }
+/* Узлы-точки на пути — HTML, чтобы оставались круглыми при растяжении */
+.pf-dot {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, var(--accent) 0 36%, #fff 38% 100%);
+  box-shadow: 0 4px 8px rgba(230,57,70,0.28);
+  z-index: 3;
+}
 
 .pf-stage {
   position: absolute;
@@ -940,7 +949,7 @@ p { margin: 0; }
     aspect-ratio: auto;
     max-width: 460px;
   }
-  .pf-svg { display: none; }
+  .pf-svg, .pf-dot { display: none; }
   .pf-stage {
     position: relative;
     top: auto; bottom: auto;
