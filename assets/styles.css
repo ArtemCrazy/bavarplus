@@ -1113,10 +1113,10 @@ p { margin: 0; }
   .bio__intro { position: relative; }
   .bio__title, .bio__lede { position: relative; z-index: 1; }
   .bio__illo {
-    width: 760px;
+    width: 684px;
     max-width: none;
     margin-left: -170px;
-    margin-top: -175px;
+    margin-top: -155px;
     position: relative;
     z-index: 0;
   }
