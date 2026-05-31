@@ -938,11 +938,11 @@ p { margin: 0; }
   line-height: 1.45;
 }
 
-/* odd (--down): изображение внизу (низ на узле 60% сверху = 40% от низа), карточка сверху */
-.pf-stage--down .pf-img  { bottom: 40%; }
+/* odd (--down): карточка сверху, сцена ПОД линией (верх сцены на узле 60%) */
+.pf-stage--down .pf-img  { top: 60%; bottom: auto; }
 .pf-stage--down .pf-card { top: 2%; }
-/* even (--up): изображение вверху (низ на узле 40% сверху = 60% от низа), карточка снизу */
-.pf-stage--up .pf-img  { bottom: 60%; }
+/* even (--up): сцена НАД линией (низ сцены на узле 40% сверху = 60% от низа), карточка снизу */
+.pf-stage--up .pf-img  { bottom: 60%; top: auto; }
 .pf-stage--up .pf-card { bottom: 2%; }
 
 @media (max-width: 880px) {
