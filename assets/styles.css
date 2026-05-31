@@ -836,7 +836,7 @@ p { margin: 0; }
   width: 100%;
   max-width: 1440px;
   margin: 0 auto 44px;
-  aspect-ratio: 1440 / 600;
+  aspect-ratio: 1440 / 680;
 }
 .pf-svg {
   position: absolute;
@@ -871,7 +871,7 @@ p { margin: 0; }
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 18%;
+  width: 16.5%;
   transform: translateX(-50%);
   z-index: 2;
 }
@@ -879,7 +879,8 @@ p { margin: 0; }
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 96%;
+  width: 76%;
+  max-width: 180px;
   aspect-ratio: 1 / 0.92;
   display: flex;
   align-items: center;
@@ -937,12 +938,12 @@ p { margin: 0; }
   line-height: 1.45;
 }
 
-/* odd (--down): изображение внизу (низ на узле y=375 → 37.5% от низа), карточка сверху */
-.pf-stage--down .pf-img  { bottom: 37.5%; }
-.pf-stage--down .pf-card { top: 1%; }
-/* even (--up): изображение вверху (низ на узле y=225 → 62.5% от низа), карточка снизу */
-.pf-stage--up .pf-img  { bottom: 62.5%; }
-.pf-stage--up .pf-card { bottom: 1%; }
+/* odd (--down): изображение внизу (низ на узле 60% сверху = 40% от низа), карточка сверху */
+.pf-stage--down .pf-img  { bottom: 40%; }
+.pf-stage--down .pf-card { top: 2%; }
+/* even (--up): изображение вверху (низ на узле 40% сверху = 60% от низа), карточка снизу */
+.pf-stage--up .pf-img  { bottom: 60%; }
+.pf-stage--up .pf-card { bottom: 2%; }
 
 @media (max-width: 880px) {
   .process-flow {
