@@ -1102,7 +1102,6 @@ p { margin: 0; }
   width: 100%;
   max-width: 520px;
   height: auto;
-  mix-blend-mode: multiply;
 }
 @media (max-width: 1024px) { .bio__illo { max-width: 420px; } }
 
