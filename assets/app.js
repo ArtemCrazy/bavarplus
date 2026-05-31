@@ -65,6 +65,55 @@ switcherLinks.forEach(a => {
 });
 
 // ============================================================
+// Scroll-reveal: мягкое появление блоков при прокрутке
+// ============================================================
+(function () {
+  // Элементы, которые проявляем. Заголовки/лиды + крупные блоки.
+  // НЕ трогаем .pf-stage / .pf-card — они позиционируются через transform.
+  const SEL = [
+    '.section__title', '.section__lede',
+    '.cmp-card', '.process-flow', '.guarantees',
+    '.ind-card', '.step', '.adv', '.calc__panel'
+  ].join(', ');
+
+  const els = Array.from(document.querySelectorAll(SEL));
+  if (!els.length) return;
+
+  // Направление: левая карточка сравнения «влетает» слева, правая — справа.
+  els.forEach(el => {
+    el.classList.add('reveal');
+    if (el.classList.contains('cmp-card--problem')) el.dataset.reveal = 'left';
+    if (el.classList.contains('cmp-card--solution')) el.dataset.reveal = 'right';
+  });
+
+  // Стаггер внутри одной группы (соседи по родителю появляются по очереди)
+  const byParent = new Map();
+  els.forEach(el => {
+    const p = el.parentElement;
+    const arr = byParent.get(p) || [];
+    arr.push(el);
+    byParent.set(p, arr);
+  });
+  byParent.forEach(arr => arr.forEach((el, i) => {
+    el.style.transitionDelay = Math.min(i * 90, 540) + 'ms';
+  }));
+
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  els.forEach(el => io.observe(el));
+})();
+
+// ============================================================
 // Process-flow (блок 04): показываем плейсхолдер, пока нет PNG
 // ============================================================
 document.querySelectorAll('.pf-img img').forEach(img => {
