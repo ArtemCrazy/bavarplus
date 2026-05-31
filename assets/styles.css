@@ -630,17 +630,29 @@ p { margin: 0; }
 #services .section__head,
 #process .section__head,
 #calc .section__head,
-#advantages .section__head { justify-content: center; }
+#advantages .section__head,
+#shanghai .section__head,
+#cases .section__head,
+#faq .section__head,
+#contact .section__head { justify-content: center; }
 #problem .section__head-text,
 #services .section__head-text,
 #process .section__head-text,
 #calc .section__head-text,
-#advantages .section__head-text { margin: 0 auto; text-align: center; }
+#advantages .section__head-text,
+#shanghai .section__head-text,
+#cases .section__head-text,
+#faq .section__head-text,
+#contact .section__head-text { margin: 0 auto; text-align: center; }
 #problem .section__lede,
 #services .section__lede,
 #process .section__lede,
 #calc .section__lede,
-#advantages .section__lede { margin-left: auto; margin-right: auto; }
+#advantages .section__lede,
+#shanghai .section__lede,
+#cases .section__lede,
+#faq .section__lede,
+#contact .section__lede { margin-left: auto; margin-right: auto; }
 .compare-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
