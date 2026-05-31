@@ -934,7 +934,12 @@ p { margin: 0; }
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  text-align: center;
+  text-align: left;
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg);
+  padding: 22px 22px 24px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.07);
 }
 .pf-card__num {
   font-size: clamp(28px, 2.8vw, 42px);
