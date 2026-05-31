@@ -1107,6 +1107,15 @@ p { margin: 0; }
   height: auto;
 }
 @media (max-width: 1024px) { .bio__illo { max-width: 420px; } }
+/* Декоративный вылет на широких экранах — крупнее, уходит за левый край */
+@media (min-width: 1280px) {
+  .bio__illo {
+    width: 760px;
+    max-width: none;
+    margin-left: -180px;
+    margin-top: 10px;
+  }
+}
 
 .bio__cards {
   display: grid;
