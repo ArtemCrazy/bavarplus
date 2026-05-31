@@ -871,7 +871,7 @@ p { margin: 0; }
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 16.5%;
+  width: 18%;
   transform: translateX(-50%);
   z-index: 2;
 }
@@ -879,7 +879,7 @@ p { margin: 0; }
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  width: 86%;
+  width: 96%;
   aspect-ratio: 1 / 0.92;
   display: flex;
   align-items: center;
@@ -937,12 +937,12 @@ p { margin: 0; }
   line-height: 1.45;
 }
 
-/* odd (--down): изображение внизу (низ на узле y=370 → 38.3% от низа), карточка сверху */
-.pf-stage--down .pf-img  { bottom: 38.33%; }
-.pf-stage--down .pf-card { top: 2%; }
-/* even (--up): изображение вверху (низ на узле y=230 → 61.6% от низа), карточка снизу */
-.pf-stage--up .pf-img  { bottom: 61.66%; }
-.pf-stage--up .pf-card { bottom: 2%; }
+/* odd (--down): изображение внизу (низ на узле y=375 → 37.5% от низа), карточка сверху */
+.pf-stage--down .pf-img  { bottom: 37.5%; }
+.pf-stage--down .pf-card { top: 1%; }
+/* even (--up): изображение вверху (низ на узле y=225 → 62.5% от низа), карточка снизу */
+.pf-stage--up .pf-img  { bottom: 62.5%; }
+.pf-stage--up .pf-card { bottom: 1%; }
 
 @media (max-width: 880px) {
   .process-flow {
