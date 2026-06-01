@@ -234,16 +234,50 @@ function recalc() {
 recalc();
 
 // ============================================================
-// Form (prototype only)
+// Form (prototype only) — успех на любую форму с .js-lead / id contact-form / modal-form
 // ============================================================
-const form = document.getElementById('contact-form');
-if (form) {
+function wireForm(form) {
+  if (!form) return;
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const btn = form.querySelector('button[type=submit]');
+    if (!btn) return;
     const old = btn.textContent;
     btn.textContent = '✓ Заявка отправлена';
     btn.disabled = true;
     setTimeout(() => { btn.textContent = old; btn.disabled = false; form.reset(); }, 2400);
   });
 }
+wireForm(document.getElementById('contact-form'));
+wireForm(document.getElementById('modal-form'));
+
+// ============================================================
+// Модальное окно «Связаться»
+// ============================================================
+(function () {
+  const modal = document.getElementById('lead-modal');
+  if (!modal) return;
+  let lastFocus = null;
+  const open = () => {
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    requestAnimationFrame(() => modal.classList.add('is-open'));
+    const f = modal.querySelector('input');
+    if (f) setTimeout(() => f.focus(), 60);
+  };
+  const close = () => {
+    modal.classList.remove('is-open');
+    document.body.classList.remove('modal-open');
+    setTimeout(() => { modal.hidden = true; if (lastFocus) lastFocus.focus(); }, 280);
+  };
+  document.querySelectorAll('[data-modal-open]').forEach(el => {
+    el.addEventListener('click', (e) => { e.preventDefault(); open(); });
+  });
+  modal.querySelectorAll('[data-modal-close]').forEach(el => {
+    el.addEventListener('click', close);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hidden) close();
+  });
+})();
