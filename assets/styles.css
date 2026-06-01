@@ -1589,6 +1589,7 @@ p { margin: 0; }
   display: grid;
   gap: 12px;
   max-width: 920px;
+  margin: 0 auto;
 }
 .faq-item {
   background: var(--surface);
