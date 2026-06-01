@@ -1685,7 +1685,9 @@ p { margin: 0; }
   height: 100%;
   object-fit: cover;
   z-index: 0;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
+.case:hover .case__img { transform: scale(1.06); }
 .case__photo .case__tag { position: relative; z-index: 1; }
 .case__tag {
   display: inline-flex;
@@ -1732,8 +1734,8 @@ p { margin: 0; }
 /* стрелки */
 .cases__arrow {
   position: absolute;
-  top: 50%;
-  transform: translateY(calc(-50% - 18px));  /* центр по треку (компенсируем точки снизу) */
+  top: 40%;                 /* стартовое; точная вертикаль (центр фото) задаётся в JS */
+  transform: translateY(-50%);
   z-index: 5;
   width: 52px;
   height: 52px;

@@ -289,22 +289,39 @@ wireForm(document.getElementById('modal-form'));
     b.className = 'cases__dot' + (i === 0 ? ' is-active' : '');
     b.type = 'button';
     b.setAttribute('aria-label', 'Кейс ' + (i + 1));
-    b.addEventListener('click', () => scrollToCard(i));
+    b.addEventListener('click', () => scrollToDot(i));
     dotsWrap.appendChild(b);
     return b;
   });
 
   // шаг = расстояние между соседними карточками (ширина + gap)
   const step = () => (cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : cards[0].offsetWidth);
-  const activeIndex = () => Math.round(track.scrollLeft / step());
-  const scrollToCard = (i) => {
+  const maxScroll = () => track.scrollWidth - track.clientWidth;
+  // активная точка — по доле прокрутки (конец трека = последняя точка)
+  const activeIndex = () => {
+    const m = maxScroll();
+    if (m <= 1) return 0;
+    return Math.round((track.scrollLeft / m) * (cards.length - 1));
+  };
+  const scrollToDot = (i) => {
     const n = Math.max(0, Math.min(i, cards.length - 1));
-    track.scrollTo({ left: n * step(), behavior: 'smooth' });
+    track.scrollTo({ left: maxScroll() * (n / (cards.length - 1)), behavior: 'smooth' });
   };
   const sync = () => {
     const a = activeIndex();
     dots.forEach((d, i) => d.classList.toggle('is-active', i === a));
   };
+
+  // стрелки — строго по центру фото карточки
+  const placeArrows = () => {
+    const photo = root.querySelector('.case__photo');
+    if (!photo) return;
+    const y = photo.offsetTop + photo.offsetHeight / 2;
+    [prev, next].forEach(a => { if (a) a.style.top = y + 'px'; });
+  };
+  placeArrows();
+  window.addEventListener('resize', placeArrows);
+  window.addEventListener('load', placeArrows);
 
   prev && prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
   next && next.addEventListener('click', () => track.scrollBy({ left:  step(), behavior: 'smooth' }));
