@@ -1942,12 +1942,11 @@ p { margin: 0; }
 /* ============================================================
    BLOCK 12 v2 — контакты: слева чип+заголовок+контакты, справа тёмная форма
    ============================================================ */
-#contact .wrap {
+#contact {
   background-image: url('contact-bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: var(--r-lg);
 }
 .contact2 {
   display: grid;
