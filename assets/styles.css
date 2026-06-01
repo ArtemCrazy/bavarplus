@@ -1658,12 +1658,14 @@ p { margin: 0; }
   grid-auto-columns: calc((100% - 48px) / 3);
   gap: 24px;
   overflow-x: auto;
+  overflow-y: hidden;                 /* без вертикального «iframe»-скролла */
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  padding-bottom: 4px;
+  -ms-overflow-style: none;
+  padding: 18px 2px 22px;             /* запас под тени карточек */
 }
-.cases__track::-webkit-scrollbar { display: none; }
+.cases__track::-webkit-scrollbar { display: none; height: 0; }
 @media (max-width: 1100px) { .cases__track { grid-auto-columns: calc((100% - 24px) / 2); } }
 @media (max-width: 720px)  { .cases__track { grid-auto-columns: 86%; } }
 
