@@ -271,6 +271,58 @@ wireForm(document.getElementById('contact-form'));
 wireForm(document.getElementById('modal-form'));
 
 // ============================================================
+// Кейсы — карусель (стрелки + точки)
+// ============================================================
+(function () {
+  const root = document.querySelector('.cases');
+  if (!root) return;
+  const track = root.querySelector('.cases__track');
+  const cards = Array.from(track.children);
+  const dotsWrap = root.querySelector('.cases__dots');
+  const prev = root.querySelector('.cases__arrow--prev');
+  const next = root.querySelector('.cases__arrow--next');
+  if (!track || !cards.length) return;
+
+  // точки — по числу карточек
+  const dots = cards.map((_, i) => {
+    const b = document.createElement('button');
+    b.className = 'cases__dot' + (i === 0 ? ' is-active' : '');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Кейс ' + (i + 1));
+    b.addEventListener('click', () => scrollToCard(i));
+    dotsWrap.appendChild(b);
+    return b;
+  });
+
+  const scrollToCard = (i) => {
+    const c = cards[Math.max(0, Math.min(i, cards.length - 1))];
+    track.scrollTo({ left: c.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+  };
+  const activeIndex = () => {
+    const x = track.scrollLeft + track.clientWidth / 2;
+    let best = 0, bestD = Infinity;
+    cards.forEach((c, i) => {
+      const center = c.offsetLeft - track.offsetLeft + c.offsetWidth / 2;
+      const d = Math.abs(center - x);
+      if (d < bestD) { bestD = d; best = i; }
+    });
+    return best;
+  };
+  const sync = () => {
+    const a = activeIndex();
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === a));
+  };
+
+  prev && prev.addEventListener('click', () => scrollToCard(activeIndex() - 1));
+  next && next.addEventListener('click', () => scrollToCard(activeIndex() + 1));
+  let raf;
+  track.addEventListener('scroll', () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(sync);
+  });
+})();
+
+// ============================================================
 // Модальное окно «Связаться»
 // ============================================================
 (function () {

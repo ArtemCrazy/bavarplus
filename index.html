@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=107">
+<link rel="stylesheet" href="assets/styles.css?v=108">
 </head>
 <body>
 
@@ -564,43 +564,91 @@
       </div>
     </div>
 
-    <div class="cases-grid">
-      <div class="case">
-        <span class="case__tag">Молочная промышленность</span>
-        <p class="case__quote">
-          Нашли поставщика линии пастеризации в&nbsp;Китае, лично проверили фабрику в&nbsp;Циндао,
-          заключили контракт, привезли и&nbsp;оформили оборудование на&nbsp;таможне, скоординировали
-          приёмку на&nbsp;площадке в&nbsp;Сибири.
-        </p>
-        <div class="case__result">
-          <div class="case__val">5 месяцев</div>
-          <div class="case__lbl">от&nbsp;поиска до&nbsp;запуска поставки</div>
-        </div>
+    <div class="cases">
+      <button class="cases__arrow cases__arrow--prev" type="button" aria-label="Назад">‹</button>
+      <button class="cases__arrow cases__arrow--next" type="button" aria-label="Вперёд">›</button>
+
+      <div class="cases__track">
+        <article class="case">
+          <div class="case__photo">
+            <span class="case__tag">Молочная отрасль</span>
+          </div>
+          <div class="case__body">
+            <p class="case__text">Подобрали и&nbsp;поставили оборудование для&nbsp;новой линии пастеризации и&nbsp;фасовки. Организовали доставку, таможенное оформление и&nbsp;ввод линии в&nbsp;эксплуатацию.</p>
+            <div class="case__metrics">
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                <span class="case__metric-val">4 месяца</span>
+                <span class="case__metric-lbl">от&nbsp;подбора до&nbsp;запуска</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7L9 18l-5-5"/></svg></span>
+                <span class="case__metric-val">100%</span>
+                <span class="case__metric-lbl">оборудования в&nbsp;срок</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span>
+                <span class="case__metric-val">+20%</span>
+                <span class="case__metric-lbl">рост производительности линии</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case__photo">
+            <span class="case__tag">Напитки</span>
+          </div>
+          <div class="case__body">
+            <p class="case__text">Комплексно оснастили производство напитков: линия розлива, упаковка, маркировка. Весь цикл работ от&nbsp;подбора до&nbsp;запуска «под&nbsp;ключ».</p>
+            <div class="case__metrics">
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                <span class="case__metric-val">3,5 месяца</span>
+                <span class="case__metric-lbl">от&nbsp;заявки до&nbsp;запуска</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></span>
+                <span class="case__metric-val">99%</span>
+                <span class="case__metric-lbl">точность поставки и&nbsp;комплектации</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+                <span class="case__metric-val">−12%</span>
+                <span class="case__metric-lbl">снижение затрат на&nbsp;запуск</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case__photo">
+            <span class="case__tag">Промышленное оборудование</span>
+          </div>
+          <div class="case__body">
+            <p class="case__text">Подобрали и&nbsp;поставили технологическое оборудование для&nbsp;расширения производства. Обеспечили логистику, таможенное оформление и&nbsp;пусконаладочные работы.</p>
+            <div class="case__metrics">
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                <span class="case__metric-val">5 месяцев</span>
+                <span class="case__metric-lbl">от&nbsp;подбора до&nbsp;запуска</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/></svg></span>
+                <span class="case__metric-val">0</span>
+                <span class="case__metric-lbl">штрафов и&nbsp;нарушений</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span>
+                <span class="case__metric-val">+18%</span>
+                <span class="case__metric-lbl">прирост объёма выпуска</span>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
-      <div class="case">
-        <span class="case__tag">Производство соусов</span>
-        <p class="case__quote">
-          Подобрали универсальную линию диспергирования у&nbsp;проверенного китайского производителя,
-          прошли весь цикл: контракт → инспекция → логистика → таможня → доставка на&nbsp;площадку.
-          Клиент сам адаптировал рецептуры.
-        </p>
-        <div class="case__result">
-          <div class="case__val">×3 продукта</div>
-          <div class="case__lbl">после поставки оборудования</div>
-        </div>
-      </div>
-      <div class="case">
-        <span class="case__tag">Фарма и&nbsp;БАД</span>
-        <p class="case__quote">
-          Полностью закрыли импорт сырья и&nbsp;комплектующих из&nbsp;Китая. До&nbsp;нас компания держала
-          штат из&nbsp;6 человек на&nbsp;ВЭД, после перехода на&nbsp;нас&nbsp;— фикс 500 тыс&nbsp;₽ в&nbsp;месяц
-          и&nbsp;нулевые штрафы ФТС за&nbsp;год.
-        </p>
-        <div class="case__result">
-          <div class="case__val">−1,4 млн&nbsp;₽/мес</div>
-          <div class="case__lbl">экономия после перехода</div>
-        </div>
-      </div>
+
+      <div class="cases__dots" aria-hidden="true"></div>
     </div>
   </div>
 </section>
@@ -746,6 +794,6 @@
   </div>
 </div>
 
-<script src="assets/app.js?v=17"></script>
+<script src="assets/app.js?v=18"></script>
 </body>
 </html>

@@ -1646,60 +1646,124 @@ p { margin: 0; }
 .shanghai__points .v { color: var(--text-mid); }
 
 /* ============================================================
-   BLOCK 10 — cases
+   BLOCK 10 — cases (карусель карточек: фото + тег + метрики)
    ============================================================ */
-.cases-grid {
+.cases { position: relative; }
+.cases__track {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 48px) / 3);
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-bottom: 4px;
 }
-@media (max-width: 980px) { .cases-grid { grid-template-columns: 1fr; } }
+.cases__track::-webkit-scrollbar { display: none; }
+@media (max-width: 1100px) { .cases__track { grid-auto-columns: calc((100% - 24px) / 2); } }
+@media (max-width: 720px)  { .cases__track { grid-auto-columns: 86%; } }
+
 .case {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  scroll-snap-align: start;
+  background: #fff;
+  border: 1px solid var(--border-soft);
   border-radius: var(--r-lg);
-  padding: 32px;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
   display: flex;
   flex-direction: column;
 }
+.case__photo {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background:
+    linear-gradient(135deg, #eef1f5 0%, #e3e7ec 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 18px;
+}
 .case__tag {
   display: inline-flex;
-  align-self: flex-start;
   font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--accent-dark);
-  background: var(--accent-soft);
-  padding: 6px 12px;
+  color: #fff;
+  background: var(--accent);
+  padding: 8px 16px;
   border-radius: 100px;
-  margin-bottom: 22px;
+  box-shadow: 0 6px 16px rgba(230,57,70,0.3);
 }
-.case__quote {
-  font-size: 16px;
+.case__body { padding: 26px 26px 28px; display: flex; flex-direction: column; flex: 1; }
+.case__text {
+  font-size: 15px;
   line-height: 1.55;
   color: var(--text);
+  margin: 0 0 22px;
   flex: 1;
-  margin-bottom: 24px;
 }
-.case__result {
-  padding-top: 18px;
+.case__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  padding-top: 20px;
   border-top: 1px solid var(--border-soft);
 }
-.case__val {
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--green);
-  font-variant-numeric: tabular-nums;
+.case__metric { display: flex; flex-direction: column; gap: 4px; }
+.case__metric-ic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(230,57,70,0.08);
+  color: var(--accent);
+  margin-bottom: 4px;
 }
-.case__lbl {
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-soft);
-  margin-top: 6px;
+.case__metric-val { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); }
+.case__metric-lbl { font-size: 11px; line-height: 1.35; color: var(--text-soft); }
+
+/* стрелки */
+.cases__arrow {
+  position: absolute;
+  top: 38%;
+  z-index: 5;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(15,23,42,0.10);
+  transition: background .15s ease, color .15s ease, transform .12s ease;
 }
+.cases__arrow:hover { background: var(--accent); color: #fff; }
+.cases__arrow--prev { left: -22px; }
+.cases__arrow--next { right: -22px; }
+@media (max-width: 1200px) { .cases__arrow--prev { left: 6px; } .cases__arrow--next { right: 6px; } }
+
+/* точки */
+.cases__dots {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 28px;
+}
+.cases__dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background .15s ease, width .15s ease;
+}
+.cases__dot.is-active { background: var(--accent); width: 26px; border-radius: 100px; }
 
 /* ============================================================
    BLOCK 11 — FAQ
