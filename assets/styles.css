@@ -1943,10 +1943,11 @@ p { margin: 0; }
    ============================================================ */
 #contact .wrap {
   background-image: url('contact-bg.jpg');
-  background-size: cover;
-  background-position: center right;
+  background-size: auto;             /* натуральный масштаб 1:1, без апскейла; края обрезаются */
+  background-position: center;
   background-repeat: no-repeat;
   border-radius: var(--r-lg);
+  overflow: hidden;
 }
 .contact2 {
   display: grid;
