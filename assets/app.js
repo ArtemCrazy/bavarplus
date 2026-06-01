@@ -107,8 +107,12 @@ switcherLinks.forEach(a => {
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        e.target.classList.add('is-visible');
-        io.unobserve(e.target);
+        const el = e.target;
+        el.classList.add('is-visible');
+        io.unobserve(el);
+        // снимаем инлайновую задержку после проявления, иначе она тормозит
+        // последующие hover-переходы (например, красную рамку в FAQ)
+        setTimeout(() => { el.style.transitionDelay = ''; }, 1300);
       }
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
