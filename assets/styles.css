@@ -1720,7 +1720,7 @@ p { margin: 0; }
   box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
   transition: border-color .15s ease, box-shadow .2s ease;
 }
-.faq-item:hover { box-shadow: 0 16px 36px rgba(15, 23, 42, 0.09); }
+.faq-item:hover { box-shadow: 0 16px 36px rgba(15, 23, 42, 0.09); border-left-color: var(--accent); }
 .faq-item[open] { border-left-color: var(--accent); }
 .faq-item summary {
   list-style: none;
