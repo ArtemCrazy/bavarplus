@@ -74,7 +74,7 @@ switcherLinks.forEach(a => {
     '.section__title', '.section__lede',
     '.cmp-card', '.process-flow', '.guarantees',
     '.bio__intro', '.bio-card', '.bio-notes',
-    '.step', '.adv', '.calc__panel',
+    '.step', '.adv-stats', '.calc__panel',
     '.faq-item', '.contact2', '.office2__left', '.office2__visual'
   ].join(', ');
 
