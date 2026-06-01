@@ -1685,9 +1685,12 @@ p { margin: 0; }
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.case:hover .case__img { transform: scale(1.06); }
+/* специфичность выше, чем у img.lz — иначе transform-переход перебивается */
+.case__photo .case__img {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease;
+}
+.case__photo:hover .case__img { transform: scale(1.06); }
 .case__photo .case__tag { position: relative; z-index: 1; }
 .case__tag {
   display: inline-flex;
