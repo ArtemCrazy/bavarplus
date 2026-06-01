@@ -1508,7 +1508,7 @@ p { margin: 0; }
   display: grid;
   grid-template-columns: 1fr 1.05fr;
   gap: 48px;
-  align-items: center;
+  align-items: stretch;
 }
 @media (max-width: 1024px) { .office2 { grid-template-columns: 1fr; gap: 36px; } }
 .office2__left { align-self: start; }
@@ -1563,14 +1563,19 @@ p { margin: 0; }
 
 /* фон картинки совпадает с фоном секции (светло-серый) — сливается бесшовно,
    без рамки и без «вырезания» */
-.office2__visual { position: relative; }
+.office2__visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
 .office2__illo {
   display: block;
-  width: 100%;
+  width: auto;
   height: auto;
-}
-@media (min-width: 1280px) {
-  .office2__illo { width: 112%; max-width: none; margin-left: -7%; }
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* старые стили шанхая (не используются, оставлены для совместимости) */
