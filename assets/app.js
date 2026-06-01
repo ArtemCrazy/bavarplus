@@ -294,27 +294,20 @@ wireForm(document.getElementById('modal-form'));
     return b;
   });
 
+  // шаг = расстояние между соседними карточками (ширина + gap)
+  const step = () => (cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : cards[0].offsetWidth);
+  const activeIndex = () => Math.round(track.scrollLeft / step());
   const scrollToCard = (i) => {
-    const c = cards[Math.max(0, Math.min(i, cards.length - 1))];
-    track.scrollTo({ left: c.offsetLeft - track.offsetLeft, behavior: 'smooth' });
-  };
-  const activeIndex = () => {
-    const x = track.scrollLeft + track.clientWidth / 2;
-    let best = 0, bestD = Infinity;
-    cards.forEach((c, i) => {
-      const center = c.offsetLeft - track.offsetLeft + c.offsetWidth / 2;
-      const d = Math.abs(center - x);
-      if (d < bestD) { bestD = d; best = i; }
-    });
-    return best;
+    const n = Math.max(0, Math.min(i, cards.length - 1));
+    track.scrollTo({ left: n * step(), behavior: 'smooth' });
   };
   const sync = () => {
     const a = activeIndex();
     dots.forEach((d, i) => d.classList.toggle('is-active', i === a));
   };
 
-  prev && prev.addEventListener('click', () => scrollToCard(activeIndex() - 1));
-  next && next.addEventListener('click', () => scrollToCard(activeIndex() + 1));
+  prev && prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+  next && next.addEventListener('click', () => track.scrollBy({ left:  step(), behavior: 'smooth' }));
   let raf;
   track.addEventListener('scroll', () => {
     cancelAnimationFrame(raf);
