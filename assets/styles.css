@@ -1499,8 +1499,86 @@ p { margin: 0; }
 .adv__desc { font-size: 14px; color: var(--text-mid); line-height: 1.5; }
 
 /* ============================================================
-   BLOCK 09 — Shanghai
+   BLOCK 09 — офис в Шанхае: слева чип+заголовок+2×2 карточки, справа изометрия
    ============================================================ */
+.office2 {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 48px;
+  align-items: center;
+}
+@media (max-width: 1024px) { .office2 { grid-template-columns: 1fr; gap: 36px; } }
+.office2__chip {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.office2__title {
+  font-size: clamp(32px, 3.8vw, 50px);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px;
+}
+.office2__lede {
+  font-size: 16px;
+  color: var(--text-mid);
+  line-height: 1.6;
+  max-width: 540px;
+  margin: 0 0 36px;
+}
+.office2__cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+@media (max-width: 480px) { .office2__cards { grid-template-columns: 1fr; } }
+.office-card {
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  transition: box-shadow .2s ease, transform .12s ease;
+}
+.office-card:hover { box-shadow: 0 16px 36px rgba(15,23,42,0.08); transform: translateY(-2px); }
+.office-card__ic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(230,57,70,0.10);
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.office-card__title { font-size: 17px; font-weight: 700; line-height: 1.2; margin: 0 0 8px; }
+.office-card__desc { font-size: 14px; color: var(--text-mid); line-height: 1.5; margin: 0; }
+
+.office2__visual { position: relative; }
+.office2__illo {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* белый фон растворяется в светлой секции, карта/здание/тени остаются;
+     края мягко затухают, чтобы не было видно прямоугольной рамки */
+  mix-blend-mode: multiply;
+  -webkit-mask-image:
+    linear-gradient(to right,  transparent 0, #000 6%, #000 94%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image:
+    linear-gradient(to right,  transparent 0, #000 6%, #000 94%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%);
+          mask-composite: intersect;
+}
+@media (min-width: 1280px) { .office2__illo { width: 118%; max-width: none; margin-right: -100px; } }
+
+/* старые стили шанхая (не используются, оставлены для совместимости) */
 .shanghai {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
