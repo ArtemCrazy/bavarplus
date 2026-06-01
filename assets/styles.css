@@ -1752,6 +1752,7 @@ p { margin: 0; }
   box-shadow: 0 8px 22px rgba(15,23,42,0.10);
   transition: background .15s ease, color .15s ease;
 }
+.cases__arrow svg { display: block; }
 .cases__arrow:hover { background: var(--accent); color: #fff; }
 .cases__arrow--prev { left: -22px; }
 .cases__arrow--next { right: -22px; }
