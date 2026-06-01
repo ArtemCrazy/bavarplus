@@ -2110,3 +2110,12 @@ a.contact2__val:hover { color: var(--accent); }
 .modal__check input { margin-top: 2px; flex-shrink: 0; accent-color: var(--accent); }
 .modal__check a { color: var(--text-mid); text-decoration: underline; }
 body.modal-open { overflow: hidden; }
+
+/* ============================================================
+   LAZY LOAD — плавное проявление подгружаемых картинок
+   ============================================================ */
+img.lz { opacity: 0; transition: opacity 0.55s ease; }
+img.lz.lz-loaded { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  img.lz { transition: none; }
+}

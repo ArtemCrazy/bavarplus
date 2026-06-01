@@ -116,19 +116,34 @@ switcherLinks.forEach(a => {
 })();
 
 // ============================================================
-// Process-flow (блок 04): показываем плейсхолдер, пока нет PNG
+// Lazy Load — подгрузка картинок по мере приближения к вьюпорту
+// (data-src → src за 300px до появления, плавный fade-in)
 // ============================================================
-document.querySelectorAll('.pf-img img').forEach(img => {
-  const wrap = img.closest('.pf-img');
-  if (!wrap) return;
-  const markLoaded = () => wrap.classList.add('is-loaded');
-  const markFailed = () => { img.style.display = 'none'; };
-  if (img.complete) {
-    if (img.naturalWidth > 0) markLoaded(); else markFailed();
-  }
-  img.addEventListener('load', markLoaded);
-  img.addEventListener('error', markFailed);
-});
+(function () {
+  const imgs = Array.from(document.querySelectorAll('img[data-src]'));
+  if (!imgs.length) return;
+
+  const reveal = (img) => {
+    img.classList.add('lz-loaded');
+    // блок 04: скрыть плейсхолдер, когда сцена реально загрузилась
+    const pf = img.closest('.pf-img');
+    if (pf) pf.classList.add('is-loaded');
+  };
+  const load = (img) => {
+    if (!img.dataset.src) return;
+    img.addEventListener('load', () => reveal(img), { once: true });
+    img.addEventListener('error', () => { if (img.closest('.pf-img')) img.style.display = 'none'; }, { once: true });
+    img.src = img.dataset.src;
+    img.removeAttribute('data-src');
+    if (img.complete && img.naturalWidth > 0) reveal(img); // из кэша — мгновенно
+  };
+
+  if (!('IntersectionObserver' in window)) { imgs.forEach(load); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { load(e.target); io.unobserve(e.target); } });
+  }, { rootMargin: '300px 0px' });
+  imgs.forEach(img => io.observe(img));
+})();
 
 // ============================================================
 // FAQ — плавное раскрытие/сворачивание (нативный <details> рывком)
