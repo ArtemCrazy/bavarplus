@@ -1673,12 +1673,21 @@ p { margin: 0; }
 .case__photo {
   position: relative;
   aspect-ratio: 16 / 10;
-  background:
-    linear-gradient(135deg, #eef1f5 0%, #e3e7ec 100%);
+  background: linear-gradient(135deg, #eef1f5 0%, #e3e7ec 100%);
   display: flex;
   align-items: flex-end;
   padding: 18px;
+  overflow: hidden;
 }
+.case__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.case__photo .case__tag { position: relative; z-index: 1; }
 .case__tag {
   display: inline-flex;
   font-size: 12px;
