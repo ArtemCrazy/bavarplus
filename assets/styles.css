@@ -1414,7 +1414,7 @@ p { margin: 0; }
   letter-spacing: -0.03em;
   color: var(--accent);
   line-height: 1;
-  margin: 20px 0 6px;
+  margin: 0 0 6px;
   font-variant-numeric: tabular-nums;
 }
 .calc__hero-sub { font-size: 14px; color: var(--text-mid); margin-bottom: 24px; }
