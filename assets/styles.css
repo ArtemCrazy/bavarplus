@@ -1337,10 +1337,9 @@ p { margin: 0; }
   border-radius: var(--r-lg);
   padding: 36px;
 }
-.calc__panel--dark {
-  background: var(--bg-dark);
-  color: #fff;
-  border-color: transparent;
+.calc__panel--result {
+  background: linear-gradient(160deg, #fff4f3 0%, #ffe9eb 100%);
+  border-color: rgba(230, 57, 70, 0.18);
 }
 .calc__panel-tag {
   display: inline-flex;
@@ -1359,7 +1358,7 @@ p { margin: 0; }
   background: var(--accent);
   border-radius: 50%;
 }
-.calc__panel--dark .calc__panel-tag { color: rgba(255,255,255,0.5); }
+.calc__panel--result .calc__panel-tag { color: var(--accent); }
 .calc__field { margin-bottom: 24px; }
 .calc__field:last-child { margin-bottom: 0; }
 .calc__lbl {
@@ -1409,62 +1408,59 @@ p { margin: 0; }
   margin: 20px 0 6px;
   font-variant-numeric: tabular-nums;
 }
-.calc__hero-sub { font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 28px; }
+.calc__hero-sub { font-size: 14px; color: var(--text-mid); margin-bottom: 24px; }
 .calc__breakdown { list-style: none; padding: 0; margin: 0; }
 .calc__breakdown li {
   display: flex;
-  justify-content: space-between;
-  padding: 12px 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  align-items: center;
+  gap: 11px;
+  padding: 11px 0;
+  border-top: 1px solid rgba(230, 57, 70, 0.12);
   font-size: 14px;
 }
 .calc__breakdown li:first-child { border-top: none; }
-.calc__breakdown li.total {
-  margin-top: 8px;
-  padding-top: 18px;
-  border-top: 2px solid var(--accent);
-  font-weight: 700;
-  font-size: 16px;
+.br-ic {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+  display: flex;
 }
-.calc__breakdown .nm { color: rgba(255,255,255,0.65); }
-.calc__breakdown .vl { color: #fff; font-variant-numeric: tabular-nums; font-weight: 600; }
+.br-ic svg { width: 100%; height: 100%; display: block; }
+.calc__breakdown .nm { color: var(--text-mid); }
+.calc__breakdown .vl {
+  margin-left: auto;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
 
-/* Две итоговые строки — наглядные полосы-бары */
-.calc__breakdown li.total--bar {
-  display: block;
-  border-top: none;
-  margin-top: 0;
-  padding: 16px 0 0;
+/* Две итоговые плашки */
+.calc__pills {
+  margin-top: 18px;
+  display: grid;
+  gap: 10px;
 }
-.calc__breakdown li.total--bar:first-of-type { margin-top: 8px; padding-top: 18px; border-top: 2px solid rgba(255,255,255,0.12); }
-.bar-head {
+.calc__pill {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 10px;
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(230, 57, 70, 0.16);
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 14px;
 }
-.bar-head .nm { text-transform: uppercase; letter-spacing: 0.04em; font-size: 12px; font-weight: 600; }
-.bar-head .vl { font-size: 17px; }
-.bar {
-  height: 10px;
-  border-radius: 100px;
-  background: rgba(255,255,255,0.08);
-  overflow: hidden;
+.calc__pill .nm { color: var(--text-mid); font-weight: 600; }
+.calc__pill .vl {
+  font-weight: 800;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
 }
-.bar__fill {
-  display: block;
-  height: 100%;
-  width: 0;
-  border-radius: 100px;
-  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.bar__fill--own {
-  background: linear-gradient(90deg, #b22330, var(--accent));
-}
-.bar__fill--bavar {
-  background: linear-gradient(90deg, var(--accent), #ff6b78);
-}
-.calc__cta { margin-top: 28px; }
+.calc__pill--bavar { border-color: rgba(230, 57, 70, 0.32); }
+.calc__pill--bavar .vl { color: var(--accent); }
+.calc__cta { margin-top: 24px; }
 .calc__cta .btn { width: 100%; }
 
 /* ============================================================
