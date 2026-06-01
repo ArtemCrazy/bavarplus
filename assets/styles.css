@@ -1614,13 +1614,15 @@ p { margin: 0; }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary::after {
   content: '+';
-  font-size: 24px;
+  font-size: 22px;
+  line-height: 1;
   color: var(--accent);
   font-weight: 400;
   width: 28px;
   height: 28px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
   background: var(--accent-soft);
   flex-shrink: 0;
@@ -1720,6 +1722,121 @@ p { margin: 0; }
 }
 .form__check input { margin-top: 3px; flex-shrink: 0; }
 .form__check a { color: var(--accent); text-decoration: underline; }
+
+/* ============================================================
+   BLOCK 12 v2 — контакты: слева чип+заголовок+контакты, справа тёмная форма
+   ============================================================ */
+.contact2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+@media (max-width: 900px) { .contact2 { grid-template-columns: 1fr; gap: 36px; } }
+
+.contact2__chip {
+  display: inline-block;
+  padding: 8px 18px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-mid);
+  margin-bottom: 28px;
+}
+.contact2__title {
+  font-size: clamp(34px, 4vw, 54px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 40px;
+}
+.contact2__lines { display: grid; gap: 26px; }
+.contact2__line { display: flex; flex-direction: column; gap: 4px; }
+.contact2__lbl { font-size: 14px; color: var(--text-soft); }
+.contact2__val {
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+a.contact2__val:hover { color: var(--accent); }
+
+.cform {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-dark);
+  color: #fff;
+  border-radius: 28px;
+  padding: 44px;
+}
+/* Декоративная геометрия (окружность + плюс) в правом нижнем углу */
+.cform__deco {
+  position: absolute;
+  right: -120px;
+  bottom: -120px;
+  width: 340px;
+  height: 340px;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.cform__deco::after {
+  content: '+';
+  position: absolute;
+  left: 6px;
+  top: 96px;
+  font-size: 40px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.18);
+}
+.cform > * { position: relative; z-index: 1; }
+.cform__title { font-size: clamp(22px, 2.4vw, 30px); font-weight: 700; margin: 0 0 10px; }
+.cform__sub { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.5; margin: 0 0 28px; }
+.cform__input {
+  width: 100%;
+  padding: 18px 22px;
+  margin-bottom: 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  transition: border-color .15s ease, background .15s ease;
+}
+.cform__input::placeholder { color: rgba(255,255,255,0.45); }
+.cform__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255,255,255,0.08);
+}
+.cform__check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 8px 0 24px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.55);
+}
+.cform__check input { margin-top: 2px; flex-shrink: 0; accent-color: var(--accent); }
+.cform__check a { color: rgba(255,255,255,0.85); text-decoration: underline; }
+.cform__btn {
+  width: 100%;
+  padding: 18px 24px;
+  border: none;
+  border-radius: 100px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s ease, transform .12s ease;
+}
+.cform__btn:hover { background: #c52f3b; transform: translateY(-1px); }
 
 /* ============================================================
    FOOTER

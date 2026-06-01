@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=91">
+<link rel="stylesheet" href="assets/styles.css?v=92">
 </head>
 <body>
 
@@ -643,58 +643,41 @@
 <!-- ============================================================
      12 · КОНТАКТЫ + ФОРМА
      ============================================================ -->
-<section class="section section--dark" id="contact">
+<section class="section section--alt" id="contact">
   <div class="wrap">
-    <div class="section__head">
-      <div class="section__head-text">
-        <h2 class="section__title">Обсудим вашу задачу</h2>
-        <p class="section__lede">
-          Опишите, что нужно привезти, запустить или&nbsp;посчитать. Перезвоним в&nbsp;течение
-          рабочего дня и&nbsp;подготовим расчёт.
-        </p>
-      </div>
-    </div>
-
-    <div class="contact">
-      <div>
-        <h3 class="contact__info-title">Прямые контакты</h3>
-        <p class="contact__info-text">
-          Удобнее позвонить&nbsp;— звоните. Удобнее форма&nbsp;— справа. Можно сразу написать
-          в&nbsp;Telegram или&nbsp;на&nbsp;почту.
-        </p>
-        <ul class="contact__channels">
-          <li><span class="k">Телефон</span><span class="v"><a href="tel:+79250028289">+7 925 002-82-89</a></span></li>
-          <li><span class="k">E-mail</span><span class="v"><a href="mailto:alv@bavarswiss.ru">alv@bavarswiss.ru</a></span></li>
-          <li><span class="k">Telegram</span><span class="v"><a href="https://t.me/" target="_blank" rel="noopener">@bavarplus</a></span></li>
-          <li><span class="k">Москва</span><span class="v">ул. 2-я Мытищинская, д. 2, стр. 1, 6/2</span></li>
-          <li><span class="k">Шанхай</span><span class="v">Pudong New Area · по&nbsp;запросу</span></li>
-        </ul>
+    <div class="contact2">
+      <!-- Левая колонка: чип, заголовок, контакты -->
+      <div class="contact2__left">
+        <span class="contact2__chip">Консультация</span>
+        <h2 class="contact2__title">Обсудим вашу задачу</h2>
+        <div class="contact2__lines">
+          <div class="contact2__line">
+            <span class="contact2__lbl">Пн–Пт 9:00–19:00</span>
+            <a class="contact2__val" href="tel:+79250028289">+7 (925) 002-82-89</a>
+          </div>
+          <div class="contact2__line">
+            <span class="contact2__lbl">Вопросы и предложения</span>
+            <a class="contact2__val" href="mailto:alv@bavarswiss.ru">alv@bavarswiss.ru</a>
+          </div>
+          <div class="contact2__line">
+            <span class="contact2__lbl">Telegram</span>
+            <a class="contact2__val" href="https://t.me/" target="_blank" rel="noopener">@bavarplus</a>
+          </div>
+        </div>
       </div>
 
-      <form class="form" id="contact-form" novalidate>
-        <h3 class="form__title">Оставьте заявку</h3>
-        <p class="form__sub">Перезвоним в&nbsp;течение рабочего дня</p>
-        <div class="form__row">
-          <label for="f-name">Как к&nbsp;вам обращаться</label>
-          <input type="text" id="f-name" name="name" placeholder="Иван Петров" required>
-        </div>
-        <div class="form__row">
-          <label for="f-phone">Телефон</label>
-          <input type="tel" id="f-phone" name="phone" placeholder="+7 ___ ___-__-__" required>
-        </div>
-        <div class="form__row">
-          <label for="f-email">E-mail</label>
-          <input type="email" id="f-email" name="email" placeholder="name@company.ru">
-        </div>
-        <div class="form__row">
-          <label for="f-msg">Что нужно сделать</label>
-          <textarea id="f-msg" name="message" placeholder="Кратко: что привезти, какие сроки"></textarea>
-        </div>
-        <label class="form__check">
+      <!-- Правая колонка: тёмная карточка-форма -->
+      <form class="cform" id="contact-form" novalidate>
+        <div class="cform__deco" aria-hidden="true"></div>
+        <h3 class="cform__title">Давайте обсудим вашу задачу</h3>
+        <p class="cform__sub">Оставьте заявку&nbsp;— перезвоним и&nbsp;поможем подобрать решение.</p>
+        <input class="cform__input" type="text" id="f-name" name="name" placeholder="Ваше имя *" required>
+        <input class="cform__input" type="tel" id="f-phone" name="phone" placeholder="Ваш номер телефона *" required>
+        <label class="cform__check">
           <input type="checkbox" id="f-agree" required>
-          <span>Согласен на&nbsp;обработку персональных данных согласно <a href="#privacy">политике конфиденциальности</a></span>
+          <span>Я&nbsp;соглашаюсь на&nbsp;обработку персональных данных и&nbsp;принимаю условия <a href="#privacy">политики обработки персональных данных</a></span>
         </label>
-        <button type="submit" class="btn btn--primary btn--block btn--lg">Отправить заявку</button>
+        <button type="submit" class="cform__btn">Оставить заявку</button>
       </form>
     </div>
   </div>
@@ -735,6 +718,6 @@
 </footer>
 
 
-<script src="assets/app.js?v=10"></script>
+<script src="assets/app.js?v=11"></script>
 </body>
 </html>

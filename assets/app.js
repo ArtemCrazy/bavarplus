@@ -75,7 +75,7 @@ switcherLinks.forEach(a => {
     '.cmp-card', '.process-flow', '.guarantees',
     '.bio__intro', '.bio-card', '.bio-notes',
     '.step', '.adv', '.calc__panel',
-    '.case', '.faq-item', '.contact', '.shanghai'
+    '.case', '.faq-item', '.contact2', '.shanghai'
   ].join(', ');
 
   const els = Array.from(document.querySelectorAll(SEL));
