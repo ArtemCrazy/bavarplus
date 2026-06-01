@@ -1938,6 +1938,12 @@ p { margin: 0; }
 /* ============================================================
    BLOCK 12 v2 — контакты: слева чип+заголовок+контакты, справа тёмная форма
    ============================================================ */
+#contact {
+  background-image: url('contact-bg.jpg');
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+}
 .contact2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
