@@ -1706,55 +1706,57 @@ p { margin: 0; }
    ============================================================ */
 .faq-list {
   display: grid;
-  gap: 12px;
-  max-width: 920px;
-  margin: 0 auto;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  align-items: start;   /* раскрытая карточка тянется одна, соседняя в ряду не растягивается */
 }
+@media (max-width: 860px) { .faq-list { grid-template-columns: 1fr; } }
 .faq-item {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #fff;
+  border: 1px solid var(--border-soft);
   border-radius: var(--r-lg);
-  transition: border-color .15s ease;
+  border-left: 3px solid transparent;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+  transition: border-color .15s ease, box-shadow .2s ease;
 }
-.faq-item:hover { border-color: var(--text-soft); }
+.faq-item:hover { box-shadow: 0 16px 36px rgba(15, 23, 42, 0.09); }
+.faq-item[open] { border-left-color: var(--accent); }
 .faq-item summary {
   list-style: none;
   cursor: pointer;
-  padding: 24px 28px;
+  padding: 22px 26px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 18px;
-  font-size: 17px;
-  font-weight: 600;
-  line-height: 1.4;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
   color: var(--text);
 }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary::after {
   content: '+';
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1;
   color: var(--accent);
   font-weight: 400;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--accent-soft);
+  border: 1px solid rgba(230,57,70,0.4);
+  background: rgba(230,57,70,0.06);
   flex-shrink: 0;
   transition: transform .2s ease;
 }
-.faq-item[open] summary::after {
-  content: '−';
-  background: var(--accent);
-  color: #fff;
-}
+.faq-item[open] summary { padding-bottom: 16px; border-bottom: 1px solid var(--border-soft); }
+.faq-item[open] summary::after { content: '−'; }
 .faq-item__body {
-  padding: 0 28px 24px;
-  font-size: 15px;
+  padding: 16px 26px 24px;
+  font-size: 14px;
   color: var(--text-mid);
   line-height: 1.65;
   box-sizing: border-box;
