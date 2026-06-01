@@ -1280,34 +1280,45 @@ p { margin: 0; }
 .step__title { font-size: 17px; line-height: 1.3; margin-bottom: 8px; position: relative; z-index: 1; }
 .step__desc { font-size: 13px; color: var(--text-mid); line-height: 1.5; position: relative; z-index: 1; }
 
-/* Качающийся контейнер внизу блока «Как мы работаем» — верх растворяется в фоне */
+/* Кран с качающимся контейнером внизу блока «Как мы работаем».
+   Верх всей композиции (трос крана) растворяется в фоне — кран «ниоткуда». */
 .process-crane {
   position: relative;
   width: 100%;
-  height: 290px;
+  height: 300px;
   margin-top: 40px;
   pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 24%, #000 100%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 24%, #000 100%);
+}
+.process-crane__kran {
+  position: absolute;
+  top: 0;
+  left: calc(50% + 16px);
+  transform: translateX(-50%);
+  width: 96px;
+  height: auto;
+  filter: url(#white-to-alpha);
+  z-index: 3;
 }
 .process-crane__box {
   position: absolute;
-  top: 0;
-  left: 50%;
+  top: 70px;
+  left: calc(50% + 8px);
   width: 380px;
   height: auto;
-  transform-origin: 50% 30px;
+  transform-origin: 50% 26px;
   animation: containerSway 5s ease-in-out infinite;
   filter: url(#white-to-alpha);
-  /* верхняя граница растушёвана — контейнер «ниоткуда не свисает» */
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 32%, #000 100%);
-          mask-image: linear-gradient(to bottom, transparent 0, #000 32%, #000 100%);
   z-index: 2;
 }
 @media (prefers-reduced-motion: reduce) {
   .process-crane__box { animation: none; transform: translateX(-50%); }
 }
 @media (max-width: 540px) {
-  .process-crane { height: 220px; }
-  .process-crane__box { width: 290px; transform-origin: 50% 22px; }
+  .process-crane { height: 230px; }
+  .process-crane__kran { width: 72px; }
+  .process-crane__box { width: 290px; top: 54px; transform-origin: 50% 20px; }
 }
 
 /* ============================================================
