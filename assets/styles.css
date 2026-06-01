@@ -1856,8 +1856,11 @@ p { margin: 0; }
 }
 @media (max-width: 900px) { .contact2 { grid-template-columns: 1fr; gap: 36px; } }
 
+.contact2__left { position: relative; }
 .contact2__chip {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   padding: 8px 18px;
   background: #fff;
   border: 1px solid var(--border);
@@ -1865,25 +1868,59 @@ p { margin: 0; }
   font-size: 13px;
   font-weight: 600;
   color: var(--text-mid);
-  margin-bottom: 28px;
+  margin-bottom: 26px;
 }
+.contact2__chip-plus { color: var(--accent); font-weight: 700; }
 .contact2__title {
   font-size: clamp(34px, 4vw, 54px);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.03em;
-  margin: 0 0 40px;
+  margin: 0 0 20px;
 }
-.contact2__lines { display: grid; gap: 26px; }
-.contact2__line { display: flex; flex-direction: column; gap: 4px; }
-.contact2__lbl { font-size: 14px; color: var(--text-soft); }
+.contact2__lede {
+  font-size: 16px;
+  color: var(--text-mid);
+  line-height: 1.6;
+  max-width: 420px;
+  margin: 0 0 34px;
+}
+.contact2__list { list-style: none; margin: 0 0 32px; padding: 0; max-width: 440px; }
+.contact2__item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+.contact2__item:first-child { padding-top: 0; }
+.contact2__ic {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(230,57,70,0.35);
+  background: rgba(230,57,70,0.06);
+  color: var(--accent);
+}
+.contact2__meta { display: flex; flex-direction: column; gap: 3px; }
+.contact2__lbl { font-size: 13px; color: var(--text-soft); }
 .contact2__val {
-  font-size: clamp(22px, 2.4vw, 30px);
+  font-size: 19px;
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.01em;
 }
 a.contact2__val:hover { color: var(--accent); }
+.contact2__callout {
+  border-left: 3px solid var(--accent);
+  padding: 2px 0 2px 18px;
+}
+.contact2__callout h4 { font-size: 16px; font-weight: 700; margin: 0 0 6px; }
+.contact2__callout p { font-size: 14px; color: var(--text-mid); line-height: 1.5; margin: 0; max-width: 380px; }
 
 .cform {
   position: relative;
@@ -1893,28 +1930,30 @@ a.contact2__val:hover { color: var(--accent); }
   border-radius: 28px;
   padding: 44px;
 }
-/* Декоративная геометрия (окружность + плюс) в правом нижнем углу */
+/* Декоративные концентрические окружности в правом верхнем углу */
 .cform__deco {
   position: absolute;
-  right: -120px;
-  bottom: -120px;
-  width: 340px;
-  height: 340px;
-  border: 1px solid rgba(255,255,255,0.10);
+  right: -130px;
+  top: -130px;
+  width: 320px;
+  height: 320px;
   border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 40px rgba(255,255,255,0.04) inset;
   pointer-events: none;
 }
-.cform__deco::after {
-  content: '+';
+.cform__plus {
   position: absolute;
-  left: 6px;
-  top: 96px;
-  font-size: 40px;
+  top: 30px;
+  left: 44px;
+  font-size: 26px;
   font-weight: 300;
-  color: rgba(255,255,255,0.18);
+  line-height: 1;
+  color: var(--accent);
+  z-index: 1;
 }
-.cform > * { position: relative; z-index: 1; }
-.cform__title { font-size: clamp(22px, 2.4vw, 30px); font-weight: 700; margin: 0 0 10px; }
+.cform > *:not(.cform__deco) { position: relative; z-index: 1; }
+.cform__title { font-size: clamp(22px, 2.4vw, 30px); font-weight: 700; margin: 6px 0 10px; }
 .cform__sub { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.5; margin: 0 0 28px; }
 .cform__input {
   width: 100%;

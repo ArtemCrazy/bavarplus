@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=98">
+<link rel="stylesheet" href="assets/styles.css?v=99">
 </head>
 <body>
 
@@ -666,31 +666,54 @@
 <section class="section" id="contact">
   <div class="wrap">
     <div class="contact2">
-      <!-- Левая колонка: чип, заголовок, контакты -->
+      <!-- Левая колонка: чип, заголовок, контакты, callout -->
       <div class="contact2__left">
-        <span class="contact2__chip">Консультация</span>
-        <h2 class="contact2__title">Обсудим вашу задачу</h2>
-        <div class="contact2__lines">
-          <div class="contact2__line">
-            <span class="contact2__lbl">Пн–Пт 9:00–19:00</span>
-            <a class="contact2__val" href="tel:+79250028289">+7 (925) 002-82-89</a>
-          </div>
-          <div class="contact2__line">
-            <span class="contact2__lbl">Вопросы и предложения</span>
-            <a class="contact2__val" href="mailto:alv@bavarswiss.ru">alv@bavarswiss.ru</a>
-          </div>
-          <div class="contact2__line">
-            <span class="contact2__lbl">Telegram</span>
-            <a class="contact2__val" href="https://t.me/" target="_blank" rel="noopener">@bavarplus</a>
-          </div>
+        <span class="contact2__chip"><span class="contact2__chip-plus">+</span>Консультация</span>
+        <h2 class="contact2__title">Обсудим<br>вашу задачу</h2>
+        <p class="contact2__lede">Расскажите о&nbsp;вашем проекте&nbsp;— подберём оптимальное решение, рассчитаем стоимость и&nbsp;сроки.</p>
+
+        <ul class="contact2__list">
+          <li class="contact2__item">
+            <span class="contact2__ic">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>
+            </span>
+            <span class="contact2__meta">
+              <span class="contact2__lbl">Телефон</span>
+              <a class="contact2__val" href="tel:+79250028289">+7 (925) 002-82-89</a>
+            </span>
+          </li>
+          <li class="contact2__item">
+            <span class="contact2__ic">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            </span>
+            <span class="contact2__meta">
+              <span class="contact2__lbl">Email</span>
+              <a class="contact2__val" href="mailto:alv@bavarswiss.ru">alv@bavarswiss.ru</a>
+            </span>
+          </li>
+          <li class="contact2__item">
+            <span class="contact2__ic">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3 2 10.5l6 2.2L18 6l-7.5 9.2.3 4.3 3-3.6 4.2 3z"/></svg>
+            </span>
+            <span class="contact2__meta">
+              <span class="contact2__lbl">Telegram</span>
+              <a class="contact2__val" href="https://t.me/" target="_blank" rel="noopener">@bavarplus</a>
+            </span>
+          </li>
+        </ul>
+
+        <div class="contact2__callout">
+          <h4>Готовы помочь</h4>
+          <p>Ответим на&nbsp;вопросы, подготовим коммерческое предложение и&nbsp;начнём работу.</p>
         </div>
       </div>
 
       <!-- Правая колонка: тёмная карточка-форма -->
       <form class="cform" id="contact-form" novalidate>
         <div class="cform__deco" aria-hidden="true"></div>
-        <h3 class="cform__title">Давайте обсудим вашу задачу</h3>
-        <p class="cform__sub">Оставьте заявку&nbsp;— перезвоним и&nbsp;поможем подобрать решение.</p>
+        <span class="cform__plus" aria-hidden="true">+</span>
+        <h3 class="cform__title">Оставьте заявку</h3>
+        <p class="cform__sub">Перезвоним в&nbsp;рабочее время и&nbsp;поможем подобрать решение.</p>
         <input class="cform__input" type="text" id="f-name" name="name" placeholder="Ваше имя *" required>
         <input class="cform__input" type="tel" id="f-phone" name="phone" placeholder="Ваш номер телефона *" required>
         <label class="cform__check">
