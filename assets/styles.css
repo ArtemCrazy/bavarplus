@@ -1562,22 +1562,16 @@ p { margin: 0; }
 .office-card__title { font-size: 17px; font-weight: 700; line-height: 1.2; margin: 0 0 8px; }
 .office-card__desc { font-size: 14px; color: var(--text-mid); line-height: 1.5; margin: 0; }
 
-/* иллюстрация офиса — в намеренной белой карточке (фон картинки белый,
-   поэтому оформляем как панель, а не пытаемся «вырезать» белое) */
-.office2__visual {
-  position: relative;
-  background: #fff;
-  border-radius: var(--r-lg);
-  border: 1px solid var(--border-soft);
-  padding: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* фон картинки совпадает с фоном секции (светло-серый) — сливается бесшовно,
+   без рамки и без «вырезания» */
+.office2__visual { position: relative; }
 .office2__illo {
   display: block;
   width: 100%;
   height: auto;
+}
+@media (min-width: 1280px) {
+  .office2__illo { width: 112%; max-width: none; margin-left: -7%; }
 }
 
 /* старые стили шанхая (не используются, оставлены для совместимости) */
