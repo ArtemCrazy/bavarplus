@@ -1686,7 +1686,11 @@ p { margin: 0; }
   object-fit: cover;
   z-index: 0;
 }
-.case__photo .case__img { transition: opacity 0.55s ease; }
+.case__photo .case__img {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease;
+  will-change: transform;
+}
+.case__photo:hover .case__img { transform: scale(1.05); }
 .case__photo .case__tag { position: relative; z-index: 1; }
 .case__tag {
   display: inline-flex;
@@ -1736,8 +1740,8 @@ p { margin: 0; }
   top: 40%;                 /* стартовое; точная вертикаль (центр фото) задаётся в JS */
   transform: translateY(-50%);
   z-index: 5;
-  width: 52px;
-  height: 52px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid var(--border);
   background: #fff;
@@ -1754,8 +1758,8 @@ p { margin: 0; }
 }
 .cases__arrow svg { display: block; }
 .cases__arrow:hover { background: var(--accent); color: #fff; }
-.cases__arrow--prev { left: -22px; }
-.cases__arrow--next { right: -22px; }
+.cases__arrow--prev { left: -18px; }
+.cases__arrow--next { right: -18px; }
 @media (max-width: 1200px) { .cases__arrow--prev { left: 6px; } .cases__arrow--next { right: 6px; } }
 
 /* точки */
