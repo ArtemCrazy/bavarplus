@@ -1728,7 +1728,8 @@ p { margin: 0; }
 /* стрелки */
 .cases__arrow {
   position: absolute;
-  top: 38%;
+  top: 50%;
+  transform: translateY(calc(-50% - 18px));  /* центр по треку (компенсируем точки снизу) */
   z-index: 5;
   width: 52px;
   height: 52px;
