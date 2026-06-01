@@ -1430,12 +1430,14 @@ p { margin: 0; }
 .calc__breakdown li:first-child { border-top: none; }
 .br-ic {
   flex: 0 0 auto;
-  width: 18px;
-  height: 18px;
-  color: var(--accent);
+  width: 30px;
+  height: 30px;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .br-ic svg { width: 100%; height: 100%; display: block; }
+.br-ic img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .calc__breakdown .nm { color: var(--text-mid); }
 .calc__breakdown .vl {
   margin-left: auto;
