@@ -1494,16 +1494,15 @@ p { margin: 0; }
   box-shadow: 0 20px 44px rgba(15, 23, 42, 0.10);
 }
 .adv__big {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   color: var(--accent);
-  line-height: 1.12;
+  line-height: 1;
   margin-bottom: 14px;
   font-variant-numeric: tabular-nums;
-  /* резервируем место под две строки, чтобы описания выровнялись по всем карточкам */
-  min-height: 2.24em;
 }
+.adv__title { font-size: 17px; font-weight: 700; line-height: 1.25; margin-bottom: 8px; }
 .adv__desc { font-size: 14px; color: var(--text-mid); line-height: 1.5; margin: 0; }
 
 /* ============================================================
