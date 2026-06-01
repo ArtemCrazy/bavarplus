@@ -1470,6 +1470,14 @@ p { margin: 0; }
 /* ============================================================
    BLOCK 08 — advantages
    ============================================================ */
+/* фоновая инженерная подложка-чертёж — тонкие линии по краям, к центру белеет */
+#advantages {
+  background-image: url('why-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .adv-stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
