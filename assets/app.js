@@ -131,6 +131,39 @@ document.querySelectorAll('.pf-img img').forEach(img => {
 });
 
 // ============================================================
+// FAQ — плавное раскрытие/сворачивание (нативный <details> рывком)
+// ============================================================
+(function () {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const summary = item.querySelector('summary');
+    const body = item.querySelector('.faq-item__body');
+    if (!summary || !body) return;
+    summary.addEventListener('click', (e) => {
+      if (reduce) return;            // системная экономия анимаций — нативное поведение
+      e.preventDefault();
+      if (item.dataset.animating) return;
+      item.dataset.animating = '1';
+      if (item.open) {
+        body.style.height = body.scrollHeight + 'px';
+        body.getBoundingClientRect();
+        body.style.height = '0px';
+        const done = () => { item.open = false; body.style.height = ''; delete item.dataset.animating; };
+        body.addEventListener('transitionend', done, { once: true });
+      } else {
+        item.open = true;
+        const target = body.scrollHeight;
+        body.style.height = '0px';
+        body.getBoundingClientRect();
+        body.style.height = target + 'px';
+        const done = () => { body.style.height = 'auto'; delete item.dataset.animating; };
+        body.addEventListener('transitionend', done, { once: true });
+      }
+    });
+  });
+})();
+
+// ============================================================
 // Calculator
 // ============================================================
 const BAVAR_FIXED = 300_000;

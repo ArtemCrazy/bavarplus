@@ -1638,6 +1638,9 @@ p { margin: 0; }
   font-size: 15px;
   color: var(--text-mid);
   line-height: 1.65;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: height 0.32s ease;
 }
 
 /* ============================================================
