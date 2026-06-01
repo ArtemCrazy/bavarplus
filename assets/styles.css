@@ -1754,14 +1754,27 @@ p { margin: 0; }
 }
 .faq-item[open] summary { padding-bottom: 16px; border-bottom: 1px solid var(--border-soft); }
 .faq-item[open] summary::after { content: '−'; }
+/* Плавное раскрытие через grid-template-rows (без рывков height) */
 .faq-item__body {
-  padding: 16px 26px 24px;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.34s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.faq-item.is-expanded .faq-item__body { grid-template-rows: 1fr; }
+.faq-item__inner {
+  overflow: hidden;
+  min-height: 0;
+  padding: 0 26px;
   font-size: 14px;
   color: var(--text-mid);
   line-height: 1.65;
-  box-sizing: border-box;
-  overflow: hidden;
-  transition: height 0.32s ease;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.05s, padding 0.34s ease;
+}
+.faq-item.is-expanded .faq-item__inner { opacity: 1; padding: 16px 26px 24px; }
+@media (prefers-reduced-motion: reduce) {
+  .faq-item__body { transition: none; }
+  .faq-item__inner { transition: none; }
 }
 
 /* ============================================================
