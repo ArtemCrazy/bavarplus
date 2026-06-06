@@ -1629,6 +1629,55 @@ p { margin: 0; }
   color: var(--text-soft);
   line-height: 1.55;
 }
+.calc-alert {
+  margin: 28px auto 0;
+  max-width: 760px;
+  background: var(--accent-soft);
+  border: 1px solid rgba(230, 57, 70, 0.20);
+  border-radius: var(--r-lg);
+  padding: 22px 26px;
+}
+.calc-alert__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--accent-dark);
+  margin-bottom: 14px;
+}
+.calc-alert__ic {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1;
+}
+.calc-alert__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.calc-alert__list li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 1.5;
+}
+.calc-alert__list li::before {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
 
 /* ============================================================
    BLOCK 08 — advantages
