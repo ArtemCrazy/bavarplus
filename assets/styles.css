@@ -1558,6 +1558,14 @@ p { margin: 0; }
   font-variant-numeric: tabular-nums;
 }
 .calc__hero-sub { font-size: 14px; color: var(--text-mid); margin-bottom: 24px; }
+.calc__breakdown-cap {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 10px;
+}
 .calc__breakdown { list-style: none; padding: 0; margin: 0; }
 .calc__breakdown li {
   display: flex;

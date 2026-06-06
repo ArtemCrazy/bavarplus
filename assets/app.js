@@ -186,11 +186,10 @@ switcherLinks.forEach(a => {
 // Calculator
 // ============================================================
 const BAVAR_FIXED = 300_000;
-const TAX_RATE = 0.30;
-const OFFICE_PER_PERSON = 8_000;
-const SOFTWARE_BASE = 35_000;
-const TRAVEL_PER_DEAL = 22_000;
-const RISK_PER_DEAL = 10_000;
+const TAX_RATE = 0.43;          // налоги + страховые взносы (на ФОТ «на руки»)
+const OFFICE_MSK = 100_000;     // офис в Москве, ₽/мес
+const OFFICE_SHANGHAI = 500_000; // офис в Шанхае + штат, ₽/мес
+const HIDDEN_COSTS = 200_000;   // скрытые расходы и риски, ₽/мес
 
 const calcEls = {
   staff: document.getElementById('cf-staff'),
@@ -204,7 +203,7 @@ const calcEls = {
   brkFot: document.getElementById('br-fot'),
   brkTaxes: document.getElementById('br-taxes'),
   brkOffice: document.getElementById('br-office'),
-  brkTravel: document.getElementById('br-travel'),
+  brkShanghai: document.getElementById('br-shanghai'),
   brkRisk: document.getElementById('br-risk'),
   brkTotal: document.getElementById('br-total'),
   brkBavar: document.getElementById('br-bavar'),
@@ -219,11 +218,8 @@ function recalc() {
   const deals = +calcEls.deals.value;
 
   const fot = staff * salary;
-  const taxes = fot * TAX_RATE;
-  const office = staff * OFFICE_PER_PERSON + SOFTWARE_BASE;
-  const travel = deals * TRAVEL_PER_DEAL;
-  const risk = deals * RISK_PER_DEAL;
-  const inhouse = fot + taxes + office + travel + risk;
+  const taxes = Math.round(fot * TAX_RATE);
+  const inhouse = fot + taxes + OFFICE_MSK + OFFICE_SHANGHAI + HIDDEN_COSTS;
   const savings = Math.max(0, inhouse - BAVAR_FIXED);
 
   calcEls.lblStaff.textContent = staff + ' ' + plural(staff, ['человек','человека','человек']);
@@ -232,9 +228,9 @@ function recalc() {
 
   calcEls.brkFot.textContent = fmtRub(fot);
   calcEls.brkTaxes.textContent = fmtRub(taxes);
-  calcEls.brkOffice.textContent = fmtRub(office);
-  calcEls.brkTravel.textContent = fmtRub(travel);
-  calcEls.brkRisk.textContent = fmtRub(risk);
+  calcEls.brkOffice.textContent = fmtRub(OFFICE_MSK);
+  if (calcEls.brkShanghai) calcEls.brkShanghai.textContent = fmtRub(OFFICE_SHANGHAI);
+  calcEls.brkRisk.textContent = fmtRub(HIDDEN_COSTS);
   calcEls.brkTotal.textContent = fmtRub(inhouse);
   calcEls.brkBavar.textContent = fmtRub(BAVAR_FIXED);
 
