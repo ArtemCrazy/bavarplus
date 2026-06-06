@@ -216,73 +216,32 @@
       </div>
     </div>
 
-    <div class="process-flow">
-      <!-- Красный пунктирный зигзаг-путь (SVG растягивается на всю ширину,
-           толщина штриха постоянная). Узлы-точки — отдельными HTML-кружками,
-           чтобы оставались круглыми при любой ширине. -->
-      <svg class="pf-svg" viewBox="0 0 1200 600" preserveAspectRatio="none" aria-hidden="true">
-        <path class="pf-line" d="M100 360 L300 240 L500 360 L700 240 L900 360 L1100 240" vector-effect="non-scaling-stroke"/>
-      </svg>
-      <span class="pf-dot" style="left:8.333%;top:60%"></span>
-      <span class="pf-dot" style="left:25%;top:40%"></span>
-      <span class="pf-dot" style="left:41.667%;top:60%"></span>
-      <span class="pf-dot" style="left:58.333%;top:40%"></span>
-      <span class="pf-dot" style="left:75%;top:60%"></span>
-      <span class="pf-dot" style="left:91.667%;top:40%"></span>
-
-      <!-- 01 -->
-      <div class="pf-stage pf-stage--down" style="left:8.333%">
-        <div class="pf-card">
-          <div class="pf-card__num">01</div>
-          <h3 class="pf-card__title">Поиск товаров</h3>
-          <p class="pf-card__desc">Подбор поставщиков и&nbsp;фабрик под&nbsp;вашу задачу, аудит производства до&nbsp;подписания контракта.</p>
-        </div>
-        <div class="pf-img"><img class="lz" data-src="assets/svc-01.png?v=1" alt="Поиск товаров"><span class="pf-img__ph">Поиск</span></div>
+    <div class="steps">
+      <div class="step" data-step="1">
+        <h3 class="step__title">Аудит по&nbsp;всему Китаю</h3>
+        <p class="step__desc">Подбираем фабрики под&nbsp;вашу задачу. Наши люди в&nbsp;Китае оперативно выезжают на&nbsp;любую фабрику. Проверяем производство до&nbsp;подписания контракта.</p>
+        <p class="step__result"><strong>Выезд за&nbsp;24–48&nbsp;часов. Фото/видеофиксация. Отсев недобросовестных поставщиков.</strong></p>
       </div>
-      <!-- 02 -->
-      <div class="pf-stage pf-stage--up" style="left:25%">
-        <div class="pf-card">
-          <div class="pf-card__num">02</div>
-          <h3 class="pf-card__title">Выкуп</h3>
-          <p class="pf-card__desc">Оплата поставщику из&nbsp;Шанхайского офиса, приёмка партии перед отгрузкой, контроль соответствия спецификации.</p>
-        </div>
-        <div class="pf-img"><img class="lz" data-src="assets/svc-02.png?v=1" alt="Выкуп"><span class="pf-img__ph">Выкуп</span></div>
+      <div class="step" data-step="2">
+        <h3 class="step__title">Выкуп товара и&nbsp;контроль качества</h3>
+        <p class="step__desc">Оплачиваем поставщику через китайскую компанию. Вы&nbsp;не&nbsp;открываете валютный счёт. Перед отгрузкой проверяем партию на&nbsp;соответствие вашей спецификации.</p>
+        <p class="step__result"><strong>Приёмка товара до&nbsp;отправки в&nbsp;Россию.</strong></p>
       </div>
-      <!-- 03 -->
-      <div class="pf-stage pf-stage--down" style="left:41.667%">
-        <div class="pf-card">
-          <div class="pf-card__num">03</div>
-          <h3 class="pf-card__title">Юридическое сопровождение</h3>
-          <p class="pf-card__desc">Контракты, валютный контроль, подготовка и&nbsp;проверка всех документов по&nbsp;сделке.</p>
-        </div>
-        <div class="pf-img"><img class="lz" data-src="assets/svc-03.png?v=1" alt="Юридическое сопровождение"><span class="pf-img__ph">Документы</span></div>
+      <div class="step" data-step="3">
+        <h3 class="step__title">Операционное сопровождение</h3>
+        <p class="step__desc">Берём на&nbsp;себя всё, что требует вашего времени: ведём переговоры с&nbsp;поставщиками в&nbsp;Китае и&nbsp;отстаиваем ваши интересы, контролируем сроки производства, решаем спорные вопросы, адаптируем документы под&nbsp;требования РФ и&nbsp;общаемся с&nbsp;перевозчиками за&nbsp;вас.</p>
       </div>
-      <!-- 04 -->
-      <div class="pf-stage pf-stage--up" style="left:58.333%">
-        <div class="pf-card">
-          <div class="pf-card__num">04</div>
-          <h3 class="pf-card__title">Доставка</h3>
-          <p class="pf-card__desc">Море, авиа, ЖД из&nbsp;Китая «под&nbsp;ключ»: бронирование, перевалка, страхование, доставка до&nbsp;вашего склада.</p>
-        </div>
-        <div class="pf-img"><img class="lz" data-src="assets/svc-04.png?v=1" alt="Доставка"><span class="pf-img__ph">Доставка</span></div>
+      <div class="step" data-step="4">
+        <h3 class="step__title">Логистика и&nbsp;консолидация</h3>
+        <p class="step__desc">Собираем грузы от&nbsp;разных поставщиков на&nbsp;своём складе в&nbsp;Китае. Море, авиа, ЖД&nbsp;— подбираем под&nbsp;бюджет и&nbsp;сроки. Страхуем груз, контролируем перевалку и&nbsp;ставки перевозчиков. Свой склад в&nbsp;Москве&nbsp;— примем, временно подержим, отгрузим частями.</p>
       </div>
-      <!-- 05 -->
-      <div class="pf-stage pf-stage--down" style="left:75%">
-        <div class="pf-card">
-          <div class="pf-card__num">05</div>
-          <h3 class="pf-card__title">Таможенное оформление</h3>
-          <p class="pf-card__desc">Декларации, коды&nbsp;ТН&nbsp;ВЭД, корректировки таможенной стоимости. Штрафы за&nbsp;ошибки оформления компенсируем мы.</p>
-        </div>
-        <div class="pf-img"><img class="lz" data-src="assets/svc-05.png?v=1" alt="Таможенное оформление"><span class="pf-img__ph">Таможня</span></div>
+      <div class="step" data-step="5">
+        <h3 class="step__title">Таможенное оформление</h3>
+        <p class="step__desc">Готовим техническое описание под&nbsp;вашу продукцию, адаптируем документы для&nbsp;таможни, подбираем оптимальные коды ТН&nbsp;ВЭД. Сопровождаем при&nbsp;досмотре и&nbsp;отвечаем на&nbsp;запросы таможни. Доводим до&nbsp;выпуска груза без&nbsp;задержек и&nbsp;переплат.</p>
       </div>
-      <!-- 06 -->
-      <div class="pf-stage pf-stage--up" style="left:91.667%">
-        <div class="pf-card">
-          <div class="pf-card__num">06</div>
-          <h3 class="pf-card__title">Сертификация</h3>
-          <p class="pf-card__desc">Оформление сертификатов и&nbsp;деклараций соответствия, разрешительной документации для&nbsp;ввоза и&nbsp;продажи.</p>
-        </div>
-        <div class="pf-img"><img class="lz" data-src="assets/svc-06.png?v=1" alt="Сертификация"><span class="pf-img__ph">Сертификат</span></div>
+      <div class="step" data-step="6">
+        <h3 class="step__title">Сертификация и&nbsp;закрывающие документы</h3>
+        <p class="step__desc">Оформляем сертификаты соответствия и&nbsp;всю разрешительную документацию для&nbsp;ввоза и&nbsp;продажи товара. Готовим закрывающие документы для&nbsp;бухгалтерии&nbsp;— чтобы у&nbsp;налоговой не&nbsp;было вопросов.</p>
       </div>
     </div>
 
@@ -411,53 +370,7 @@
 </section>
 
 <!-- ============================================================
-     06.1 · ВЭД-АУТСОРСИНГ ПОД КЛЮЧ
-     ============================================================ -->
-<section class="section section--alt" id="ved-turnkey">
-  <div class="wrap">
-    <div class="section__head">
-      <div class="section__head-text">
-        <h2 class="section__title">ВЭД-аутсорсинг под&nbsp;ключ</h2>
-        <p class="section__lede">
-          Полный цикл работы с&nbsp;Китаем&nbsp;— от&nbsp;поиска фабрики до&nbsp;закрывающих
-          документов в&nbsp;вашей бухгалтерии.
-        </p>
-      </div>
-    </div>
-
-    <div class="steps">
-      <div class="step" data-step="1">
-        <h3 class="step__title">Аудит по&nbsp;всему Китаю</h3>
-        <p class="step__desc">Подбираем фабрики под&nbsp;вашу задачу. Наши люди в&nbsp;Китае оперативно выезжают на&nbsp;любую фабрику. Проверяем производство до&nbsp;подписания контракта.</p>
-        <p class="step__result"><strong>Выезд за&nbsp;24–48&nbsp;часов. Фото/видеофиксация. Отсев недобросовестных поставщиков.</strong></p>
-      </div>
-      <div class="step" data-step="2">
-        <h3 class="step__title">Выкуп товара и&nbsp;контроль качества</h3>
-        <p class="step__desc">Оплачиваем поставщику через китайскую компанию. Вы&nbsp;не&nbsp;открываете валютный счёт. Перед отгрузкой проверяем партию на&nbsp;соответствие вашей спецификации.</p>
-        <p class="step__result"><strong>Приёмка товара до&nbsp;отправки в&nbsp;Россию.</strong></p>
-      </div>
-      <div class="step" data-step="3">
-        <h3 class="step__title">Операционное сопровождение</h3>
-        <p class="step__desc">Берём на&nbsp;себя всё, что требует вашего времени: ведём переговоры с&nbsp;поставщиками в&nbsp;Китае и&nbsp;отстаиваем ваши интересы, контролируем сроки производства, решаем спорные вопросы, адаптируем документы под&nbsp;требования РФ и&nbsp;общаемся с&nbsp;перевозчиками за&nbsp;вас.</p>
-      </div>
-      <div class="step" data-step="4">
-        <h3 class="step__title">Логистика и&nbsp;консолидация</h3>
-        <p class="step__desc">Собираем грузы от&nbsp;разных поставщиков на&nbsp;своём складе в&nbsp;Китае. Море, авиа, ЖД&nbsp;— подбираем под&nbsp;бюджет и&nbsp;сроки. Страхуем груз, контролируем перевалку и&nbsp;ставки перевозчиков. Свой склад в&nbsp;Москве&nbsp;— примем, временно подержим, отгрузим частями.</p>
-      </div>
-      <div class="step" data-step="5">
-        <h3 class="step__title">Таможенное оформление</h3>
-        <p class="step__desc">Готовим техническое описание под&nbsp;вашу продукцию, адаптируем документы для&nbsp;таможни, подбираем оптимальные коды ТН&nbsp;ВЭД. Сопровождаем при&nbsp;досмотре и&nbsp;отвечаем на&nbsp;запросы таможни. Доводим до&nbsp;выпуска груза без&nbsp;задержек и&nbsp;переплат.</p>
-      </div>
-      <div class="step" data-step="6">
-        <h3 class="step__title">Сертификация и&nbsp;закрывающие документы</h3>
-        <p class="step__desc">Оформляем сертификаты соответствия и&nbsp;всю разрешительную документацию для&nbsp;ввоза и&nbsp;продажи товара. Готовим закрывающие документы для&nbsp;бухгалтерии&nbsp;— чтобы у&nbsp;налоговой не&nbsp;было вопросов.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     06.2 · ФОРМЫ СОТРУДНИЧЕСТВА
+     06.1 · ФОРМЫ СОТРУДНИЧЕСТВА
      ============================================================ -->
 <section class="section" id="cooperation">
   <div class="wrap">
