@@ -646,6 +646,7 @@ p { margin: 0; }
 #contact .section__head-text { margin: 0 auto; text-align: center; }
 #problem .section__lede,
 #services .section__lede,
+#process .process__intro { margin-top: 14px; font-size: 15px; }
 #process .section__lede,
 #calc .section__lede,
 #advantages .section__lede,
@@ -1246,10 +1247,11 @@ p { margin: 0; }
    ============================================================ */
 .steps {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 16px;
   position: relative;
 }
+@media (max-width: 1200px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
 @media (max-width: 1024px) { .steps { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
 @media (max-width: 540px) { .steps { grid-template-columns: 1fr; } }
 
