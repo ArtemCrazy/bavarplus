@@ -1720,6 +1720,14 @@ p { margin: 0; }
 }
 .adv__title { font-size: 17px; font-weight: 700; line-height: 1.25; margin-bottom: 8px; }
 .adv__desc { font-size: 14px; color: var(--text-mid); line-height: 1.5; margin: 0; }
+.adv-outro {
+  margin: 32px auto 0;
+  max-width: 760px;
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
 
 /* ============================================================
    BLOCK 09 — офис в Шанхае: слева чип+заголовок+2×2 карточки, справа изометрия
