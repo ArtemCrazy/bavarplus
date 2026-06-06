@@ -646,7 +646,7 @@ p { margin: 0; }
 #contact .section__head-text { margin: 0 auto; text-align: center; }
 #problem .section__lede,
 #services .section__lede,
-#process .process__intro { margin-top: 14px; font-size: 15px; }
+#process .process__intro { margin-top: 14px; }
 #process .section__lede,
 #calc .section__lede,
 #advantages .section__lede,
