@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=161">
+<link rel="stylesheet" href="assets/styles.css?v=162">
 </head>
 <body>
 
@@ -427,8 +427,8 @@
       <div class="section__head-text">
         <h2 class="section__title">Калькулятор экономии</h2>
         <p class="section__lede">
-          Подставьте параметры вашего отдела&nbsp;— посчитаем разницу с&nbsp;абонентской
-          платой Бавар+. Цифры демо, точный расчёт под&nbsp;вашу структуру&nbsp;— на&nbsp;консультации.
+          Сравните затраты на&nbsp;ваш отдел ВЭД с&nbsp;абонентской платой «Бавар+». Все цифры&nbsp;—
+          демонстрационные. Точный расчёт под&nbsp;вашу структуру&nbsp;— после анализа вашего запроса.
         </p>
       </div>
     </div>
@@ -442,7 +442,7 @@
             <span class="lbl-val" id="cl-staff">7 человек</span>
           </div>
           <input type="range" class="calc__range" id="cf-staff" min="2" max="12" value="7" step="1">
-          <div class="calc__hint">Менеджеры, логист, декларант, юрист, переводчик, руководитель</div>
+          <div class="calc__hint">Менеджеры ВЭД, логист, декларант, юрист, переводчик, руководитель</div>
         </div>
         <div class="calc__field">
           <div class="calc__lbl">
@@ -458,7 +458,7 @@
             <span class="lbl-val" id="cl-deals">8 сделок</span>
           </div>
           <input type="range" class="calc__range" id="cf-deals" min="1" max="30" value="8" step="1">
-          <div class="calc__hint">Влияет на&nbsp;командировки, ПО и&nbsp;резерв на&nbsp;штрафы</div>
+          <div class="calc__hint">Количество сделок в&nbsp;месяц поможет определить порог рентабельности</div>
         </div>
       </div>
 
@@ -497,6 +497,12 @@
         </div>
       </div>
     </div>
+
+    <p class="calc__note">
+      *В&nbsp;калькуляторе не&nbsp;учтены командировки (перелёты, гостиницы, переводчики, выезды
+      на&nbsp;производства), стоимость ПО и&nbsp;резерв на&nbsp;штрафы&nbsp;— эти расходы увеличивают
+      разрыв в&nbsp;пользу аутсорсинга.
+    </p>
   </div>
 </section>
 
