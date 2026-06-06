@@ -73,7 +73,7 @@ switcherLinks.forEach(a => {
   const SEL = [
     '.section__title', '.section__lede',
     '.cmp-card', '.process-flow', '.guarantees',
-    '.bio__intro', '.bio-card', '.bio-notes',
+    '.bio__intro', '.bio-card', '.bio-notes', '.bio-note',
     '.step', '.adv', '.calc__panel', '.form-card', '.forms-compare-wrap',
     '.faq-item', '.contact2', '.office2__left', '.office2__visual'
   ].join(', ');

@@ -1215,6 +1215,18 @@ p { margin: 0; }
 }
 .bio-card:hover .bio-card__arrow { transform: translateX(4px); }
 
+/* Примечание под блоком — биоинжиниринговый бэкграунд + единая точка ответственности */
+.bio-note {
+  margin: 32px 0 0;
+  padding: 18px 24px;
+  border-left: 3px solid var(--accent);
+  background: rgba(230, 57, 70, 0.04);
+  border-radius: 0 10px 10px 0;
+  font-size: 15px;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+
 .bio-notes {
   display: grid;
   grid-template-columns: 1fr 1fr;
