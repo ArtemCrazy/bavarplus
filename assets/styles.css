@@ -629,6 +629,8 @@ p { margin: 0; }
 #problem .section__head,
 #services .section__head,
 #process .section__head,
+#ved-turnkey .section__head,
+#cooperation .section__head,
 #calc .section__head,
 #advantages .section__head,
 #shanghai .section__head,
@@ -638,16 +640,20 @@ p { margin: 0; }
 #problem .section__head-text,
 #services .section__head-text,
 #process .section__head-text,
+#ved-turnkey .section__head-text,
+#cooperation .section__head-text,
 #calc .section__head-text,
 #advantages .section__head-text,
 #shanghai .section__head-text,
 #cases .section__head-text,
 #faq .section__head-text,
 #contact .section__head-text { margin: 0 auto; text-align: center; }
+#process .process__intro { margin-top: 14px; }
 #problem .section__lede,
 #services .section__lede,
-#process .process__intro { margin-top: 14px; }
 #process .section__lede,
+#ved-turnkey .section__lede,
+#cooperation .section__lede,
 #calc .section__lede,
 #advantages .section__lede,
 #shanghai .section__lede,
@@ -1292,6 +1298,89 @@ p { margin: 0; }
   line-height: 1.5;
 }
 .step__result strong { font-weight: 700; }
+
+/* ============================================================
+   БЛОК — Формы сотрудничества: 2 карточки + сравнительная таблица
+   ============================================================ */
+.coop__note { margin-top: 12px; }
+.forms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 860px) { .forms { grid-template-columns: 1fr; } }
+.form-card {
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg);
+  padding: 32px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+}
+.form-card__name {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.form-card__tagline { font-size: 18px; font-weight: 700; line-height: 1.35; margin: 0 0 14px; }
+.form-card__text { font-size: 14px; color: var(--text-mid); line-height: 1.6; margin: 0 0 20px; }
+.form-card__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
+.form-card__list li {
+  position: relative;
+  padding-left: 28px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+}
+.form-card__list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.forms-compare-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 44px 0 20px;
+}
+.forms-compare-wrap {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+}
+@media (max-width: 640px) { .forms-compare-wrap { overflow-x: auto; } }
+.forms-compare { width: 100%; border-collapse: collapse; font-size: 14px; }
+@media (max-width: 640px) { .forms-compare { min-width: 540px; } }
+.forms-compare th,
+.forms-compare td {
+  padding: 16px 20px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border-soft);
+  line-height: 1.45;
+}
+.forms-compare tbody tr:last-child th,
+.forms-compare tbody tr:last-child td { border-bottom: none; }
+.forms-compare thead th {
+  background: var(--bg-alt);
+  font-weight: 700;
+  color: var(--text);
+}
+.forms-compare tbody th {
+  font-weight: 600;
+  color: var(--text-mid);
+  width: 26%;
+}
+.forms-compare tbody td { color: var(--text); }
 
 /* Кран с качающимся контейнером внизу блока «Как мы работаем».
    Верх всей композиции (трос крана) растворяется в фоне — кран «ниоткуда». */
