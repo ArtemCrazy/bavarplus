@@ -1286,14 +1286,12 @@ p { margin: 0; }
 .step__result {
   position: relative;
   z-index: 1;
-  margin: 14px 0 0;
-  padding-top: 14px;
-  border-top: 1px solid var(--border-soft);
+  margin: 12px 0 0;
   font-size: 14px;
   color: var(--text);
   line-height: 1.5;
 }
-.step__result strong { color: var(--accent); font-weight: 700; }
+.step__result strong { font-weight: 700; }
 
 /* Кран с качающимся контейнером внизу блока «Как мы работаем».
    Верх всей композиции (трос крана) растворяется в фоне — кран «ниоткуда». */
