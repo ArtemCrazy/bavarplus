@@ -1310,23 +1310,36 @@ p { margin: 0; }
 }
 @media (max-width: 860px) { .forms { grid-template-columns: 1fr; } }
 .form-card {
+  display: flex;
+  flex-direction: column;
   background: #fff;
   border: 1px solid var(--border-soft);
   border-radius: var(--r-lg);
   padding: 32px;
   box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
 }
+.form-card--primary { border-left: 3px solid var(--accent); }
 .form-card__name {
+  display: inline-block;
+  align-self: flex-start;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
-.form-card__tagline { font-size: 18px; font-weight: 700; line-height: 1.35; margin: 0 0 14px; }
+.form-card__name::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: var(--accent);
+  margin-top: 8px;
+}
+.form-card__tagline { font-size: 20px; font-weight: 700; line-height: 1.3; margin: 0 0 14px; }
 .form-card__text { font-size: 14px; color: var(--text-mid); line-height: 1.6; margin: 0 0 20px; }
-.form-card__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
+.form-card__list { list-style: none; margin: 0 0 22px; padding: 0; display: grid; gap: 11px; }
 .form-card__list li {
   position: relative;
   padding-left: 28px;
@@ -1342,6 +1355,19 @@ p { margin: 0; }
   color: var(--accent);
   font-weight: 700;
 }
+.form-card__fit {
+  margin-top: auto;
+  margin-bottom: 0;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: var(--bg-alt);
+  color: var(--text-mid);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.4;
+}
+.form-card--primary .form-card__fit { background: var(--accent-soft); color: var(--accent-dark); }
 
 .forms-compare-title {
   text-align: center;
@@ -1379,8 +1405,11 @@ p { margin: 0; }
   font-weight: 600;
   color: var(--text-mid);
   width: 26%;
+  background: rgba(230, 57, 70, 0.03);
 }
+.forms-compare thead th:first-child { color: var(--text-mid); font-weight: 600; }
 .forms-compare tbody td { color: var(--text); }
+.forms-compare td.price { font-weight: 800; }
 
 /* Кран с качающимся контейнером внизу блока «Как мы работаем».
    Верх всей композиции (трос крана) растворяется в фоне — кран «ниоткуда». */
