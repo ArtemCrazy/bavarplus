@@ -1269,15 +1269,15 @@ p { margin: 0; }
   overflow: hidden;
   min-height: 150px;
 }
-/* Крупная полупрозрачная цифра-фон, «вытекающая» за правый нижний угол */
+/* Крупная полупрозрачная цифра-фон в правом нижнем углу — видна целиком */
 .step::after {
   content: attr(data-step);
   position: absolute;
-  right: 6px;
-  bottom: -52px;
-  font-size: 190px;
+  right: 14px;
+  bottom: 10px;
+  font-size: 132px;
   font-weight: 800;
-  line-height: 1;
+  line-height: 0.8;
   letter-spacing: -0.05em;
   color: var(--accent);
   opacity: 0.09;
