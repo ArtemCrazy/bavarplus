@@ -297,8 +297,8 @@ p { margin: 0; }
 .hero--v1 { background: var(--bg); }
 .hero--v1 .hero__inner {
   position: relative;
-  min-height: 900px;   /* подняли, чтобы фон-картинка bg-v2.png помещалась целиком */
-  padding: 80px 0 100px;
+  min-height: 760px;   /* компактнее, фон-картинка bg-v2.png всё ещё помещается */
+  padding: 56px 0 72px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -532,7 +532,7 @@ p { margin: 0; }
    SECTION FRAME (для блоков 02-12)
    ============================================================ */
 .section {
-  padding: 96px 0;
+  padding: 68px 0;
   background: var(--bg);
   border-top: 1px solid var(--border-soft);
 }
@@ -541,7 +541,7 @@ p { margin: 0; }
 .section--dark .section__title { color: #fff; }
 .section--dark .section__lede { color: rgba(255,255,255,0.7); }
 .section--dark .section__num { color: var(--accent); }
-@media (max-width: 768px) { .section { padding: 64px 0; } }
+@media (max-width: 768px) { .section { padding: 46px 0; } }
 
 /* ============================================================
    SCROLL-REVEAL — мягкое появление блоков при прокрутке
@@ -565,7 +565,7 @@ p { margin: 0; }
   justify-content: space-between;
   gap: 24px;
   flex-wrap: wrap;
-  margin-bottom: 56px;
+  margin-bottom: 40px;
 }
 .section__head-text { max-width: 760px; }
 .section__num {
