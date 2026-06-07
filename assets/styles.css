@@ -1217,8 +1217,8 @@ p { margin: 0; }
 
 /* Примечание под блоком — биоинжиниринговый бэкграунд + единая точка ответственности */
 .bio-note {
-  margin: 4px 0 0;
-  padding: 18px 22px;
+  margin: 32px 0 0;
+  padding: 18px 24px;
   border-left: 3px solid var(--accent);
   background: rgba(230, 57, 70, 0.04);
   border-radius: 0 10px 10px 0;
