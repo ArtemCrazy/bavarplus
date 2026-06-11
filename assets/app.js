@@ -360,75 +360,87 @@ wireForm(document.getElementById('modal-form'));
 })();
 
 // ============================================================
-// Слайдер услуг (только мобильные): стрелки, точки, центрирование
+// Мобильные слайдеры (стрелки, точки, центрирование активного слайда)
 // ============================================================
 (function () {
-  const track = document.querySelector('#services .process-flow');
-  const nav = document.querySelector('#services .svc-nav');
-  if (!track || !nav) return;
-  const prevBtn = nav.querySelector('.svc-arrow--prev');
-  const nextBtn = nav.querySelector('.svc-arrow--next');
-  const dotsWrap = nav.querySelector('.svc-dots');
-  const slides = Array.prototype.slice.call(track.querySelectorAll('.pf-stage'));
-  if (!slides.length) return;
-
-  const dots = slides.map((_, i) => {
-    const d = document.createElement('button');
-    d.type = 'button';
-    d.className = 'svc-dot';
-    d.setAttribute('aria-label', 'Слайд ' + (i + 1));
-    d.addEventListener('click', () => centerSlide(i));
-    dotsWrap.appendChild(d);
-    return d;
-  });
-
-  function activeIndex() {
-    const max = track.scrollWidth - track.clientWidth;
-    if (max <= 1) return 0;
-    return Math.round((track.scrollLeft / max) * (slides.length - 1));
-  }
-  function centerSlide(i, behavior) {
-    i = Math.max(0, Math.min(slides.length - 1, i));
-    const s = slides[i];
-    const sr = s.getBoundingClientRect();
-    const tr = track.getBoundingClientRect();
-    const delta = (sr.left - tr.left) - (track.clientWidth - sr.width) / 2;
-    track.scrollTo({ left: track.scrollLeft + delta, behavior: behavior || 'smooth' });
-  }
-  function update() {
-    const idx = activeIndex();
-    dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
-  }
-  if (prevBtn) prevBtn.addEventListener('click', () => centerSlide(activeIndex() - 1));
-  if (nextBtn) nextBtn.addEventListener('click', () => centerSlide(activeIndex() + 1));
-  let raf;
-  track.addEventListener('scroll', () => {
-    if (raf) cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(update);
-  }, { passive: true });
-
   const mq = window.matchMedia('(max-width: 768px)');
-  // На мобильных задаём ширину слайда и боковые поля в пикселях,
-  // чтобы активный слайд (включая первый) был ровно по центру. На десктопе — сбрасываем.
-  function layoutSlider() {
-    if (!mq.matches) {
-      track.style.paddingLeft = track.style.paddingRight = '';
-      slides.forEach(s => { s.style.flex = ''; });
-      return;
+
+  function initCarousel(track, nav, slideSelector) {
+    if (!track || !nav) return;
+    const prevBtn = nav.querySelector('.svc-arrow--prev');
+    const nextBtn = nav.querySelector('.svc-arrow--next');
+    const dotsWrap = nav.querySelector('.svc-dots');
+    const slides = Array.prototype.slice.call(track.querySelectorAll(slideSelector));
+    if (!slides.length) return;
+
+    const dots = slides.map((_, i) => {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'svc-dot';
+      d.setAttribute('aria-label', 'Слайд ' + (i + 1));
+      d.addEventListener('click', () => centerSlide(i));
+      dotsWrap.appendChild(d);
+      return d;
+    });
+
+    function activeIndex() {
+      const max = track.scrollWidth - track.clientWidth;
+      if (max <= 1) return 0;
+      return Math.round((track.scrollLeft / max) * (slides.length - 1));
     }
-    const W = track.clientWidth;
-    const slideW = Math.round(W * 0.82);
-    const pad = Math.round((W - slideW) / 2);
-    track.style.paddingLeft = track.style.paddingRight = pad + 'px';
-    slides.forEach(s => { s.style.flex = '0 0 ' + slideW + 'px'; });
-    centerSlide(activeIndex(), 'auto');
+    function centerSlide(i, behavior) {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      const s = slides[i];
+      const sr = s.getBoundingClientRect();
+      const tr = track.getBoundingClientRect();
+      const delta = (sr.left - tr.left) - (track.clientWidth - sr.width) / 2;
+      track.scrollTo({ left: track.scrollLeft + delta, behavior: behavior || 'smooth' });
+    }
+    function update() {
+      const idx = activeIndex();
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+    }
+    if (prevBtn) prevBtn.addEventListener('click', () => centerSlide(activeIndex() - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => centerSlide(activeIndex() + 1));
+    let raf;
+    track.addEventListener('scroll', () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    }, { passive: true });
+
+    // На мобильных задаём ширину слайда и боковые поля в пикселях,
+    // чтобы активный слайд (включая первый) был ровно по центру. На десктопе — сбрасываем.
+    function layoutSlider() {
+      if (!mq.matches) {
+        track.style.paddingLeft = track.style.paddingRight = '';
+        slides.forEach(s => { s.style.flex = ''; });
+        return;
+      }
+      const W = track.clientWidth;
+      const slideW = Math.round(W * 0.82);
+      const pad = Math.round((W - slideW) / 2);
+      track.style.paddingLeft = track.style.paddingRight = pad + 'px';
+      slides.forEach(s => { s.style.flex = '0 0 ' + slideW + 'px'; });
+      centerSlide(activeIndex(), 'auto');
+    }
+    layoutSlider();
+    window.addEventListener('load', layoutSlider);
+    let rt;
+    window.addEventListener('resize', () => {
+      clearTimeout(rt);
+      rt = setTimeout(layoutSlider, 150);
+    });
+    update();
   }
-  layoutSlider();
-  window.addEventListener('load', layoutSlider);
-  let rt;
-  window.addEventListener('resize', () => {
-    clearTimeout(rt);
-    rt = setTimeout(layoutSlider, 150);
-  });
-  update();
+
+  initCarousel(
+    document.querySelector('#services .process-flow'),
+    document.querySelector('#services .svc-nav'),
+    '.pf-stage'
+  );
+  initCarousel(
+    document.querySelector('#process .steps'),
+    document.querySelector('#process .svc-nav'),
+    '.step'
+  );
 })();
