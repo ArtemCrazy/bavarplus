@@ -1232,6 +1232,11 @@ p { margin: 0; }
   gap: 22px;
 }
 @media (max-width: 560px) { .bio__cards { grid-template-columns: 1fr; } }
+/* на телефонах убираем фоновый рисунок и примечание — карточки подтягиваются вверх */
+@media (max-width: 768px) {
+  #industries .bio__illo,
+  #industries .bio-note { display: none; }
+}
 
 /* на мобильных контент блока «Инжиниринг» — по центру, как и остальные секции */
 @media (max-width: 768px) {
