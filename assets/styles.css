@@ -6,6 +6,8 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 :root {
+  /* светлая тема — отключаем принудительный тёмный режим браузера */
+  color-scheme: light;
   /* palette */
   --bg:           #ffffff;
   --bg-alt:       #f7f8fa;
@@ -1567,6 +1569,8 @@ p { margin: 0; }
   .process-crane__kran { width: 72px; }
   .process-crane__box { width: 290px; top: 54px; transform-origin: 50% 20px; }
 }
+/* на мобильных кран не нужен — убираем, чтобы не было большого пустого отступа перед калькулятором */
+@media (max-width: 768px) { .process-crane { display: none; } }
 
 /* ============================================================
    BLOCK 07 — calculator
