@@ -181,7 +181,7 @@ p { margin: 0; }
   padding: 6px 0;
   border-bottom: 1px dashed var(--border);
 }
-@media (max-width: 1024px) { .nav__menu { display: none; } }
+@media (max-width: 1024px) { .nav__menu { display: none; } .logo { margin-right: auto; } }
 @media (max-width: 768px) { .nav__phone { display: none; } }
 
 /* ============================================================
