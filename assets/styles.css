@@ -1038,7 +1038,7 @@ p { margin: 0; }
   .pf-card { order: 2; max-width: 340px; text-align: center; }
 }
 
-/* на телефонах «Полный аутсорсинг ВЭД» — горизонтальный слайдер (экономит место) */
+/* на телефонах «Полный аутсорсинг ВЭД» — слайдер с центрированием, стрелками и точками */
 @media (max-width: 768px) {
   .process-flow {
     max-width: none;
@@ -1049,13 +1049,14 @@ p { margin: 0; }
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: 14px;
-    margin: 0 -20px 8px;
-    padding: 4px 20px 14px;
+    margin: 0;
+    /* боковые поля = (100% − ширина слайда)/2 → первый слайд по центру */
+    padding: 4px 11% 14px;
     scrollbar-width: none;
   }
   .process-flow::-webkit-scrollbar { display: none; }
   .pf-stage {
-    flex: 0 0 80%;
+    flex: 0 0 78%;
     scroll-snap-align: center;
     padding: 0;
     border-top: none;
@@ -1063,7 +1064,43 @@ p { margin: 0; }
   }
   .pf-img { width: 128px; margin-bottom: 12px; }
   .pf-card { max-width: none; width: 100%; }
+  #services .svc-nav { display: flex; }
 }
+
+/* навигация слайдера услуг — по умолчанию скрыта (десктоп — зигзаг) */
+.svc-nav {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 12px;
+}
+.svc-arrow {
+  flex: 0 0 auto;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease;
+}
+.svc-arrow:hover { border-color: var(--accent); color: var(--accent); }
+.svc-arrow svg { display: block; }
+.svc-dots { display: flex; align-items: center; gap: 7px; }
+.svc-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: var(--border);
+  cursor: pointer;
+  transition: background .2s ease, width .2s ease;
+}
+.svc-dot.is-active { background: var(--accent); width: 20px; border-radius: 4px; }
 
 .guarantees {
   background: var(--bg-alt);
