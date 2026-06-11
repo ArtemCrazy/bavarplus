@@ -1038,6 +1038,33 @@ p { margin: 0; }
   .pf-card { order: 2; max-width: 340px; text-align: center; }
 }
 
+/* на телефонах «Полный аутсорсинг ВЭД» — горизонтальный слайдер (экономит место) */
+@media (max-width: 768px) {
+  .process-flow {
+    max-width: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 14px;
+    margin: 0 -20px 8px;
+    padding: 4px 20px 14px;
+    scrollbar-width: none;
+  }
+  .process-flow::-webkit-scrollbar { display: none; }
+  .pf-stage {
+    flex: 0 0 80%;
+    scroll-snap-align: center;
+    padding: 0;
+    border-top: none;
+    justify-content: flex-start;
+  }
+  .pf-img { width: 128px; margin-bottom: 12px; }
+  .pf-card { max-width: none; width: 100%; }
+}
+
 .guarantees {
   background: var(--bg-alt);
   color: var(--text);
