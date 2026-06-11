@@ -1341,9 +1341,10 @@ p { margin: 0; }
 @media (max-width: 980px) { .steps { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
 @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
 
-/* на телефонах «Схема работы» — слайдер со стрелками и точками (как услуги) */
+/* на телефонах «Схема работы» и «Преимущества» — слайдер со стрелками и точками */
 @media (max-width: 768px) {
-  #process .steps {
+  #process .steps,
+  #advantages .steps {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -1356,9 +1357,12 @@ p { margin: 0; }
     padding: 22px 0 24px;
     scrollbar-width: none;
   }
-  #process .steps::-webkit-scrollbar { display: none; }
-  #process .step { scroll-snap-align: center; }
-  #process .svc-nav { display: flex; }
+  #process .steps::-webkit-scrollbar,
+  #advantages .steps::-webkit-scrollbar { display: none; }
+  #process .step,
+  #advantages .step { scroll-snap-align: center; }
+  #process .svc-nav,
+  #advantages .svc-nav { display: flex; }
 }
 
 .step {
@@ -1814,6 +1818,7 @@ p { margin: 0; }
   .calc__hint { display: none; }
   .calc__note { display: none; }
   .calc__field { margin-bottom: 20px; }
+  .calc-alert { display: none; }
 }
 
 /* ============================================================

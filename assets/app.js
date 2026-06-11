@@ -455,4 +455,9 @@ wireForm(document.getElementById('modal-form'));
     document.querySelector('#process .svc-nav'),
     '.step'
   );
+  initCarousel(
+    document.querySelector('#advantages .steps'),
+    document.querySelector('#advantages .svc-nav'),
+    '.step'
+  );
 })();
