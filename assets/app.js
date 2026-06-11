@@ -209,6 +209,7 @@ const calcEls = {
   brkBavar: document.getElementById('br-bavar'),
   barOwn: document.getElementById('bar-own'),
   barBavar: document.getElementById('bar-bavar'),
+  sticky: document.getElementById('cr-sticky'),
 };
 
 function recalc() {
@@ -241,12 +242,24 @@ function recalc() {
 
   calcEls.heroSavings.textContent = fmtShort(savings);
   calcEls.heroSub.textContent = `в месяц · ${fmtShort(savings * 12)} в год`;
+  if (calcEls.sticky) calcEls.sticky.textContent = fmtShort(savings);
 }
 
 ['staff','salary','deals'].forEach(k => {
   if (calcEls[k]) calcEls[k].addEventListener('input', recalc);
 });
 recalc();
+
+// Липкая плашка с экономией показывается, пока блок калькулятора в зоне видимости (мобильные)
+(function () {
+  const calc = document.getElementById('calc');
+  const sticky = document.querySelector('.calc-sticky');
+  if (!calc || !sticky || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => sticky.classList.toggle('is-shown', e.isIntersecting));
+  }, { rootMargin: '-10% 0px -45% 0px' });
+  io.observe(calc);
+})();
 
 // ============================================================
 // Form (prototype only) — успех на любую форму с .js-lead / id contact-form / modal-form

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=179">
+<link rel="stylesheet" href="assets/styles.css?v=180">
 </head>
 <body>
 
@@ -522,6 +522,12 @@
         <li>Риски штрафов: от&nbsp;100 000&nbsp;₽ за&nbsp;ошибку</li>
       </ul>
     </div>
+
+    <!-- липкая плашка с экономией (только мобильные): видна, пока двигаешь ползунки -->
+    <div class="calc-sticky" aria-hidden="true">
+      <span class="calc-sticky__lbl">Экономия с&nbsp;Бавар+ / мес</span>
+      <span class="calc-sticky__val" id="cr-sticky">—</span>
+    </div>
   </div>
 </section>
 
@@ -957,6 +963,6 @@
   </div>
 </div>
 
-<script src="assets/app.js?v=34"></script>
+<script src="assets/app.js?v=35"></script>
 </body>
 </html>
