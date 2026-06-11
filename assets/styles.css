@@ -413,8 +413,9 @@ p { margin: 0; }
   .hero--v1 .hero__inner { min-height: 0; padding: 56px 0 64px; }
   .hero--v1__scene { min-width: 900px; opacity: 0.7; }
 }
-@media (max-width: 600px) {
-  .hero--v1__scene { min-width: 600px; opacity: 0.4; }
+/* на телефонах фоновая сцена обрезается некрасиво — убираем, чистый белый фон */
+@media (max-width: 768px) {
+  .hero--v1__bg { display: none; }
 }
 
 /* ============================================================
