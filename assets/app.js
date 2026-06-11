@@ -429,10 +429,9 @@ wireForm(document.getElementById('modal-form'));
         slides.forEach(s => { s.style.flex = ''; });
         return;
       }
-      const W = track.clientWidth;
-      const slideW = Math.round(W * 0.82);
-      const pad = Math.round((W - slideW) / 2);
-      track.style.paddingLeft = track.style.paddingRight = pad + 'px';
+      // слайд во всю ширину контента (как у остальных карточек) — без увеличенных боковых полей
+      track.style.paddingLeft = track.style.paddingRight = '0px';
+      const slideW = track.clientWidth;
       slides.forEach(s => { s.style.flex = '0 0 ' + slideW + 'px'; });
       centerSlide(activeIndex(), 'auto');
     }
