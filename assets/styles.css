@@ -293,6 +293,11 @@ p { margin: 0; }
   gap: 12px;
   flex-wrap: wrap;
 }
+/* на телефонах кнопки в столбик и одинаковой ширины/высоты */
+@media (max-width: 768px) {
+  .hero__cta { flex-direction: column; align-items: stretch; }
+  .hero__cta .btn { width: 100%; }
+}
 
 /* ============================================================
    HERO V2 · центральный БАВАР+ + контейнер
