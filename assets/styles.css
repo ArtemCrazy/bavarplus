@@ -2314,13 +2314,19 @@ p { margin: 0; }
   align-items: center;
 }
 @media (max-width: 900px) { .contact2 { grid-template-columns: 1fr; gap: 36px; } }
-/* на мобильных центрируем блок контактов */
+/* на мобильных центрируем блок контактов;
+   список — центрированным блоком по ширине самого длинного пункта,
+   пункты выровнены влево, чтобы иконки стояли в одну колонку */
 @media (max-width: 768px) {
-  .contact2__left { text-align: center; }
-  .contact2__lede,
-  .contact2__list { margin-left: auto; margin-right: auto; }
-  .contact2__item { justify-content: center; }
-  .contact2__meta { text-align: left; }
+  #contact .contact2__left { text-align: center; }
+  #contact .contact2__lede { margin-left: auto; margin-right: auto; }
+  #contact .contact2__list {
+    width: fit-content;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #contact .contact2__meta { text-align: left; }
 }
 
 .contact2__left { position: relative; }
