@@ -1050,8 +1050,9 @@ p { margin: 0; }
     -webkit-overflow-scrolling: touch;
     gap: 14px;
     margin: 0;
-    /* боковые поля = (100% − ширина слайда)/2 → первый слайд по центру */
-    padding: 4px 11% 14px;
+    /* боковые поля = (100% − ширина слайда)/2 → первый слайд по центру;
+       запас сверху/снизу, чтобы тень карточек не обрезалась */
+    padding: 22px 11% 24px;
     scrollbar-width: none;
   }
   .process-flow::-webkit-scrollbar { display: none; }
@@ -1344,7 +1345,8 @@ p { margin: 0; }
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     gap: 14px;
-    padding: 4px 0 14px;
+    /* запас сверху/снизу, чтобы тень карточек не обрезалась overflow-контейнером */
+    padding: 22px 0 24px;
     scrollbar-width: none;
   }
   #process .steps::-webkit-scrollbar { display: none; }
