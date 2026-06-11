@@ -2011,7 +2011,12 @@ p { margin: 0; }
 }
 .cases__track::-webkit-scrollbar { display: none; height: 0; }
 @media (max-width: 1100px) { .cases__track { grid-auto-columns: calc((100% - 24px) / 2); } }
-@media (max-width: 720px)  { .cases__track { grid-auto-columns: 86%; } }
+/* мобильные: карточка во всю ширину (по центру, как другие слайдеры), стрелки убраны — только свайп и точки */
+@media (max-width: 768px) {
+  .cases .cases__arrow { display: none; }
+  .cases__track { grid-auto-columns: 100%; gap: 14px; padding: 2px 0 6px; }
+  .case { scroll-snap-align: center; }
+}
 
 .case {
   scroll-snap-align: start;
@@ -2084,7 +2089,7 @@ p { margin: 0; }
   color: var(--accent);
   margin-bottom: 4px;
 }
-.case__metric-val { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); }
+.case__metric-val { font-size: 18px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); white-space: nowrap; }
 .case__metric-lbl { font-size: 11px; line-height: 1.35; color: var(--text-soft); }
 
 /* стрелки */
