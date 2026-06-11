@@ -670,6 +670,8 @@ p { margin: 0; }
   gap: 24px;
 }
 @media (max-width: 880px) { .compare-grid { grid-template-columns: 1fr; } }
+/* на телефонах схемы-картинки мелкие и нечитаемые — убираем, оставляем только текст */
+@media (max-width: 768px) { .cmp-card .cmp-card__visual, .cmp-card .cmp-card__visual-frame { display: none; } }
 
 .cmp-card {
   background: var(--surface);
