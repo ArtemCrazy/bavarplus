@@ -1793,12 +1793,12 @@ p { margin: 0; }
   .calc-sticky__lbl { font-size: 13px; font-weight: 600; opacity: .92; }
   .calc-sticky__val { font-size: 21px; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
-  /* компактнее на мобильных, чтобы параметры и результат были ближе */
+  /* компактнее на мобильных: убираем пояснения-подсказки и сноску */
   .calc { gap: 14px; }
   .calc__panel { padding: 24px 20px; }
-  .calc__hint { font-size: 11.5px; margin-top: 6px; }
+  .calc__hint { display: none; }
+  .calc__note { display: none; }
   .calc__field { margin-bottom: 20px; }
-  .calc__note { margin-top: 18px; padding-top: 16px; font-size: 11.5px; }
 }
 
 /* ============================================================
