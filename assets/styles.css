@@ -688,6 +688,7 @@ p { margin: 0; }
 }
 .cmp-card__icon {
   width: 44px; height: 44px;
+  flex: 0 0 auto;
   border-radius: 12px;
   background: var(--accent-soft);
   color: var(--accent);
@@ -696,6 +697,11 @@ p { margin: 0; }
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 24px;
+}
+/* на мобильных значок в один уровень с подзаголовком — меньше пустого места */
+@media (max-width: 768px) {
+  .cmp-card__head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .cmp-card__head .cmp-card__icon { margin-bottom: 0; }
 }
 .cmp-card--solution .cmp-card__icon {
   background: var(--green-soft);
