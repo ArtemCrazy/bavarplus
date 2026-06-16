@@ -700,8 +700,9 @@ p { margin: 0; }
 }
 /* на мобильных значок в один уровень с подзаголовком — меньше пустого места */
 @media (max-width: 768px) {
-  .cmp-card__head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .cmp-card__head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
   .cmp-card__head .cmp-card__icon { margin-bottom: 0; }
+  .cmp-card__head .cmp-card__label { margin-bottom: 0; }
 }
 .cmp-card--solution .cmp-card__icon {
   background: var(--green-soft);
