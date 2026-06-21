@@ -1,0 +1,965 @@
+
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<header class="nav">
+  <div class="nav__inner">
+    <a href="#top" class="logo">
+      <span class="logo__text">BAVAR<span class="logo__plus">+</span></span>
+    </a>
+    <ul class="nav__menu">
+      <li><a href="#">Услуги</a></li>
+      <li><a href="#">Отрасли</a></li>
+      <li><a href="#">Как работаем</a></li>
+      <li><a href="#">Калькулятор</a></li>
+      <li><a href="#">Кейсы</a></li>
+    </ul>
+    <a class="nav__phone" href="tel:+79250028289">+7 (925) 002-82-89</a>
+    <a href="#" class="btn btn--primary" data-modal-open>Связаться <span class="btn__arrow">→</span></a>
+  </div>
+</header>
+
+<!-- SVG-фильтр: конвертирует белый фон PNG в прозрачность (alpha)
+     без mix-blend-mode, чтобы корпус контейнера был непрозрачным.
+     feComposite сохраняет оригинальную прозрачность по краям картинки -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="white-to-alpha" color-interpolation-filters="sRGB">
+      <!-- Шаг 1: яркостная маска. Очень резкий наклон -300/891 -->
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        -300 -300 -300 0 891
+      " result="rawMask"/>
+      <!-- Шаг 2: дотягиваем переход до бинарного — отрезаем середину -->
+      <feComponentTransfer in="rawMask" result="sharpMask">
+        <feFuncA type="linear" slope="3" intercept="-1"/>
+      </feComponentTransfer>
+      <!-- Шаг 3: умножаем на исходный alpha, чтобы прозрачные области PNG остались прозрачными -->
+      <feComposite in="SourceGraphic" in2="sharpMask" operator="in"/>
+    </filter>
+    <!-- Более мягкая версия — для gruz.png и metka.png, у которых фон не чистый,
+         а светло-серый «шахматный» паттерн RGB 245-253 -->
+    <filter id="checker-remove" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        -25 -25 -25 0 70
+      " result="rawMask"/>
+      <feComponentTransfer in="rawMask" result="sharpMask">
+        <feFuncA type="linear" slope="3" intercept="-1"/>
+      </feComponentTransfer>
+      <feComposite in="SourceGraphic" in2="sharpMask" operator="in"/>
+    </filter>
+    <!-- Версия для грузовика: плавный градиентный ramp по яркости.
+         Альфа НЕ бинарная — она плавно растёт от 0 (фон/шахматка)
+         через полутона тени к 1 (тело грузовика). Это сохраняет
+         мягкий градиент тени без «лестницы» на краях. -->
+    <filter id="truck-clean" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="
+        1 0 0 0 0
+        0 1 0 0 0
+        0 0 1 0 0
+        -3 -3 -3 0 8.5
+      " result="rampAlpha"/>
+      <feComponentTransfer in="rampAlpha" result="cleanAlpha">
+        <feFuncA type="linear" slope="1.3" intercept="-0.05"/>
+      </feComponentTransfer>
+      <feGaussianBlur in="cleanAlpha" stdDeviation="0.3" result="smoothAlpha"/>
+      <feComposite in="SourceGraphic" in2="smoothAlpha" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+
+<main id="top">
+
+<!-- ============================================================
+     HERO V1 · центральный БАВАР+ + изометрическая сцена
+     ============================================================ -->
+<section class="hero hero--v1" data-variant="v1">
+  <div class="wrap">
+    <!-- Изометрическая иллюстрация-фон логистики с анимированными слоями -->
+    <div class="hero--v1__bg" aria-hidden="true">
+      <img class="hero--v1__scene" src="assets/bg-v2.png?v=4" alt="">
+      <img class="hero--v1__truck" src="assets/gruz.png?v=5" alt="">
+      <img class="hero--v1__pin"   src="assets/metka.png?v=1" alt="">
+    </div>
+    <div class="hero__inner">
+      <div class="hero__content">
+        <div class="hero__logo">БАВАР<span class="hero__logo-plus">+</span></div>
+        <div class="hero__divider"></div>
+        <h1 class="hero__title">
+          ПОЛНЫЙ АУТСОРСИНГ ВЭД
+        </h1>
+        <p class="hero__sub">
+          Найдём, проверим, привезём, растаможим под&nbsp;ключ.<br>
+          Вы&nbsp;платите <span class="hero__sub-accent">не&nbsp;процент от&nbsp;стоимости за&nbsp;товар, а&nbsp;за&nbsp;количество сделок</span>.
+        </p>
+        <div class="hero__cta">
+          <a href="#calc" class="btn btn--primary">Рассчитать экономию</a>
+          <a href="#contact" class="btn btn--ghost">Получить консультацию</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HERO V2 · контейнер с картой мира
+     ============================================================ -->
+<section class="hero hero--v2" data-variant="v2" hidden>
+  <div class="wrap">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <div class="hero__kicker">Полный аутсорсинг ВЭД</div>
+        <h1 class="hero__title">
+          Поиск, поставка, логистика и таможенное оформление <em>под ключ</em>
+        </h1>
+        <p class="hero__sub">
+          Найдём поставщика, проверим документы, организуем логистику, оформим таможню
+          и доведём груз до склада с прозрачными сроками, SLA и финансовой ответственностью
+          по договору.
+        </p>
+        <div class="hero__cta">
+          <a href="#calc" class="btn btn--primary btn--lg">Рассчитать экономию <span class="btn__arrow">→</span></a>
+          <a href="#contact" class="btn btn--ghost btn--lg">Получить консультацию</a>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <img class="hero__visual-map" src="assets/karta.png?v=5" alt="Карта мировых маршрутов BAVAR+">
+        <img class="hero__visual-kran" src="assets/kran.png?v=5" alt="">
+        <img class="hero__visual-container" src="assets/conteiner.png?v=5" alt="Контейнер BAVAR+">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     02 · ПРОБЛЕМА / РЕШЕНИЕ
+     ============================================================ -->
+<section class="section section--alt" id="problem">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <h2 class="section__title">Отвечаем за&nbsp;весь процесс</h2>
+        <p class="section__lede">
+          Собственный отдел ВЭД&nbsp;— это целый штат сотрудников, отвечающий за&nbsp;коммуникацию
+          с&nbsp;поставщиками, транспортную и&nbsp;финансовую логистику, таможенное оформление,
+          документальное обеспечение. Бавар+ все эти хлопоты берёт на&nbsp;себя: от&nbsp;поиска
+          и&nbsp;проверки поставщика до&nbsp;поставки товара на&nbsp;склад заказчика.
+        </p>
+      </div>
+    </div>
+
+    <div class="compare-grid">
+      <div class="cmp-card cmp-card--problem">
+        <div class="cmp-card__head">
+          <div class="cmp-card__icon">!</div>
+          <div class="cmp-card__label">Когда ВЭД внутри компании</div>
+        </div>
+        <h3 class="cmp-card__title">Много участников и распределённая ответственность</h3>
+        <div class="cmp-card__visual-frame">
+          <img class="cmp-card__visual cmp-card__visual--keyed lz" data-src="assets/minus.png?v=1" alt="Шесть отдельных договоров с разными подрядчиками — каждая зона ответственности своя">
+        </div>
+        <ul class="cmp-card__list">
+          <li>Экономия 50-70% против содержания своего отдела ВЭД</li>
+          <li>Нужна команда из нескольких специалистов: менеджер ВЭД, логист, декларант, юрист, переводчик</li>
+          <li>Расходы на зарплаты, налоги, ПО, обучение и рабочие места</li>
+          <li>Ошибки в документах — это простои и срывы сроков производства</li>
+          <li>Необходимость координировать по&nbsp;отдельности работу поставщиков, сроки производства, логистическую цепочку и&nbsp;своевременную подготовку документов для&nbsp;таможни</li>
+          <li>Ответственность часто распределена между разными людьми и подрядчиками</li>
+        </ul>
+      </div>
+      <div class="cmp-card cmp-card--solution">
+        <div class="cmp-card__head">
+          <div class="cmp-card__icon">✓</div>
+          <div class="cmp-card__label">Когда ВЭД ведёт <span class="brand-inline">Бавар<span class="brand-inline__plus">+</span></span></div>
+        </div>
+        <h3 class="cmp-card__title">Одна команда и&nbsp;полная ответственность</h3>
+        <img class="cmp-card__visual lz" data-src="assets/plus.png?v=2" alt="Один договор BAVAR+ — все услуги от поиска поставщика до передачи груза">
+        <ul class="cmp-card__list">
+          <li>Один исполнитель отвечает за весь процесс — от&nbsp;поиска поставщика до&nbsp;выкупа товара</li>
+          <li>Поиск, выкуп товара, аудит производства, приемка товара, логистика, документы и&nbsp;таможня — сопровождение всей цепочки одной компанией</li>
+          <li>Собственный офис в&nbsp;Шанхае помогает оперативно решать вопросы, проводить аудит поставщиков и&nbsp;приемку товара</li>
+          <li>Собственные склады в&nbsp;Москве и&nbsp;в&nbsp;Китае — консолидируем груз от&nbsp;разных поставщиков в&nbsp;одну партию</li>
+          <li>Сроки, этапы и&nbsp;зона ответственности фиксируются заранее</li>
+          <li>Финансовые гарантии и&nbsp;зоны ответственности закрепляем в&nbsp;договоре комплексного сопровождения ВЭД</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03 · УСЛУГИ
+     ============================================================ -->
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <h2 class="section__title">Полный аутсорсинг ВЭД</h2>
+        <p class="section__lede">
+          Команда Бавар+ ведёт сделку целиком: от&nbsp;поиска и&nbsp;выкупа товара
+          до&nbsp;таможенного оформления и&nbsp;сертификации — в&nbsp;одном договоре,
+          с&nbsp;фиксированной зоной ответственности.
+        </p>
+      </div>
+    </div>
+
+    <div class="process-flow">
+      <!-- Красный пунктирный зигзаг-путь (SVG растягивается на всю ширину,
+           толщина штриха постоянная). Узлы-точки — отдельными HTML-кружками,
+           чтобы оставались круглыми при любой ширине. -->
+      <svg class="pf-svg" viewBox="0 0 1200 600" preserveAspectRatio="none" aria-hidden="true">
+        <path class="pf-line" d="M100 360 L300 240 L500 360 L700 240 L900 360 L1100 240" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <span class="pf-dot" style="left:8.333%;top:60%"></span>
+      <span class="pf-dot" style="left:25%;top:40%"></span>
+      <span class="pf-dot" style="left:41.667%;top:60%"></span>
+      <span class="pf-dot" style="left:58.333%;top:40%"></span>
+      <span class="pf-dot" style="left:75%;top:60%"></span>
+      <span class="pf-dot" style="left:91.667%;top:40%"></span>
+
+      <!-- 01 -->
+      <div class="pf-stage pf-stage--down" style="left:8.333%">
+        <div class="pf-card">
+          <div class="pf-card__num">01</div>
+          <h3 class="pf-card__title">Аудит фабрик и&nbsp;заводов по&nbsp;всему Китаю</h3>
+          <p class="pf-card__desc">Наш офис в&nbsp;Китае в&nbsp;тандеме с&nbsp;менеджерами ВЭД: выезжаем на&nbsp;фабрику за&nbsp;24–48&nbsp;часов и&nbsp;проверяем производство до&nbsp;контракта.</p>
+        </div>
+        <div class="pf-img"><img src="assets/svc-01.png?v=1" alt="Аудит по всему Китаю"></div>
+      </div>
+      <!-- 02 -->
+      <div class="pf-stage pf-stage--up" style="left:25%">
+        <div class="pf-card">
+          <div class="pf-card__num">02</div>
+          <h3 class="pf-card__title">Выкуп товара и&nbsp;контроль качества</h3>
+          <p class="pf-card__desc">Оплата через нашу китайскую компанию&nbsp;— без валютного счёта. Перед отгрузкой проверяем товар на&nbsp;качество и&nbsp;комплектность.</p>
+        </div>
+        <div class="pf-img"><img src="assets/svc-02.png?v=1" alt="Выкуп и контроль качества"></div>
+      </div>
+      <!-- 03 -->
+      <div class="pf-stage pf-stage--down" style="left:41.667%">
+        <div class="pf-card">
+          <div class="pf-card__num">03</div>
+          <h3 class="pf-card__title">Операционное сопровождение</h3>
+          <p class="pf-card__desc">Ведём переговоры с&nbsp;поставщиками и&nbsp;перевозчиками, представляя ваши интересы. Решаем споры и&nbsp;контролируем сроки.</p>
+        </div>
+        <div class="pf-img"><img src="assets/svc-03.png?v=1" alt="Операционное сопровождение"></div>
+      </div>
+      <!-- 04 -->
+      <div class="pf-stage pf-stage--up" style="left:58.333%">
+        <div class="pf-card">
+          <div class="pf-card__num">04</div>
+          <h3 class="pf-card__title">Логистика и&nbsp;консолидация</h3>
+          <p class="pf-card__desc">Консолидируем грузы на&nbsp;складе в&nbsp;Китае. Море, авиа, ж/д&nbsp;— под&nbsp;бюджет и&nbsp;сроки, со&nbsp;страхованием. Склады в&nbsp;Москве и&nbsp;Санкт-Петербурге.</p>
+        </div>
+        <div class="pf-img"><img src="assets/svc-04.png?v=1" alt="Логистика и консолидация"></div>
+      </div>
+      <!-- 05 -->
+      <div class="pf-stage pf-stage--down" style="left:75%">
+        <div class="pf-card">
+          <div class="pf-card__num">05</div>
+          <h3 class="pf-card__title">Таможенное оформление</h3>
+          <p class="pf-card__desc">Готовим документы и&nbsp;коды ТН&nbsp;ВЭД, подаём декларацию и&nbsp;сопровождаем до&nbsp;выпуска товара. Услуги таможенного представителя.</p>
+        </div>
+        <div class="pf-img"><img src="assets/svc-05.png?v=1" alt="Таможенное оформление"></div>
+      </div>
+      <!-- 06 -->
+      <div class="pf-stage pf-stage--up" style="left:91.667%">
+        <div class="pf-card">
+          <div class="pf-card__num">06</div>
+          <h3 class="pf-card__title">Сертификация и&nbsp;документы</h3>
+          <p class="pf-card__desc">Документы о&nbsp;соответствии (ТР&nbsp;ТС, ГОСТ&nbsp;Р) и&nbsp;разрешительная документация, закрывающие документы для&nbsp;бухгалтерии.</p>
+        </div>
+        <div class="pf-img"><img src="assets/svc-06.png?v=1" alt="Сертификация и документы"></div>
+      </div>
+    </div>
+
+    <!-- навигация слайдера (видна только на мобильных) -->
+    <div class="svc-nav" aria-hidden="true">
+      <button class="svc-arrow svc-arrow--prev" type="button" aria-label="Назад"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="svc-dots"></div>
+      <button class="svc-arrow svc-arrow--next" type="button" aria-label="Вперёд"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     05 · ИНЖИНИРИНГ И СЕРВИС ЛИНИЙ
+     ============================================================ -->
+<section class="section section--alt" id="industries">
+  <div class="wrap">
+    <div class="bio">
+      <!-- Левая колонка: чип, заголовок, лид, фоновая изометрия -->
+      <div class="bio__intro">
+        <h2 class="bio__title">Инжиниринг,<br>монтаж, ПНР</h2>
+        <p class="bio__lede">
+          12 лет экспорта&nbsp;— опыт с&nbsp;сотнями категорий товаров и&nbsp;оборудования.
+          Наш бэкграунд&nbsp;— биоинжиниринг, поэтому мы особенно сильны в&nbsp;<strong>пищевом,
+          фармацевтическом и&nbsp;биотехнологическом оборудовании</strong>: монтируем, запускаем,
+          обучаем ваш персонал.
+        </p>
+        <img class="bio__illo lz" data-src="assets/bio-line.png?v=3" alt="Производственная биотех-линия">
+      </div>
+
+      <!-- Правая колонка: 4 карточки услуг -->
+      <div class="bio__cards">
+        <div class="bio-card">
+          <div class="bio-card__num">01</div>
+          <div class="bio-card__icon"><img class="lz" data-src="assets/ind-eng.png?v=2" alt=""></div>
+          <h4 class="bio-card__title">Инжиниринг</h4>
+          <p class="bio-card__desc">Подбор и&nbsp;комплектация оборудования под&nbsp;производственную задачу. Технологические схемы, расчёт линии, проверка спецификаций до&nbsp;закупки.</p>
+          <span class="bio-card__arrow" aria-hidden="true">→</span>
+        </div>
+        <div class="bio-card">
+          <div class="bio-card__num">02</div>
+          <div class="bio-card__icon"><img class="lz" data-src="assets/ind-mount.png?v=2" alt=""></div>
+          <h4 class="bio-card__title">Монтаж линий</h4>
+          <p class="bio-card__desc">Шеф-монтаж и&nbsp;координация подрядчиков на&nbsp;площадке заказчика. Сборка оборудования силами нашей команды и/или с&nbsp;китайскими производителями.</p>
+          <span class="bio-card__arrow" aria-hidden="true">→</span>
+        </div>
+        <div class="bio-card">
+          <div class="bio-card__num">03</div>
+          <div class="bio-card__icon"><img class="lz" data-src="assets/ind-launch.png?v=2" alt=""></div>
+          <h4 class="bio-card__title">Запуск производства</h4>
+          <p class="bio-card__desc">Пусконаладка, вывод линии на&nbsp;проектную мощность, выпуск первых партий, обучение операторов на&nbsp;площадке.</p>
+          <span class="bio-card__arrow" aria-hidden="true">→</span>
+        </div>
+        <div class="bio-card">
+          <div class="bio-card__num">04</div>
+          <div class="bio-card__icon"><img class="lz" data-src="assets/ind-service.png?v=2" alt=""></div>
+          <h4 class="bio-card__title">Обслуживание</h4>
+          <p class="bio-card__desc">Сервисная поддержка после запуска: профилактика, ремонт, поставка запчастей и&nbsp;расходников, удалённая помощь.</p>
+          <span class="bio-card__arrow" aria-hidden="true">→</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="bio-note">
+      Сильны в&nbsp;пищевом, фармацевтическом и&nbsp;биотехнологическом оборудовании.
+      Для остальных отраслей договариваемся с&nbsp;производителями о&nbsp;монтаже и&nbsp;пусконаладке.
+      Вы&nbsp;получаете единую точку ответственности, а&nbsp;не&nbsp;хаос из&nbsp;подрядчиков.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     06 · ПРОЦЕСС РАБОТЫ
+     ============================================================ -->
+<section class="section" id="process">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <h2 class="section__title">Схема работы&nbsp;— 6 этапов импорта</h2>
+        <p class="section__lede">
+          От&nbsp;заявки до&nbsp;товара на&nbsp;вашем складе по&nbsp;стоимости, зафиксированной
+          в&nbsp;заявке.
+        </p>
+        <p class="section__lede process__intro">
+          Мы&nbsp;— технический импортёр. Берём на&nbsp;себя поиск, закупку и&nbsp;оплату товара,
+          перевозку, таможенное оформление, риски, связанные с&nbsp;качеством товара.
+          Вы&nbsp;получаете товар у&nbsp;себя на&nbsp;складе с&nbsp;полным пакетом документов.
+        </p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step" data-step="1">
+        <h3 class="step__title">Заявка и&nbsp;расчёт</h3>
+        <p class="step__desc">Вы&nbsp;отправляете запрос (товар, количество, характеристики). За&nbsp;1–3&nbsp;дня, в&nbsp;зависимости от&nbsp;сложности, получаете расчёт «под&nbsp;ключ»: оптимальная цена от&nbsp;проверенного поставщика, доставка, таможенные платежи, сертификация.</p>
+        <p class="step__result"><strong>Результат:</strong> полная стоимость товара на&nbsp;вашем складе без&nbsp;скрытых платежей.</p>
+      </div>
+      <div class="step" data-step="2">
+        <h3 class="step__title">Договор и&nbsp;гарантии</h3>
+        <p class="step__desc">Под&nbsp;каждый запрос наши юристы составляют договор, фиксирующий стоимость услуги, сроки исполнения, порядок оплаты, штрафные санкции и&nbsp;пр. Работаем либо по&nbsp;договору поставки, либо по&nbsp;агентскому договору&nbsp;— по&nbsp;выбору заказчика.</p>
+        <p class="step__result"><strong>Результат:</strong> юридическая защита и&nbsp;финансовые гарантии.</p>
+      </div>
+      <div class="step" data-step="3">
+        <h3 class="step__title">Оплата товара без&nbsp;курсовых рисков</h3>
+        <p class="step__desc">Вы&nbsp;переводите необходимую сумму в&nbsp;рублях на&nbsp;наш счёт. Мы&nbsp;покупаем валюту, проходим валютный контроль, оплачиваем товар, предоставляем подтверждающие документы.</p>
+        <p class="step__result"><strong>Результат:</strong> вы&nbsp;избавляетесь от&nbsp;необходимости работать с&nbsp;банком по&nbsp;валютным операциям.</p>
+      </div>
+      <div class="step" data-step="4">
+        <h3 class="step__title">Контроль качества и&nbsp;логистика</h3>
+        <p class="step__desc">Проверяем товар, качество упаковки, отгрузочные документы от&nbsp;поставщика. Планируем оптимальный маршрут перевозки (авто&nbsp;/ авиа&nbsp;/ море&nbsp;/ ж/д). Отслеживаем груз 24/7.</p>
+        <p class="step__result"><strong>Результат:</strong> вы&nbsp;получаете трекинг перевозки и&nbsp;избавлены от&nbsp;общения с&nbsp;транспортными компаниями.</p>
+      </div>
+      <div class="step" data-step="5">
+        <h3 class="step__title">Таможенное оформление</h3>
+        <p class="step__desc">Готовим полный пакет документов для&nbsp;таможенного оформления, подаём декларацию на&nbsp;товары в&nbsp;таможенный орган с&nbsp;полным её&nbsp;сопровождением до&nbsp;выпуска товара и&nbsp;уплатой таможенных платежей.</p>
+        <p class="step__result"><strong>Результат:</strong> полная таможенная очистка товара.</p>
+      </div>
+      <div class="step" data-step="6">
+        <h3 class="step__title">Доставка и&nbsp;запуск</h3>
+        <p class="step__desc">Доставляем товар на&nbsp;ваш склад с&nbsp;полным пакетом документов (счёт-фактура, документы о&nbsp;соответствии). При&nbsp;необходимости&nbsp;— помогаем запустить производство.</p>
+        <p class="step__result"><strong>Результат:</strong> товар доставлен, документы в&nbsp;бухгалтерии.</p>
+      </div>
+    </div>
+
+    <!-- навигация слайдера (видна только на мобильных) -->
+    <div class="svc-nav" aria-hidden="true">
+      <button class="svc-arrow svc-arrow--prev" type="button" aria-label="Назад"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="svc-dots"></div>
+      <button class="svc-arrow svc-arrow--next" type="button" aria-label="Вперёд"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+
+    <!-- Кран с качающимся контейнером — верх крана растворяется в фоне -->
+    <div class="process-crane" aria-hidden="true">
+      <img class="process-crane__kran lz" data-src="assets/kran.png?v=5" alt="">
+      <img class="process-crane__box lz" data-src="assets/conteiner.png?v=5" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     07 · КАЛЬКУЛЯТОР ЭКОНОМИИ
+     ============================================================ -->
+<section class="section section--alt" id="calc">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <h2 class="section__title">Калькулятор экономии</h2>
+        <p class="section__lede">
+          Сравните затраты на&nbsp;ваш отдел ВЭД с&nbsp;абонентской платой «Бавар+». Все цифры&nbsp;—
+          демонстрационные. Точный расчёт под&nbsp;вашу структуру&nbsp;— после анализа вашего запроса.
+        </p>
+      </div>
+    </div>
+
+    <div class="calc">
+      <div class="calc__panel">
+        <div class="calc__panel-tag">Параметры вашего отдела</div>
+        <div class="calc__field">
+          <div class="calc__lbl">
+            <span>Сотрудников в&nbsp;отделе</span>
+            <span class="lbl-val" id="cl-staff">7 человек</span>
+          </div>
+          <input type="range" class="calc__range" id="cf-staff" min="6" max="14" value="7" step="1">
+          <div class="calc__hint">Минимум: руководитель отдела&nbsp;ВЭД, менеджер&nbsp;ВЭД, логист, декларант, юрист-международник, переводчики</div>
+        </div>
+        <div class="calc__field">
+          <div class="calc__lbl">
+            <span>Средняя зарплата на&nbsp;руки</span>
+            <span class="lbl-val" id="cl-salary">140 000 ₽</span>
+          </div>
+          <input type="range" class="calc__range" id="cf-salary" min="80000" max="250000" value="140000" step="5000">
+          <div class="calc__hint">Усреднённый оклад одного специалиста</div>
+        </div>
+        <div class="calc__field">
+          <div class="calc__lbl">
+            <span>Сделок с&nbsp;Китаем в&nbsp;месяц</span>
+            <span class="lbl-val" id="cl-deals">8 сделок</span>
+          </div>
+          <input type="range" class="calc__range" id="cf-deals" min="1" max="30" value="8" step="1">
+          <div class="calc__hint">Количество сделок в&nbsp;месяц поможет определить порог рентабельности</div>
+        </div>
+
+        <p class="calc__note">
+          *В&nbsp;калькуляторе не&nbsp;учтены командировки (перелёты, гостиницы, переводчики, выезды
+          на&nbsp;производства), стоимость ПО и&nbsp;резерв на&nbsp;штрафы&nbsp;— эти расходы увеличивают
+          разрыв в&nbsp;пользу аутсорсинга.
+        </p>
+      </div>
+
+      <div class="calc__panel calc__panel--result">
+        <div class="calc__panel-tag">Ваша экономия с&nbsp;Бавар+</div>
+        <div class="calc__hero" id="cr-hero">—</div>
+        <div class="calc__hero-sub" id="cr-hero-sub">—</div>
+        <div class="calc__breakdown-cap">Свой отдел ВЭД&nbsp;— расходы в&nbsp;месяц</div>
+        <ul class="calc__breakdown">
+          <li>
+            <span class="br-ic"><img class="lz" data-src="assets/calc-fot.png?v=1" alt=""></span>
+            <span class="nm">ФОТ (фонд оплаты труда)</span><span class="vl" id="br-fot">—</span>
+          </li>
+          <li>
+            <span class="br-ic"><img class="lz" data-src="assets/calc-taxes.png?v=1" alt=""></span>
+            <span class="nm">Налоги и&nbsp;страховые взносы</span><span class="vl" id="br-taxes">—</span>
+          </li>
+          <li>
+            <span class="br-ic"><img class="lz" data-src="assets/calc-office.png?v=1" alt=""></span>
+            <span class="nm">Офис в&nbsp;Москве</span><span class="vl" id="br-office">—</span>
+          </li>
+          <li>
+            <span class="br-ic"><img class="lz" data-src="assets/calc-travel.png?v=1" alt=""></span>
+            <span class="nm">Офис в&nbsp;Шанхае и&nbsp;штат</span><span class="vl" id="br-shanghai">—</span>
+          </li>
+          <li>
+            <span class="br-ic"><img class="lz" data-src="assets/calc-risk.png?v=1" alt=""></span>
+            <span class="nm">Скрытые расходы и&nbsp;риски</span><span class="vl" id="br-risk">—</span>
+          </li>
+        </ul>
+        <div class="calc__pills">
+          <div class="calc__pill"><span class="nm">Свой отдел / мес</span><span class="vl" id="br-total">—</span></div>
+          <div class="calc__pill calc__pill--bavar"><span class="nm">Бавар+ / мес</span><span class="vl" id="br-bavar">—</span></div>
+        </div>
+        <div class="calc__cta">
+          <a href="#contact" class="btn btn--primary">Получить консультацию <span class="btn__arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-alert">
+      <div class="calc-alert__head">
+        <span class="calc-alert__ic">!</span>
+        Неочевидные траты, которые съедают прибыль
+      </div>
+      <ul class="calc-alert__list">
+        <li>Поиск и&nbsp;адаптация персонала: 2–4 месяца простоя</li>
+        <li>Обучение специалистов: постоянные затраты</li>
+        <li>Риски штрафов: от&nbsp;100 000&nbsp;₽ за&nbsp;ошибку</li>
+      </ul>
+    </div>
+
+    <!-- липкая плашка с экономией (только мобильные): видна, пока двигаешь ползунки -->
+    <div class="calc-sticky" aria-hidden="true">
+      <span class="calc-sticky__lbl">Экономия с&nbsp;Бавар+ / мес</span>
+      <span class="calc-sticky__val" id="cr-sticky">—</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     08 · ПРЕИМУЩЕСТВА
+     ============================================================ -->
+<section class="section" id="advantages">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <h2 class="section__title">Преимущества ВЭД-аутсорсинга</h2>
+        <p class="section__lede">
+          Фиксированная стоимость товара по&nbsp;единому договору.
+        </p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step" data-step="1">
+        <h3 class="step__title">Простая бухгалтерия</h3>
+        <p class="step__desc">Договор поставки с&nbsp;российским резидентом&nbsp;— товар с&nbsp;НДС, простая банковская операция, понятные закрывающие документы. Или агентский договор с&nbsp;полной прозрачностью расходов.</p>
+      </div>
+      <div class="step" data-step="2">
+        <h3 class="step__title">Финансовая ответственность</h3>
+        <p class="step__desc">Вы&nbsp;платите не&nbsp;за&nbsp;стоимость товара, а&nbsp;за&nbsp;количество сделок. Фиксированная ставка&nbsp;— никаких привязок к&nbsp;цене контракта. Чем дороже товар, тем выгоднее работать с&nbsp;нами.</p>
+      </div>
+      <div class="step" data-step="3">
+        <h3 class="step__title">Полный цикл силами нашей компании</h3>
+        <p class="step__desc">Поиск товара, его проверка и&nbsp;приобретение в&nbsp;Китае, доставка в&nbsp;Россию (авто&nbsp;/ море&nbsp;/ авиа&nbsp;/ ж/д), сертификация и&nbsp;таможенное оформление, доставка до&nbsp;вашего склада. Вам остаётся только дождаться доставки в&nbsp;срок, зафиксированный в&nbsp;договоре.</p>
+      </div>
+      <div class="step" data-step="4">
+        <h3 class="step__title">Товар на&nbsp;вашем складе</h3>
+        <p class="step__desc">Консолидация грузов в&nbsp;Китае. Отгрузка единой партией по&nbsp;мере необходимости&nbsp;— оптимизация расходов на&nbsp;доставку. Хранение и&nbsp;отгрузка частями в&nbsp;Москве и&nbsp;Санкт-Петербурге.</p>
+      </div>
+      <div class="step" data-step="5">
+        <h3 class="step__title">12 лет работы&nbsp;— тысячи категорий</h3>
+        <p class="step__desc">Огромный опыт в&nbsp;области внешнеэкономической деятельности. Сотни сделок&nbsp;— от&nbsp;разовых до&nbsp;целых проектов. От&nbsp;отдельных образцов товара до&nbsp;производственных линий и&nbsp;целых заводов.</p>
+      </div>
+      <div class="step" data-step="6">
+        <h3 class="step__title">Вместо штатного отдела ВЭД</h3>
+        <p class="step__desc">Ваша персональная команда: менеджер по&nbsp;ВЭД, декларант, логист, переводчики. Без затрат на&nbsp;найм, налоги, командировки. Фиксированная оплата&nbsp;— от&nbsp;250 000&nbsp;₽ за&nbsp;3 сделки.</p>
+      </div>
+    </div>
+
+    <!-- навигация слайдера (видна только на мобильных) -->
+    <div class="svc-nav" aria-hidden="true">
+      <button class="svc-arrow svc-arrow--prev" type="button" aria-label="Назад"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="svc-dots"></div>
+      <button class="svc-arrow svc-arrow--next" type="button" aria-label="Вперёд"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+
+    <p class="adv-outro">
+      Работаете с&nbsp;нами&nbsp;— получаете отдел ВЭД под&nbsp;ключ. Дешевле, чем содержать свой.
+      Прозрачнее, чем нанимать подрядчиков по&nbsp;отдельности.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     09 · ФОРМЫ СОТРУДНИЧЕСТВА
+     ============================================================ -->
+<section class="section section--alt" id="cooperation">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <h2 class="section__title">Формы сотрудничества</h2>
+        <p class="section__lede">Выберите схему, которая подходит под&nbsp;вашу стратегию.</p>
+        <p class="section__lede coop__note">Фиксированная стоимость без&nbsp;скрытых комиссий и&nbsp;процентов.</p>
+      </div>
+    </div>
+
+    <div class="forms">
+      <div class="form-card form-card--primary">
+        <div class="form-card__name">Договор поставки</div>
+        <p class="form-card__tagline">Внутрироссийская сделка под&nbsp;ключ</p>
+        <p class="form-card__text">Вы&nbsp;покупаете товар у&nbsp;нас (российского импортёра), и&nbsp;мы самостоятельно выполняем всю внутрироссийскую операцию: валютные расчёты, таможня и&nbsp;общение с&nbsp;иностранными поставщиками.</p>
+        <ul class="form-card__list">
+          <li>Внутрироссийская сделка</li>
+          <li>Не&nbsp;нужен валютный счёт и&nbsp;отдел ВЭД</li>
+          <li>Фиксированная оплата от&nbsp;300 000&nbsp;₽ за&nbsp;3 сделки</li>
+          <li>Все риски и&nbsp;качество&nbsp;— на&nbsp;нас</li>
+          <li>Цена товара включает НДС</li>
+          <li>Полная прозрачность&nbsp;— итоговая стоимость до&nbsp;подписания договора</li>
+        </ul>
+        <div class="form-card__fit">Подходит, если нужен полный аутсорсинг</div>
+      </div>
+      <div class="form-card">
+        <div class="form-card__name">Агентский договор</div>
+        <p class="form-card__tagline">Сопровождение сделки</p>
+        <p class="form-card__text">Мы&nbsp;сопровождаем сделку от&nbsp;поиска до&nbsp;выпуска товара. Подготавливаем документы, контролируем процесс и&nbsp;консультируем на&nbsp;всех этапах взаимодействия с&nbsp;поставщиком.</p>
+        <ul class="form-card__list">
+          <li>Подготовка полного пакета документов</li>
+          <li>Проверка внешнеторговых контрактов и&nbsp;товаросопроводительных документов</li>
+          <li>Консультационная поддержка на&nbsp;всех этапах</li>
+          <li>Вы&nbsp;управляете отношениями с&nbsp;продавцом</li>
+          <li>Фиксированная оплата от&nbsp;250 000&nbsp;₽ за&nbsp;3 сделки</li>
+          <li>Без скрытых процентов и&nbsp;комиссий</li>
+        </ul>
+        <div class="form-card__fit">Подходит, если нужна поддержка, а&nbsp;не&nbsp;полный аутсорсинг</div>
+      </div>
+    </div>
+
+    <h3 class="forms-compare-title">Какую форму выбрать?</h3>
+    <div class="forms-compare-wrap">
+      <table class="forms-compare">
+        <thead>
+          <tr>
+            <th>Параметр</th>
+            <th>Договор поставки</th>
+            <th>Агентский договор</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Кто ведёт сделку</th>
+            <td>Мы под&nbsp;ключ</td>
+            <td>Вы; мы помогаем с&nbsp;документами и&nbsp;общением с&nbsp;контрагентами</td>
+          </tr>
+          <tr>
+            <th>Бухгалтерия</th>
+            <td>Внутрироссийская</td>
+            <td>Внешнеторговая</td>
+          </tr>
+          <tr>
+            <th>Нужен ли отдел ВЭД</th>
+            <td>Нет</td>
+            <td>Нет</td>
+          </tr>
+          <tr>
+            <th>Фиксированная оплата</th>
+            <td class="price">от&nbsp;300 000&nbsp;₽ за&nbsp;3 сделки</td>
+            <td class="price">от&nbsp;250 000&nbsp;₽ за&nbsp;3 сделки</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="forms-compare-hint" aria-hidden="true">← листайте таблицу →</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     10 · КЕЙСЫ И ОТЗЫВЫ
+     ============================================================ -->
+<section class="section" id="cases">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <h2 class="section__title">Кейсы и&nbsp;отзывы</h2>
+        <p class="section__lede">
+          С&nbsp;большинством клиентов подписано NDA.
+          По&nbsp;запросу организуем созвон с&nbsp;текущим заказчиком из&nbsp;вашей отрасли.
+        </p>
+      </div>
+    </div>
+
+    <div class="cases">
+      <button class="cases__arrow cases__arrow--prev" type="button" aria-label="Назад"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="cases__arrow cases__arrow--next" type="button" aria-label="Вперёд"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+
+      <div class="cases__track">
+        <article class="case">
+          <div class="case__photo">
+            <img class="case__img lz" data-src="assets/case-dairy.jpg?v=1" alt="">
+            <span class="case__tag">Молочная отрасль</span>
+          </div>
+          <div class="case__body">
+            <p class="case__text">Подобрали и&nbsp;поставили оборудование для&nbsp;новой линии пастеризации и&nbsp;фасовки. Организовали доставку, таможенное оформление и&nbsp;ввод линии в&nbsp;эксплуатацию.</p>
+            <div class="case__metrics">
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                <span class="case__metric-val">4 месяца</span>
+                <span class="case__metric-lbl">от&nbsp;подбора до&nbsp;запуска</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7L9 18l-5-5"/></svg></span>
+                <span class="case__metric-val">100%</span>
+                <span class="case__metric-lbl">оборудования в&nbsp;срок</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span>
+                <span class="case__metric-val">+20%</span>
+                <span class="case__metric-lbl">рост линии</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+
+        <article class="case">
+          <div class="case__photo">
+            <img class="case__img lz" data-src="assets/case-industrial.jpg?v=1" alt="">
+            <span class="case__tag">Промышленное оборудование</span>
+          </div>
+          <div class="case__body">
+            <p class="case__text">Подобрали и&nbsp;поставили технологическое оборудование для&nbsp;расширения производства. Обеспечили логистику, таможенное оформление и&nbsp;пусконаладочные работы.</p>
+            <div class="case__metrics">
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                <span class="case__metric-val">5 месяцев</span>
+                <span class="case__metric-lbl">от&nbsp;подбора до&nbsp;запуска</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/></svg></span>
+                <span class="case__metric-val">0</span>
+                <span class="case__metric-lbl">штрафов и&nbsp;нарушений</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span>
+                <span class="case__metric-val">+18%</span>
+                <span class="case__metric-lbl">рост объёма</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case__photo">
+            <img class="case__img lz" data-src="assets/case-cosmetics.jpg?v=1" alt="">
+            <span class="case__tag">Косметика и&nbsp;бытовая химия</span>
+          </div>
+          <div class="case__body">
+            <p class="case__text">Поставили линию розлива и&nbsp;упаковки косметики. Подбор оборудования, контракт, логистика, таможня и&nbsp;пусконаладка под&nbsp;ключ.</p>
+            <div class="case__metrics">
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                <span class="case__metric-val">4,5 месяца</span>
+                <span class="case__metric-lbl">от&nbsp;подбора до&nbsp;запуска</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7L9 18l-5-5"/></svg></span>
+                <span class="case__metric-val">100%</span>
+                <span class="case__metric-lbl">комплектность</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></span>
+                <span class="case__metric-val">+25%</span>
+                <span class="case__metric-lbl">рост выпуска SKU</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case">
+          <div class="case__photo">
+            <img class="case__img lz" data-src="assets/case-pharma.jpg?v=1" alt="">
+            <span class="case__tag">Фармацевтика</span>
+          </div>
+          <div class="case__body">
+            <p class="case__text">Закрыли импорт сырья и&nbsp;оборудования для&nbsp;производства БАД. Сертификация, документы и&nbsp;таможенное оформление без&nbsp;задержек.</p>
+            <div class="case__metrics">
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                <span class="case__metric-val">6 месяцев</span>
+                <span class="case__metric-lbl">от&nbsp;поиска до&nbsp;поставки</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/></svg></span>
+                <span class="case__metric-val">0</span>
+                <span class="case__metric-lbl">штрафов ФТС</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+                <span class="case__metric-val">−30%</span>
+                <span class="case__metric-lbl">себестоимость партии</span>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="case">
+          <div class="case__photo">
+            <img class="case__img lz" data-src="assets/case-beverages.jpg?v=1" alt="">
+            <span class="case__tag">Напитки</span>
+          </div>
+          <div class="case__body">
+            <p class="case__text">Комплексно оснастили производство напитков: линия розлива, упаковка, маркировка. Весь цикл работ от&nbsp;подбора до&nbsp;запуска «под&nbsp;ключ».</p>
+            <div class="case__metrics">
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                <span class="case__metric-val">3,5 месяца</span>
+                <span class="case__metric-lbl">от&nbsp;заявки до&nbsp;запуска</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></span>
+                <span class="case__metric-val">99%</span>
+                <span class="case__metric-lbl">точность поставки</span>
+              </div>
+              <div class="case__metric">
+                <span class="case__metric-ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+                <span class="case__metric-val">−12%</span>
+                <span class="case__metric-lbl">снижение затрат</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="cases__dots" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     11 · FAQ
+     ============================================================ -->
+<section class="section section--alt" id="faq">
+  <div class="wrap">
+    <div class="section__head">
+      <div class="section__head-text">
+        <h2 class="section__title">Частые вопросы</h2>
+        <p class="section__lede">Отвечаем на&nbsp;вопросы, которые чаще всего возникают на&nbsp;старте сотрудничества.</p>
+      </div>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Чем аутсорсинг ВЭД отличается от&nbsp;услуг таможенного брокера?</summary>
+        <div class="faq-item__body"><div class="faq-item__inner">
+          Таможенный брокер отвечает только за&nbsp;таможенное оформление, логист&nbsp;— за&nbsp;доставку, юрист&nbsp;— за&nbsp;контракт. Координация всей цепочки остаётся на&nbsp;вашей стороне. Мы&nbsp;ведём сделку целиком по&nbsp;единому договору: от&nbsp;поиска поставщика до&nbsp;таможенного оформления и&nbsp;доставки на&nbsp;склад, и&nbsp;несём финансовую ответственность за&nbsp;результат.
+        </div></div>
+      </details>
+      <details class="faq-item">
+        <summary>Какие финансовые гарантии вы&nbsp;предоставляете?</summary>
+        <div class="faq-item__body"><div class="faq-item__inner">
+          В&nbsp;договоре комплексного сопровождения ВЭД зафиксировано: штрафы, доначисления и&nbsp;корректировки таможенной стоимости, возникшие по&nbsp;нашей вине, компенсируются нами. Это не&nbsp;маркетинговое обещание, а&nbsp;юридическое обязательство по&nbsp;договору.
+        </div></div>
+      </details>
+      <details class="faq-item">
+        <summary>Сколько стоит аутсорсинг ВЭД и&nbsp;от&nbsp;чего зависит стоимость?</summary>
+        <div class="faq-item__body"><div class="faq-item__inner">
+          Фиксированная ежемесячная плата&nbsp;— от&nbsp;300&nbsp;000&nbsp;₽. Итоговая стоимость зависит от&nbsp;числа сделок, сложности товаров и&nbsp;регуляторных требований: фармацевтическая продукция дороже типовых категорий товаров.
+        </div></div>
+      </details>
+      <details class="faq-item">
+        <summary>Что входит в&nbsp;фиксированную плату, а&nbsp;что оплачивается отдельно?</summary>
+        <div class="faq-item__body"><div class="faq-item__inner">
+          В&nbsp;фиксированную плату входит вся работа команды: поиск и&nbsp;проверка поставщиков, переговоры, контракты, валютный контроль, логистика, таможенное оформление, сертификация и&nbsp;юридическое сопровождение. Отдельно оплачиваются только стоимость товара, фрахт и&nbsp;государственные пошлины.
+        </div></div>
+      </details>
+      <details class="faq-item">
+        <summary>Возможна ли работа по&nbsp;разовой сделке, без&nbsp;ежемесячной платы?</summary>
+        <div class="faq-item__body"><div class="faq-item__inner">
+          Да, доступен проектный формат: стоимость рассчитывается по&nbsp;объёму работ конкретной сделки. При&nbsp;регулярных поставках выгоднее ежемесячное обслуживание&nbsp;— вы&nbsp;получаете не&nbsp;только текущую сделку, но&nbsp;и&nbsp;команду для&nbsp;последующих поставок.
+        </div></div>
+      </details>
+      <details class="faq-item">
+        <summary>У&nbsp;нас уже есть собственный ВЭД-отдел. Как проходит переход?</summary>
+        <div class="faq-item__body"><div class="faq-item__inner">
+          Это распространённая ситуация. Переход занимает 1–2 месяца: знакомство с&nbsp;поставщиками, передача контактов и&nbsp;договоров, перенос документации. Собственный отдел можно сократить, переориентировать на&nbsp;стратегические задачи или&nbsp;оставить в&nbsp;роли контролёра&nbsp;— решение остаётся за&nbsp;вами.
+        </div></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     12 · КОНТАКТЫ + ФОРМА
+     ============================================================ -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact2">
+      <!-- Левая колонка: чип, заголовок, контакты, callout -->
+      <div class="contact2__left">
+        <h2 class="contact2__title">Обсудить задачу</h2>
+        <p class="contact2__lede">Подберём оптимальное решение, рассчитаем стоимость и&nbsp;сроки.</p>
+
+        <ul class="contact2__list">
+          <li class="contact2__item">
+            <span class="contact2__ic">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>
+            </span>
+            <span class="contact2__meta">
+              <span class="contact2__lbl">Телефон</span>
+              <a class="contact2__val" href="tel:+79250028289">+7 (925) 002-82-89</a>
+            </span>
+          </li>
+          <li class="contact2__item">
+            <span class="contact2__ic">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            </span>
+            <span class="contact2__meta">
+              <span class="contact2__lbl">Email</span>
+              <a class="contact2__val" href="mailto:alv@bavarswiss.ru">alv@bavarswiss.ru</a>
+            </span>
+          </li>
+          <li class="contact2__item">
+            <span class="contact2__ic">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3 2 10.5l6 2.2L18 6l-7.5 9.2.3 4.3 3-3.6 4.2 3z"/></svg>
+            </span>
+            <span class="contact2__meta">
+              <span class="contact2__lbl">Telegram</span>
+              <a class="contact2__val" href="https://t.me/" target="_blank" rel="noopener">@bavarplus</a>
+            </span>
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- Правая колонка: тёмная карточка-форма -->
+      <form class="cform" id="contact-form" novalidate>
+        <div class="cform__deco" aria-hidden="true"></div>
+        <h3 class="cform__title">Оставьте заявку</h3>
+        <p class="cform__sub">Перезвоним в&nbsp;рабочее время и&nbsp;поможем подобрать решение.</p>
+        <input class="cform__input" type="text" id="f-name" name="name" placeholder="Ваше имя *" required>
+        <input class="cform__input" type="tel" id="f-phone" name="phone" placeholder="Ваш номер телефона *" required>
+        <label class="cform__check">
+          <input type="checkbox" id="f-agree" required>
+          <span>Я&nbsp;соглашаюсь на&nbsp;обработку персональных данных и&nbsp;принимаю условия <a href="#privacy">политики обработки персональных данных</a></span>
+        </label>
+        <button type="submit" class="cform__btn">Оставить заявку</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     МОДАЛЬНОЕ ОКНО — заявка (открывается по «Связаться»)
+     ============================================================ -->
+<div class="modal" id="lead-modal" hidden>
+  <div class="modal__overlay" data-modal-close></div>
+  <div class="modal__card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal__close" type="button" aria-label="Закрыть" data-modal-close>×</button>
+    <div class="modal__left">
+      <h3 class="modal__title" id="modal-title"><span class="modal__title-red">Оставьте заявку</span><br>специалистам отдела&nbsp;ВЭД</h3>
+      <span class="modal__phone" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>
+      </span>
+      <p class="modal__text">Свяжемся с&nbsp;вами в&nbsp;течение часа и&nbsp;ответим на&nbsp;вопросы по&nbsp;поставкам, логистике и&nbsp;таможне.</p>
+    </div>
+    <form class="modal__form" id="modal-form" novalidate>
+      <input class="modal__input" type="text" name="name" placeholder="Имя" required>
+      <input class="modal__input" type="email" name="email" placeholder="E-mail">
+      <input class="modal__input" type="tel" name="phone" placeholder="Ваш телефон" required>
+      <button type="submit" class="modal__btn">Оставить заявку</button>
+      <label class="modal__check">
+        <input type="checkbox" required>
+        <span>Нажимая на&nbsp;кнопку, вы&nbsp;соглашаетесь с&nbsp;<a href="#privacy">политикой конфиденциальности</a></span>
+      </label>
+    </form>
+  </div>
+</div>

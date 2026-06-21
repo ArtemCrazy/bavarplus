@@ -1,0 +1,15 @@
+/*
+Theme Name: BAVAR+ Landing
+Theme URI: https://bavarswiss.ru
+Author: Crazy Studio
+Author URI: https://crazy.studio
+Description: Кастомная тема лендинга БАВАР+ (аутсорсинг ВЭД). Дизайн залочен на уровне темы; тексты редактируются в админке. Реальные стили подключаются из assets/styles.css.
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 7.4
+License: Proprietary
+Text Domain: bavar-plus
+*/
+
+/* Боевые стили лежат в assets/styles.css и подключаются через functions.php.
+   Этот файл нужен WordPress только как манифест темы. */
