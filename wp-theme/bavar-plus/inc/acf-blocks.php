@@ -57,17 +57,35 @@ function bavar_section_label($slug) {
 }
 
 /**
- * Модули секций (порядок не важен — рендер идёт по id в HTML).
- * Возвращает [slug => dir] для каталогов с полным набором файлов.
+ * Порядок секций — как на сайте (сверху вниз). По нему сортируются
+ * вкладки в админке, чтобы не путать заказчика.
+ */
+function bavar_section_order() {
+    return ['problem', 'services', 'industries', 'process', 'calc', 'advantages', 'cooperation', 'cases', 'faq', 'contact'];
+}
+
+/**
+ * Модули секций в порядке сайта. Возвращает [slug => dir] для каталогов
+ * с полным набором файлов; неизвестные секции добавляются в конец.
  */
 function bavar_section_modules() {
-    $mods = [];
+    $found = [];
     foreach (glob(get_template_directory() . '/blocks/*', GLOB_ONLYDIR) as $dir) {
         if (file_exists($dir . '/render.php')
             && file_exists($dir . '/fields.php')
             && file_exists($dir . '/defaults.php')) {
-            $mods[basename($dir)] = $dir;
+            $found[basename($dir)] = $dir;
         }
+    }
+    $mods = [];
+    foreach (bavar_section_order() as $slug) {
+        if (isset($found[$slug])) {
+            $mods[$slug] = $found[$slug];
+            unset($found[$slug]);
+        }
+    }
+    foreach ($found as $slug => $dir) {
+        $mods[$slug] = $dir;
     }
     return $mods;
 }
