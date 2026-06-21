@@ -13,6 +13,8 @@ if (!defined('ABSPATH')) {
 
 define('BAVAR_VERSION', '1.0.0');
 
+require_once get_template_directory() . '/inc/acf-blocks.php';
+
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
     add_theme_support('html5', ['style', 'script']);
@@ -69,4 +71,30 @@ function bavar_render_landing() {
 
     $html = file_get_contents($file);
     return str_replace('assets/', $uri . 'assets/', $html);
+}
+
+/**
+ * Рендер одной секции из модуля /blocks/<slug>/render.php
+ * (тексты из ACF с откатом на дефолты) + переписывание путей assets/.
+ */
+function bavar_render_section($slug) {
+    $file = get_template_directory() . '/blocks/' . $slug . '/render.php';
+    if (!file_exists($file)) return '';
+    ob_start();
+    include $file;
+    $out = ob_get_clean();
+    $uri = trailingslashit(get_template_directory_uri());
+    return str_replace('assets/', $uri . 'assets/', $out);
+}
+
+/**
+ * Заменяет в HTML секцию <section id="$id">…</section> на $new.
+ * Секции не вложены, поэтому первый </section> после открытия — её закрытие.
+ * preg_replace_callback, чтобы спецсимволы ($, \) в $new не интерпретировались.
+ */
+function bavar_override_section($html, $id, $new) {
+    $pattern = '/<section\b[^>]*\bid="' . preg_quote($id, '/') . '"[^>]*>.*?<\/section>/s';
+    return preg_replace_callback($pattern, function () use ($new) {
+        return $new;
+    }, $html, 1);
 }
