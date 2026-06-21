@@ -29,6 +29,15 @@ function bavar_field($name, $defaults = []) {
     return $v;
 }
 
+/**
+ * Безопасно загрузить PHP-файл, который возвращает массив (return [...]).
+ * Выполняется в изолированной области видимости функции, поэтому
+ * переменные внутри файла (напр. $fields) НЕ затирают переменные вызывающего.
+ */
+function bavar_load($file) {
+    return require $file;
+}
+
 /** Человеко-понятные названия секций для вкладок ACF. */
 function bavar_section_label($slug) {
     $map = [
@@ -72,8 +81,8 @@ add_action('acf/init', function () {
 
     $fields = [];
     foreach (bavar_section_modules() as $slug => $dir) {
-        $meta     = require $dir . '/fields.php';
-        $defaults = require $dir . '/defaults.php';
+        $meta     = bavar_load($dir . '/fields.php');
+        $defaults = bavar_load($dir . '/defaults.php');
 
         $fields[] = [
             'key'       => 'field_bavar_tab_' . $slug,
