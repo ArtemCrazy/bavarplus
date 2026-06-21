@@ -6,3 +6,6 @@ desktop.ini
 .idea/
 node_modules/
 *.bak-*
+
+# Локальный эталонный снимок статической вёрстки перед WordPress
+_backup-static-эталон-pre-wordpress/
