@@ -73,6 +73,24 @@ function bavar_section_modules() {
 }
 
 /**
+ * Удобный пункт меню «Тексты лендинга» — открывает редактор главной
+ * страницы напрямую, чтобы клиент не искал её в разделе «Страницы».
+ */
+add_action('admin_menu', function () {
+    if (!get_option('page_on_front')) return;
+    add_menu_page('Тексты лендинга', 'Тексты лендинга', 'edit_pages', 'bavar-texts', '__return_null', 'dashicons-edit', 3);
+});
+add_action('admin_init', function () {
+    if (isset($_GET['page']) && $_GET['page'] === 'bavar-texts') {
+        $front = (int) get_option('page_on_front');
+        if ($front) {
+            wp_safe_redirect(admin_url('post.php?post=' . $front . '&action=edit'));
+            exit;
+        }
+    }
+});
+
+/**
  * Группа ACF «Тексты лендинга», привязанная к главной странице.
  * Вкладка на секцию, под ней — её поля. ACF free: без repeater.
  */
