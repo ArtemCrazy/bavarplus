@@ -264,20 +264,50 @@ recalc();
 // ============================================================
 // Form (prototype only) — успех на любую форму с .js-lead / id contact-form / modal-form
 // ============================================================
-function wireForm(form) {
+function wireForm(form, source) {
   if (!form) return;
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const btn = form.querySelector('button[type=submit]');
     if (!btn) return;
     const old = btn.textContent;
-    btn.textContent = '✓ Заявка отправлена';
+
+    // Фолбэк, если конфиг AJAX недоступен (например, открыто как статика)
+    if (typeof BAVAR_AJAX === 'undefined') {
+      btn.textContent = '✓ Заявка отправлена';
+      btn.disabled = true;
+      setTimeout(() => { btn.textContent = old; btn.disabled = false; form.reset(); }, 2400);
+      return;
+    }
+
+    const fd = new FormData(form);
+    fd.append('action', 'bavar_lead');
+    fd.append('nonce', BAVAR_AJAX.nonce);
+    fd.append('source', source || 'форма');
+
     btn.disabled = true;
-    setTimeout(() => { btn.textContent = old; btn.disabled = false; form.reset(); }, 2400);
+    btn.textContent = 'Отправляем…';
+
+    fetch(BAVAR_AJAX.url, { method: 'POST', body: fd, credentials: 'same-origin' })
+      .then((r) => r.json())
+      .then((res) => {
+        const msg = (res && res.data && res.data.msg) ? res.data.msg : null;
+        if (res && res.success) {
+          btn.textContent = '✓ ' + (msg || 'Заявка отправлена');
+          form.reset();
+        } else {
+          btn.textContent = msg || 'Ошибка отправки';
+        }
+        setTimeout(() => { btn.textContent = old; btn.disabled = false; }, 3200);
+      })
+      .catch(() => {
+        btn.textContent = 'Ошибка сети, позвоните нам';
+        setTimeout(() => { btn.textContent = old; btn.disabled = false; }, 3200);
+      });
   });
 }
-wireForm(document.getElementById('contact-form'));
-wireForm(document.getElementById('modal-form'));
+wireForm(document.getElementById('contact-form'), 'форма внизу страницы');
+wireForm(document.getElementById('modal-form'), 'модальное окно');
 
 // ============================================================
 // Кейсы — карусель (стрелки + точки)

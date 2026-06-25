@@ -22,4 +22,6 @@ return [
     'cform_phone_ph' => ['label' => 'Форма · плейсхолдер «Телефон»', 'type' => 'text'],
     'cform_agree'    => ['label' => 'Форма · согласие (можно ссылку &lt;a&gt;)', 'type' => 'textarea', 'rows' => 3],
     'cform_btn'      => ['label' => 'Форма · кнопка', 'type' => 'text'],
+
+    'form_recipient' => ['label' => 'Куда отправлять заявки (email получателя)', 'type' => 'text', 'instructions' => 'На этот адрес приходят заявки с форм сайта. Можно несколько через запятую.'],
 ];

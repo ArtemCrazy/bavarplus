@@ -51,7 +51,77 @@ add_action('wp_enqueue_scripts', function () {
         file_exists($dir . '/assets/app.js') ? filemtime($dir . '/assets/app.js') : BAVAR_VERSION,
         true
     );
+
+    // Передаём в скрипт адрес обработчика заявок и nonce.
+    wp_localize_script('bavar-app', 'BAVAR_AJAX', [
+        'url'   => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('bavar_lead'),
+    ]);
 });
+
+/**
+ * Обработка заявок с форм сайта (#contact-form, #modal-form).
+ * Отправляет письмо на адрес из поля «Куда отправлять заявки» (ACF, блок Контакты),
+ * иначе — на e-mail администратора сайта.
+ */
+add_action('wp_ajax_bavar_lead', 'bavar_handle_lead');
+add_action('wp_ajax_nopriv_bavar_lead', 'bavar_handle_lead');
+function bavar_handle_lead() {
+    check_ajax_referer('bavar_lead', 'nonce');
+
+    $name  = sanitize_text_field($_POST['name']  ?? '');
+    $phone = sanitize_text_field($_POST['phone'] ?? '');
+    $email = sanitize_email($_POST['email'] ?? '');
+    $source = sanitize_text_field($_POST['source'] ?? 'форма');
+
+    if ($name === '' || ($phone === '' && $email === '')) {
+        wp_send_json_error(['msg' => 'Укажите имя и телефон.']);
+    }
+
+    // Получатель: ACF-поле form_recipient на главной странице, иначе админ сайта.
+    $to    = '';
+    $front = (int) get_option('page_on_front');
+    if ($front && function_exists('get_field')) {
+        $to = trim((string) get_field('form_recipient', $front));
+    }
+    if ($to === '') {
+        // Поле не заполнено — берём адрес по умолчанию из defaults.php блока Контакты.
+        $cdef = get_template_directory() . '/blocks/contact/defaults.php';
+        if (file_exists($cdef)) {
+            $d = include $cdef;
+            if (is_array($d) && !empty($d['form_recipient'])) {
+                $to = trim($d['form_recipient']);
+            }
+        }
+    }
+    if ($to === '') {
+        $to = get_option('admin_email');
+    }
+    $recipients = array_filter(array_map('trim', explode(',', $to)));
+
+    $host    = wp_parse_url(home_url(), PHP_URL_HOST);
+    $subject = 'Заявка с сайта ' . $host;
+    $lines   = [
+        'Имя: ' . $name,
+        'Телефон: ' . ($phone !== '' ? $phone : '—'),
+        'Email: ' . ($email !== '' ? $email : '—'),
+        'Источник: ' . $source,
+        'Дата: ' . current_time('d.m.Y H:i'),
+    ];
+    $body    = implode("\n", $lines);
+
+    $headers = ['Content-Type: text/plain; charset=UTF-8'];
+    if ($email !== '' && is_email($email)) {
+        $headers[] = 'Reply-To: ' . $email;
+    }
+
+    $ok = wp_mail($recipients, $subject, $body, $headers);
+
+    if ($ok) {
+        wp_send_json_success(['msg' => 'Заявка отправлена']);
+    }
+    wp_send_json_error(['msg' => 'Не удалось отправить. Попробуйте позже или позвоните нам.']);
+}
 
 /**
  * Рендер статической разметки лендинга из template-parts/landing.html
