@@ -60,6 +60,23 @@ add_action('wp_enqueue_scripts', function () {
 });
 
 /**
+ * Фавиконка (набор иконок перенесён с основного сайта bavarswiss.ru).
+ * Выводится в <head> через wp_head с ранним приоритетом.
+ */
+add_action('wp_head', function () {
+    $f = trailingslashit(get_template_directory_uri()) . 'assets/favicons/';
+    $links = [
+        '<link rel="icon" type="image/png" sizes="32x32" href="' . esc_url($f . 'favicon-32x32.png') . '">',
+        '<link rel="icon" type="image/png" sizes="16x16" href="' . esc_url($f . 'favicon-16x16.png') . '">',
+        '<link rel="icon" type="image/png" sizes="96x96" href="' . esc_url($f . 'favicon-96x96.png') . '">',
+        '<link rel="icon" type="image/png" sizes="192x192" href="' . esc_url($f . 'favicon-192x192.png') . '">',
+        '<link rel="apple-touch-icon" sizes="180x180" href="' . esc_url($f . 'favicon-180x180.png') . '">',
+        '<link rel="shortcut icon" href="' . esc_url($f . 'favicon.ico') . '">',
+    ];
+    echo "\n" . implode("\n", $links) . "\n";
+}, 5);
+
+/**
  * Обработка заявок с форм сайта (#contact-form, #modal-form).
  * Отправляет письмо на адрес из поля «Куда отправлять заявки» (ACF, блок Контакты),
  * иначе — на e-mail администратора сайта.
