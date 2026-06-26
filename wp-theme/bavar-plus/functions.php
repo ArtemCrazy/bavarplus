@@ -77,6 +77,28 @@ add_action('wp_head', function () {
 }, 5);
 
 /**
+ * Мета-описание сайта в <head> из «Краткого описания» (Настройки → Общие).
+ * Без SEO-плагина — хардкод в теме.
+ */
+add_action('wp_head', function () {
+    $desc = trim((string) get_bloginfo('description'));
+    if ($desc !== '') {
+        echo '<meta name="description" content="' . esc_attr($desc) . '">' . "\n";
+    }
+}, 5);
+
+/**
+ * На главной не дублируем «Краткое описание» в <title>: заголовок вкладки
+ * остаётся кратким (имя сайта), а описание используется как meta description.
+ */
+add_filter('document_title_parts', function ($parts) {
+    if (is_front_page()) {
+        unset($parts['tagline']);
+    }
+    return $parts;
+});
+
+/**
  * Обработка заявок с форм сайта (#contact-form, #modal-form).
  * Отправляет письмо на адрес из поля «Куда отправлять заявки» (ACF, блок Контакты),
  * иначе — на e-mail администратора сайта.
