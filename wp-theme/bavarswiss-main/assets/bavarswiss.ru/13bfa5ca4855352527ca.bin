@@ -1,0 +1,94 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <style type="text/css">
+            html, body {
+                margin: 0;
+                border: 0;
+                padding: 0;
+                font-size: 12px;
+                font-family: Tahoma, Arial, Helvetica;
+            }
+
+            #ymap {
+             height: 360px;
+                text-align: center;
+                font-size: 16px;
+            }
+
+            #ymap.popup {
+                text-align: center;
+                height: 180px;
+                padding-top: 180px;
+            }
+
+            #ajax-loader {
+                background-image: url('//s.siteapi.org/frontend/static/grid_7/img/30-d109f33ae8.png');
+                margin: 10px auto;
+                width: 120px;
+                height: 15px;
+            }
+
+        </style>
+        <script src="//api-maps.yandex.ru/2.1/?mode=release&lang=ru-RU&apikey=c08c94e5-489d-4a09-93ed-3ad4713e5bee"
+                type="text/javascript"></script>
+        <script type="text/javascript">
+                                    var address,
+                addresstype = "addr",
+                zoom = 15,
+                mapType = "1",
+                layer = "yandex#map";
+
+                        address = "РФ, Москва, 129626, город Москва, 2-Я Мытищинская ул, д. 2 стр. 1, помещ. 2/6";
+            
+
+            var createMap = function (point, mapType) {
+                var placemark = new window.ymaps.Placemark(point),
+                    controls;
+                switch (mapType) {
+                    case 'embedded':
+                        controls = ['zoomControl', 'typeSelector'];
+                        break;
+                    case 'popup':
+                        controls = ['mapTools', 'zoomControl', 'typeSelector', 'scaleLine'];
+                        break;
+                    default:
+                        controls = ['zoomControl', 'typeSelector'];
+                }
+                var myMap = new ymaps.Map("ymap", {
+                        center: point,
+                        zoom: zoom,
+                        type: layer,
+                        controls: controls
+                    }
+                );
+                myMap.behaviors.disable('scrollZoom');
+                myMap.geoObjects.add(placemark);
+            };
+            window.onload = function () {
+                window.ymaps.ready(function () {
+                    if (addresstype === 'coords') {
+                        createMap(address, mapType, layer);
+                    } else {
+                        window.ymaps.geocode(address).then(
+                            function (res) {
+                                if (res.geoObjects.getLength()) {
+                                    createMap(res.geoObjects.get(0).geometry.getCoordinates(), mapType, layer);
+                                } else {
+                                    document.getElementById("ymap").innerHTML = 'Адрес не найден';
+                                }
+                            },
+                            function (error) {
+                                console.log("Возникла ошибка: " + error.message);
+                            }
+                        );
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body>
+    <div id="ymap"></div>
+    </body>
+    </html>
