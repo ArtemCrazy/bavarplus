@@ -43,6 +43,15 @@ add_action('acf/init', function () {
             'rows'          => 3,
         ];
     }
+    // Телефон и e-mail (правят и текст, и ссылку tel:/mailto: — спец-обработка в рендере).
+    $fields[] = [
+        'key' => 'field_main_phone', 'label' => 'Контакты · телефон',
+        'name' => 'main_phone', 'type' => 'text', 'default_value' => '+7 495 2220706',
+    ];
+    $fields[] = [
+        'key' => 'field_main_email', 'label' => 'Контакты · e-mail',
+        'name' => 'main_email', 'type' => 'text', 'default_value' => 'info@bavarswiss.ru',
+    ];
     // Служебное поле: получатель заявок с формы.
     $fields[] = [
         'key'           => 'field_main_form_recipient',
@@ -213,6 +222,21 @@ function bavarswiss_render_main() {
         uksort($map, function ($a, $b) { return mb_strlen($b) - mb_strlen($a); });
         foreach ($map as $def => $val) {
             $html = str_replace($def, $val, $html);
+        }
+
+        // Телефон: подменяем оба варианта отображения и ссылку tel:.
+        $ph = trim((string) get_field('main_phone', $front));
+        if ($ph !== '' && $ph !== '+7 495 2220706') {
+            $html = str_replace(['+7 495 2220706', '+7(495)2220706'], esc_html($ph), $html);
+            $digits = preg_replace('/[^0-9+]/', '', $ph);
+            if ($digits !== '') {
+                $html = str_replace('tel:+74952220706', 'tel:' . $digits, $html);
+            }
+        }
+        // E-mail: одна замена чинит и текст, и mailto: (адрес — подстрока ссылки).
+        $em = trim((string) get_field('main_email', $front));
+        if ($em !== '' && $em !== 'info@bavarswiss.ru' && is_email($em)) {
+            $html = str_replace('info@bavarswiss.ru', esc_html($em), $html);
         }
     }
 
