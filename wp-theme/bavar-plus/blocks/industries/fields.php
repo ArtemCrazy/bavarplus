@@ -10,5 +10,4 @@ for ($i = 1; $i <= 4; $i++) {
     $f["ind{$i}_title"] = ['label' => "Карточка $i · заголовок", 'type' => 'text'];
     $f["ind{$i}_desc"]  = ['label' => "Карточка $i · описание", 'type' => 'textarea', 'rows' => 3];
 }
-$f['ind_note'] = ['label' => 'Примечание под карточками', 'type' => 'textarea', 'rows' => 3];
 return $f;

@@ -1219,20 +1219,20 @@ p { margin: 0; }
 .bio__illo {
   display: block;
   width: 100%;
-  max-width: 520px;
+  max-width: 400px;
   height: auto;
 }
-@media (max-width: 1024px) { .bio__illo { max-width: 420px; } }
+@media (max-width: 1024px) { .bio__illo { max-width: 340px; } }
 /* Декоративный вылет на широких экранах — крупнее, уходит за левый край
    и поднимается вверх ЗА текст (позади него), не растягивая блок вниз */
 @media (min-width: 1280px) {
   .bio__intro { position: relative; }
   .bio__title, .bio__lede { position: relative; z-index: 1; }
   .bio__illo {
-    width: 684px;
+    width: 540px;
     max-width: none;
-    margin-left: -105px;
-    margin-top: -80px;
+    margin-left: -80px;
+    margin-top: -60px;
     position: relative;
     z-index: 0;
   }

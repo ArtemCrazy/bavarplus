@@ -37,9 +37,5 @@ $cards = [
         <?php endforeach; ?>
       </div>
     </div>
-
-    <p class="bio-note">
-      <?php echo bavar_field('ind_note', $d); ?>
-    </p>
   </div>
 </section>
