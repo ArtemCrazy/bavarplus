@@ -24,9 +24,13 @@ $cards = [
       <div class="bio__cards">
         <?php foreach ($cards as $i => $c): $k = $i + 1; ?>
         <div class="bio-card">
-          <div class="bio-card__num"><?php echo $c['n']; ?></div>
-          <div class="bio-card__icon"><img class="lz" data-src="assets/<?php echo $c['icon']; ?>" alt=""></div>
-          <h4 class="bio-card__title"><?php echo bavar_field("ind{$k}_title", $d); ?></h4>
+          <div class="bio-card__head">
+            <div class="bio-card__icon"><img class="lz" data-src="assets/<?php echo $c['icon']; ?>" alt=""></div>
+            <div class="bio-card__heading">
+              <div class="bio-card__num"><?php echo $c['n']; ?></div>
+              <h4 class="bio-card__title"><?php echo bavar_field("ind{$k}_title", $d); ?></h4>
+            </div>
+          </div>
           <p class="bio-card__desc"><?php echo bavar_field("ind{$k}_desc", $d); ?></p>
           <span class="bio-card__arrow" aria-hidden="true">→</span>
         </div>

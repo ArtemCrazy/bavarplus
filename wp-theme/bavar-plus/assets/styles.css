@@ -1254,8 +1254,7 @@ p { margin: 0; }
 @media (max-width: 768px) {
   .bio__title,
   .bio__lede,
-  #industries .bio-note,
-  .bio-card { text-align: center; }
+  #industries .bio-note { text-align: center; }
   .bio__lede { margin-left: auto; margin-right: auto; }
   #industries .bio-note {
     border-left: none;
@@ -1263,7 +1262,6 @@ p { margin: 0; }
     margin-left: auto;
     margin-right: auto;
   }
-  .bio-card__icon { margin-left: auto; margin-right: auto; }
   .bio-card__arrow { display: none; }
 }
 
@@ -1280,20 +1278,27 @@ p { margin: 0; }
   box-shadow: 0 20px 44px rgba(15, 23, 42, 0.10);
   transform: translateY(-3px);
 }
+.bio-card__head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.bio-card__heading { min-width: 0; }
 .bio-card__num {
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 800;
   color: var(--accent);
   letter-spacing: -0.02em;
-  margin-bottom: 18px;
+  margin: 0 0 2px;
 }
 .bio-card__icon {
-  width: 104px;
-  height: 104px;
+  width: 72px;
+  height: 72px;
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 14px;
 }
 .bio-card__icon img {
   width: 100%;
@@ -1305,7 +1310,7 @@ p { margin: 0; }
   font-size: 19px;
   font-weight: 700;
   line-height: 1.2;
-  margin: 0 0 10px;
+  margin: 0;
 }
 .bio-card__desc {
   font-size: 14px;
