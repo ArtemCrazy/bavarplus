@@ -99,6 +99,28 @@ add_filter('document_title_parts', function ($parts) {
 });
 
 /**
+ * Яндекс.Метрика (счётчик 111745055) — установлен по запросу клиента.
+ * Выводится в <head> через wp_head.
+ */
+add_action('wp_head', function () {
+    echo <<<'YM'
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js?id=111745055", "ym");
+   ym(111745055, "init", {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/111745055" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+YM;
+});
+
+/**
  * Обработка заявок с форм сайта (#contact-form, #modal-form).
  * Отправляет письмо на адрес из поля «Куда отправлять заявки» (ACF, блок Контакты),
  * иначе — на e-mail администратора сайта.
